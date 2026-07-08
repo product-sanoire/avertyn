@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avertyn — Live App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#141414;--mut:#7c7c7a;--faint:#a4a29e;--line:#e8e8e5;--hair:#efefec;--bg:#f5f4f2;--card:#fff;--acc:#141414;--sig:#b23a2a;--ok:#2f6f52;--warn:#8a6a1f;--sans:'Inter',system-ui,sans-serif;--disp:'Fraunces',Georgia,serif;--num:'Space Grotesk',monospace}
+*{box-sizing:border-box}body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);letter-spacing:-.006em;-webkit-font-smoothing:antialiased}
+.mono{font-family:var(--num);font-variant-numeric:tabular-nums}
+.mast{height:56px;display:flex;align-items:center;gap:12px;padding:0 20px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:16px}
+.lg{width:26px;height:26px;border-radius:7px;background:var(--acc);color:#fff;display:grid;place-items:center;font-family:var(--num);font-weight:700;font-size:13px}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ok)}
+.live .pulse{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:p 1.8s infinite}
+@keyframes p{0%{box-shadow:0 0 0 0 rgba(47,111,82,.5)}70%{box-shadow:0 0 0 7px rgba(47,111,82,0)}100%{box-shadow:0 0 0 0 rgba(47,111,82,0)}}
+.grow{flex:1}.asof{font-size:11.5px;color:var(--mut)}
+.btn{background:var(--acc);color:#fff;border:0;border-radius:9px;padding:8px 13px;font:inherit;font-weight:600;font-size:12.5px;cursor:pointer}
+.btn.s{background:#f1f0ee;color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.5}
+.wrap{max-width:1120px;margin:0 auto;padding:22px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.kpi .l{font-size:11px;color:var(--mut)}.kpi .n{font-family:var(--num);font-weight:600;font-size:24px;margin-top:5px}
+.cols{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-top:18px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ph{padding:12px 16px;border-bottom:1px solid var(--line);font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px}
+.ph::before{content:'';width:3px;height:13px;border-radius:2px;background:var(--ink)}
+.ph .a{margin-left:auto}
+table{width:100%;border-collapse:collapse}
+th{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);text-align:left;padding:9px 16px;border-bottom:1px solid var(--line);font-weight:600}
+td{padding:10px 16px;border-bottom:1px solid var(--hair);font-size:12.5px}
+tr:last-child td{border-bottom:0}
+.lrow{cursor:pointer}.lrow:hover{background:#f9f8f6}.lrow.on{background:#f2f1ef}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:3px 8px;border-radius:7px;background:#f1f0ee;border:1px solid var(--line);white-space:nowrap}
+.dot{width:6px;height:6px;border-radius:50%}.d-red{background:var(--sig)}.d-amber{background:var(--warn)}.d-green{background:var(--ok)}.d-ink{background:var(--ink)}
+.rc{padding:12px 15px;border-bottom:1px solid var(--hair);font-size:12px}.rc:last-child{border-bottom:0}.rc .sub{color:var(--mut);font-size:11px;margin-top:4px;line-height:1.4}
+.feed{padding:12px 15px;font-size:11.5px;color:var(--mut);line-height:1.7}.feed b{color:var(--ink);font-weight:600}
+.det{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;display:flex;gap:16px;align-items:center}
+.gauge{width:82px;height:82px;border-radius:50%;display:grid;place-items:center;position:relative;flex:none}
+.gauge::after{content:'';position:absolute;inset:9px;background:var(--card);border-radius:50%}
+.gauge .v{position:relative;text-align:center}.gauge .v b{font-family:var(--num);font-weight:600;font-size:22px;display:block}.gauge .v span{font-size:8px;color:var(--mut);text-transform:uppercase}
+.muted{color:var(--mut);font-size:12.5px;padding:14px 16px}
+.note{text-align:center;color:var(--faint);font-size:11.5px;padding:6px 20px 40px}
+.err{max-width:620px;margin:50px auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+</style></head><body>
+<div class="mast">
+  <div class="brand"><span class="lg">B</span> Avertyn</div>
+  <span class="live"><span class="pulse"></span>Live</span>
+  <span class="asof" id="org"></span>
+  <div class="grow"></div>
+  <button class="btn" id="btn-auto">Run autopilot</button>
+  <button class="btn s" id="btn-release">Release all</button>
+  <button class="btn s" id="btn-reload">Reload</button>
+</div>
+<div id="root"><div class="muted" style="padding:40px;text-align:center">Loading live data…</div></div>
+<div class="note">Live interactive view of the Avertyn demo tenant — every action writes to the Supabase database and re-reads it. Not a mockup.</div>
+<script>
+var SUPA="https://ssjougrsaecdwfuxeasd.supabase.co";
+var KEY="sb_publishable_XcM-JO1GQ92RbgDQ4eKKqQ_a970au8Z";
+var state=null,sel=null,busy=false;
+function money(n){return n==null?"—":"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:0});}
+function esc(s){return (s==null?"":String(s)).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+function call(fn,body){return fetch(SUPA+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json"},body:JSON.stringify(body||{})}).then(function(r){if(!r.ok){return r.text().then(function(t){throw new Error("HTTP "+r.status+" "+t.slice(0,120));});}return r.json();});}
+function rd(d){if(d.disposition==="provider_win")return["Award — pay","d-ink"];if(d.disposition==="eligibility_challenged")return["Challenged","d-ink"];if((d.score||0)>=80)return["Ineligible","d-red"];if((d.score||0)>=60)return["Review","d-amber"];if(d.state==="qpa_defense")return["Defend QPA","d-ink"];if(d.disposition!=="open"&&d.state==="closed")return[esc(d.disposition),"d-green"];return["Defensible","d-green"];}
+function setBusy(b){busy=b;["btn-auto","btn-release","btn-reload"].forEach(function(id){var e=document.getElementById(id);if(e)e.disabled=b;});}
+function act(fn,arg){if(busy)return;setBusy(true);call(fn,arg?{p_ref:arg}:{}).then(function(s){state=s;setBusy(false);render();}).catch(function(e){setBusy(false);alert(e.message);});}
+function render(){
+ var s=state,m=s.metrics||{},a=s.agent||{};
+ var over=(a.human_released+a.human_rejected)?Math.round(a.human_rejected/(a.human_released+a.human_rejected)*100):0;
+ document.getElementById("org").textContent="· "+s.org+" · "+new Date(s.as_of).toLocaleTimeString();
+ var h="<div class='wrap'>";
+ h+="<div class='kpis'>"+kpi("Open disputes",m.open_disputes)+kpi("$ defended",money(m.dollars_defended))+kpi("Challenges filed",m.challenges_filed)+kpi("Agent actions",a.agent_actions)+kpi("Human override",over+"%")+"</div>";
+ var d=null;if(sel){for(var i=0;i<s.disputes.length;i++){if(s.disputes[i].ref===sel)d=s.disputes[i];}}
+ if(d){var gc=d.score>=80?"var(--sig)":d.score>=60?"var(--warn)":"var(--ok)";
+  h+="<div class='det'><div class='gauge' style='background:conic-gradient("+gc+" "+(d.score||0)+"%,#eeedea 0)'><div class='v'><b style='color:"+gc+"'>"+(d.score||0)+"</b><span>Inelig</span></div></div>";
+  h+="<div style='flex:1'><div style='font-family:var(--disp);font-size:18px'>#"+esc(d.ref)+"</div><div class='asof'>"+esc(d.initiator)+" · CPT "+esc(d.cpt)+" · "+esc(d.plan)+" · "+esc(d.state)+"</div>";
+  h+="<div style='margin-top:10px;display:flex;gap:8px'><button class='btn s' id='btn-engine'>Run engine</button>"+(d.score>=80?"<button class='btn' id='btn-letter'>Generate &amp; sign letter</button>":"")+"</div></div>";
+  h+="<div style='text-align:right'><div class='asof'>Demand</div><div class='mono' style='font-size:20px;font-weight:600'>"+money(d.demand)+"</div><div class='asof'>QPA "+money(d.qpa)+"</div></div></div>";}
+ h+="<div class='cols'><div class='panel'><div class='ph'>Dispute queue · live<span class='a asof'>click a row</span></div><table><thead><tr><th>Dispute</th><th>Initiator</th><th>Demand</th><th>QPA</th><th>Read</th><th>State</th></tr></thead><tbody>";
+ for(var j=0;j<s.disputes.length;j++){var x=s.disputes[j],r=rd(x);h+="<tr class='lrow"+(sel===x.ref?" on":"")+"' data-ref='"+esc(x.ref)+"'><td><b>#"+esc(x.ref)+"</b> <span style='color:var(--mut)'>"+esc(x.cpt)+"</span></td><td>"+esc(x.initiator)+"</td><td class='mono'>"+money(x.demand)+"</td><td class='mono'>"+money(x.qpa)+"</td><td><span class='badge'><i class='dot "+r[1]+"'></i>"+r[0]+"</span></td><td style='color:var(--mut)'>"+esc(x.state)+"</td></tr>";}
+ h+="</tbody></table></div><div><div class='panel'><div class='ph'>Autopilot · waiting</div>";
+ if((s.queue||[]).length){for(var k=0;k<s.queue.length;k++){var q=s.queue[k];h+="<div class='rc'><b>"+esc(q.action)+" · "+money(q.amount)+"</b><div class='sub'>"+esc(q.rationale)+"</div></div>";}}else{h+="<div class='muted'>Nothing staged.</div>";}
+ h+="</div><div class='panel' style='margin-top:18px'><div class='ph'>Agent ledger</div><div class='feed'>";
+ if((s.ledger||[]).length){for(var l=0;l<s.ledger.length;l++){var e=s.ledger[l];h+="<div>"+(e.actor==="agent"?"✦":"•")+" <b>"+esc(e.action)+"</b> · "+esc(e.actor)+(e.rationale?" — "+esc(e.rationale.slice(0,50)):"")+"</div>";}}else{h+="<span>No agent actions yet.</span>";}
+ h+="</div></div></div></div>";
+ h+="<div class='panel' style='margin-top:18px'><div class='ph'>Initiator scorecard · live</div><table><thead><tr><th>Initiator</th><th>Disputes</th><th>Avg ineligibility</th><th>Challenged</th><th>Avg demand</th><th>Avg QPA</th></tr></thead><tbody>";
+ for(var n=0;n<(s.scorecard||[]).length;n++){var y=s.scorecard[n];h+="<tr><td><b>"+esc(y.initiator)+"</b></td><td class='mono'>"+y.disputes+"</td><td class='mono'>"+(y.avg_ineligibility==null?"—":y.avg_ineligibility)+"</td><td class='mono'>"+y.challenged+"</td><td class='mono'>"+money(y.avg_demand)+"</td><td class='mono'>"+money(y.avg_qpa)+"</td></tr>";}
+ h+="</tbody></table></div></div>";
+ document.getElementById("root").innerHTML=h;
+ var rows=document.querySelectorAll("[data-ref]");for(var p=0;p<rows.length;p++){rows[p].onclick=function(){sel=this.getAttribute("data-ref");render();};}
+ var be=document.getElementById("btn-engine");if(be)be.onclick=function(){act("demo_run_engine",sel);};
+ var bl=document.getElementById("btn-letter");if(bl)bl.onclick=function(){act("demo_generate_letter",sel);};
+}
+function kpi(l,v){return "<div class='kpi'><div class='l'>"+l+"</div><div class='n'>"+(v==null?"—":v)+"</div></div>";}
+function load(){setBusy(true);document.getElementById("root").innerHTML="<div class='muted' style='padding:40px;text-align:center'>Loading live data…</div>";call("demo_live_snapshot").then(function(s){state=s;setBusy(false);render();}).catch(function(e){setBusy(false);document.getElementById("root").innerHTML="<div class='err'><b>Couldn’t reach the database.</b><br><span class='asof'>"+esc(e.message)+"</span></div>";});}
+document.getElementById("btn-auto").onclick=function(){act("demo_run_autopilot");};
+document.getElementById("btn-release").onclick=function(){act("demo_release_all");};
+document.getElementById("btn-reload").onclick=function(){sel=null;load();};
+load();
+</script></body></html>
