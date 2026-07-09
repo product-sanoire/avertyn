@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avertyn — Plan Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#121211;--mut:#84847d;--faint:#adaca4;--line:#e7e6e1;--hair:#efeeea;--bg:#fbfbf9;--panel:#fff;--sig:#b23a2a;--ok:#2f6f52;--warn:#8a6a1f;--sans:'Inter',system-ui,sans-serif;--disp:'Fraunces',Georgia,serif;--num:'Space Grotesk',monospace}
+*{box-sizing:border-box}body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;font-size:13px}
+.num{font-family:var(--num);font-variant-numeric:tabular-nums}
+.lab{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.mast{height:56px;display:flex;align-items:center;gap:14px;padding:0 26px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:2px;font-family:var(--disp);font-weight:400;font-size:19px}.brand i{color:var(--sig);font-style:normal;font-size:22px;line-height:0}
+.ro{margin-left:auto;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);border-radius:20px;padding:4px 11px}
+.wrap{max-width:940px;margin:0 auto;padding:40px 26px 60px}
+h1{font-family:var(--disp);font-weight:400;font-size:34px;letter-spacing:-.02em;margin:0}
+.sub{color:var(--mut);font-size:12.5px;margin-top:8px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:28px}
+.kpi{padding:18px 20px;border-right:1px solid var(--hair)}.kpi:last-child{border-right:0}
+.kpi .n{font-family:var(--num);font-weight:500;font-size:27px;margin-top:9px}
+.kpi .d{font-size:10.5px;color:var(--mut);margin-top:3px}
+.lab2{margin:36px 0 4px;display:block}
+table{width:100%;border-collapse:collapse}
+th{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);text-align:left;padding:12px 0;border-bottom:1px solid var(--line);font-weight:600}
+th.r,td.r{text-align:right}
+td{padding:15px 0;border-bottom:1px solid var(--hair);font-size:12.5px}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);border-radius:20px;padding:2px 8px}
+.foot{color:var(--faint);font-size:11px;margin-top:40px;text-align:center}
+.load,.err{padding:80px 20px;text-align:center;color:var(--faint);font-size:13px}
+</style></head>
+<body>
+<div class="mast"><div class="brand">Avertyn<i>.</i></div><span class="ro">Plan portal · read-only</span></div>
+<div id="root"><div class="load">Loading your disputes…</div></div>
+<script>
+var SUPA="https://ssjougrsaecdwfuxeasd.supabase.co";
+var KEY="sb_publishable_XcM-JO1GQ92RbgDQ4eKKqQ_a970au8Z";
+function money(n){return n==null?"—":"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:0});}
+function esc(s){return (s==null?"":String(s)).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+function token(){var m=location.search.match(/[?&]t=([^&]+)/);return m?decodeURIComponent(m[1]):"";}
+fetch(SUPA+"/rest/v1/rpc/public_get_portal",{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json"},body:JSON.stringify({p_token:token()})})
+.then(function(r){return r.json();}).then(function(s){
+  if(!s||!s.ok){document.getElementById("root").innerHTML="<div class='err'>This portal link is invalid or has expired.<br>Please contact your plan administrator.</div>";return;}
+  var m=s.metrics||{};
+  var rows=(s.disputes||[]).map(function(d){return "<tr><td class='num'><b>#"+esc(d.ref)+"</b></td><td>"+esc(d.cpt)+"</td><td>"+esc(d.status)+"</td><td>"+esc(d.outcome)+"</td><td class='r num'>"+money(d.demand)+"</td></tr>";}).join("")||"<tr><td colspan='5' style='color:var(--mut)'>No disputes on file.</td></tr>";
+  document.getElementById("root").innerHTML="<div class='wrap'><div class='lab'>Plan sponsor</div><h1>"+esc(s.employer)+"</h1><div class='sub'>Your out-of-network disputes, defended by Meridian Plan Administrators on Avertyn. Updated live.</div>"+
+    "<div class='kpis'><div class='kpi'><div class='lab'>Disputes</div><div class='n'>"+(m.total||0)+"</div><div class='d'>on file</div></div><div class='kpi'><div class='lab'>In progress</div><div class='n'>"+(m.open||0)+"</div><div class='d'>being worked</div></div><div class='kpi'><div class='lab'>Challenged</div><div class='n'>"+(m.challenged||0)+"</div><div class='d'>ineligible</div></div><div class='kpi'><div class='lab'>Defended</div><div class='n'>"+money(m.defended)+"</div><div class='d'>vs. demands</div></div></div>"+
+    "<span class='lab lab2'>Your disputes</span><table><thead><tr><th>Dispute</th><th>CPT</th><th>Status</th><th>Outcome</th><th class='r'>Provider demand</th></tr></thead><tbody>"+rows+"</tbody></table>"+
+    "<div class='foot'>Powered by Avertyn · read-only view · figures update as your disputes progress</div></div>";
+}).catch(function(){document.getElementById("root").innerHTML="<div class='err'>Couldn’t load the portal right now.</div>";});
+</script>
+</body></html>
