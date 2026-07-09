@@ -104,6 +104,11 @@ body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);lett
 .feed b{color:var(--ink);font-weight:600}
 .feed .mk{color:var(--faint);margin-right:6px}
 .empty{font-size:11.5px;color:var(--faint);padding:14px 0}
+.tool{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--hair)}
+.tool:last-child{border-bottom:0}
+.tool b{font-size:12.5px;font-weight:600}
+.tool .qs{font-size:10.5px;color:var(--mut);margin-top:4px;line-height:1.45;max-width:32ch}
+.tool .btn{padding:6px 13px;flex:none}
 
 /* Overview (no selection) */
 .ovh{font-family:var(--disp);font-size:26px;font-weight:400;margin:0 0 4px;letter-spacing:-.02em}
@@ -224,6 +229,7 @@ function renderDetail(){
     "<div class='track' style='margin:8px 0 16px'><div class='fill' style='width:"+wp+"%;background:var(--ink)'></div></div>"+
     "<div class='bl'><span>Optimal offer</span><span class='num'>"+money(d.recommended_offer)+"</span></div>"+
     "<div class='bl' style='margin-top:8px'><span>Expected savings vs demand</span><span class='num'>"+money(d.expected_value)+"</span></div>"+
+    ((d.autopilot&&d.autopilot.action)?"<div class='bl' style='margin-top:8px'><span>Autopilot routes to</span><span style='font-weight:600'>"+titl(d.autopilot.action)+" · "+titl(d.autopilot.mode)+"</span></div>":"")+
     "</div></div></div>");
   var disc=!d.registration_number?"":(
     "<div class='sect'><span class='lab'>Disclosure · 835 remittance</span><div class='meta' style='grid-template-columns:1fr 1fr'>"+
@@ -276,9 +282,14 @@ function renderRail(){
   h+="<div class='dial'><span>Status</span><span class='tag'><i class='dot d-green'></i>On · governed</span></div>";
   h+="<div class='dial'><span>Waiting on you</span><span class='num' style='font-weight:600'>"+q.length+"</span></div>";
 
-  h+="<div class='rlab'>Operations</div><div style='display:flex;flex-wrap:wrap;gap:7px;padding-top:12px'>"+
-     "<button class='btn' id='op-835'>Ingest 835</button><button class='btn' id='op-score'>Score all</button>"+
-     "<button class='btn' id='op-batch'>Build batches</button><button class='btn' id='op-alert'>Send alerts</button></div>";
+  h+="<div class='rlab'>Tools</div>";
+  [["op-835","Ingest 835","Parse an 835 remittance → CARC/RARC, IDR registration #, legal names"],
+   ["op-score","Score all","Run the win-probability model across every dispute"],
+   ["op-batch","Build batches","Group disputes (2026 rules), pick an IDRE, file to the portal"],
+   ["op-alert","Send alerts","Push approaching-deadline alerts to email + webhook"]
+  ].forEach(function(t){
+    h+="<div class='tool'><div><b>"+t[1]+"</b><div class='qs'>"+t[2]+"</div></div><button class='btn' id='"+t[0]+"'>Run</button></div>";
+  });
 
   h+="<div class='rlab'>Autonomy</div>";
   [["Triage · Defend · Challenge","d-ink","Auto"],["Submit response","d-amber","Review"],["Schedule pay · Settle","d-amber","Review"]].forEach(function(x){
