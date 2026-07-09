@@ -277,7 +277,6 @@ function renderNav(){
 function switchView(v){view=v;mOpen=false;setMdet();renderNav();renderView();}
 var LOADERS={disputes:["demo_live_snapshot","disputes"],clients:["demo_crm_snapshot","crm"],files:["demo_files_snapshot","files"],tasks:["demo_tasks_snapshot","tasks"],calendar:["demo_calendar_snapshot","cal"],settings:["demo_admin_snapshot","admin"],inbox:["demo_inbox_snapshot","inbox"],billing:["demo_billing_snapshot","billing"],reports:["demo_reports_meta","reports"],exposure:["demo_exposure","exposure"],governance:["demo_governance","governance"]};
 function renderView(){var L=LOADERS[view],key=L[1],el=document.getElementById("view");
-  if(SESSION&&view!=="disputes"){el.innerHTML=emptyOrg(view);return;}
   var rpc=(SESSION&&view==="disputes")?"live_snapshot":L[0];
   if(D[key]){paint();return;}
   el.innerHTML="<div class='load'>Loading…</div>";
