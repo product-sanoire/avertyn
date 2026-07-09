@@ -1,606 +1,766 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Avertyn — Live</title>
+<title>Avertyn — Plan-side IDR defense for the No Surprises Act</title>
+<meta name="description" content="Avertyn builds the QPA-anchored, deadline-perfect, defensible offer that wins No Surprises Act IDR disputes — and files it for you. Plan-side dispute defense for TPAs.">
+<link rel="canonical" href="https://avertyn.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23141312'/%3E%3Ctext x='48' y='73' font-family='Georgia,serif' font-size='66' fill='%23fff' text-anchor='middle'%3EA%3C/text%3E%3Ccircle cx='79' cy='67' r='7' fill='%23b23a2a'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Avertyn">
+<meta property="og:title" content="Avertyn — plan-side IDR defense that wins">
+<meta property="og:description" content="Plans lose four of five IDR disputes. Yours don't have to. Avertyn builds the QPA-anchored, deadline-perfect, defensible offer that wins — and files it for you.">
+<meta property="og:url" content="https://avertyn.com/">
+<meta property="og:image" content="https://avertyn.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Avertyn — plan-side IDR defense that wins">
+<meta name="twitter:description" content="Plans lose four of five IDR disputes. Yours don't have to. The offer that wins IDR — built and filed for you.">
+<meta name="twitter:image" content="https://avertyn.com/og.png">
+<meta name="theme-color" content="#141312">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#141312;--mut:#5e5e57;--faint:#6c6c64;--line:#e7e5df;--hair:#efeee9;--bg:#f4f2ee;--panel:#fff;--sig:#b23a2a;--sig-soft:#f6e9e6;--ok:#2f6f52;--ok-soft:#e7f0eb;--warn:#8a6a1f;--warn-soft:#f6efdf;--sans:'Inter',system-ui,sans-serif;--disp:'Fraunces',Georgia,serif;--num:'Space Grotesk',monospace;--r:14px;--sh:0 1px 2px rgba(30,28,24,.04),0 6px 20px rgba(30,28,24,.05);--shh:0 2px 8px rgba(30,28,24,.07),0 16px 38px rgba(30,28,24,.10)}
-*{box-sizing:border-box}html,body{height:100%}
-body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;font-size:13px}
-.num{font-family:var(--num);font-variant-numeric:tabular-nums;letter-spacing:0}
-.lab{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:600}
-.app{height:100vh;display:flex;flex-direction:column;overflow:hidden}
-.btn{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:8px 14px;font:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:.14s;box-shadow:0 1px 1px rgba(30,28,24,.02)}
-.btn:hover{border-color:#cfcdc6;box-shadow:var(--sh)}.btn.pri{background:var(--ink);color:#fff;border-color:var(--ink);box-shadow:0 2px 8px rgba(20,19,18,.16)}.btn.pri:hover{background:#000;box-shadow:var(--shh)}
-.btn.sm{padding:5px 11px;font-size:11px}.btn:disabled{opacity:.4;cursor:default;box-shadow:none}
-.dot{width:6px;height:6px;border-radius:50%;flex:none}
-.d-red{background:var(--sig)}.d-amber{background:var(--warn)}.d-green{background:var(--ok)}.d-ink{background:var(--ink)}
-.tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:500;color:var(--mut)}
-.pill{display:inline-block;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);border-radius:20px;padding:2px 8px}
-.mast{height:60px;flex:none;display:flex;align-items:center;gap:16px;padding:0 26px;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(30,28,24,.03),0 6px 18px rgba(30,28,24,.03);z-index:5}
-.brand{display:flex;align-items:baseline;gap:2px;font-family:var(--disp);font-weight:400;font-size:21px;letter-spacing:-.02em}
-.brand i{color:var(--sig);font-style:normal;font-size:22px;line-height:0}
-.org{font-size:12px;color:var(--mut);padding-left:16px;border-left:1px solid var(--line);height:20px;display:flex;align-items:center}
-.live{display:inline-flex;align-items:center;gap:6px;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ok)}
-.live .p{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pl 2s infinite}
-@keyframes pl{0%{box-shadow:0 0 0 0 rgba(47,111,82,.45)}70%{box-shadow:0 0 0 6px rgba(47,111,82,0)}100%{box-shadow:0 0 0 0 rgba(47,111,82,0)}}
-.grow{flex:1}
-.qbox{position:relative}
-.qbox input{background:#f4f3f1;border:1px solid var(--line);border-radius:9px;padding:7px 12px;font:inherit;font-size:12.5px;width:220px;color:var(--ink);outline:none}
-.qbox input:focus{border-color:#cfcec8;background:#fff}
-.qres{position:absolute;top:40px;right:0;width:340px;background:var(--panel);border:1px solid var(--line);border-radius:11px;box-shadow:0 12px 34px rgba(0,0,0,.09);z-index:30;max-height:360px;overflow:auto}
-.qres .qi{padding:10px 14px;border-bottom:1px solid var(--hair);cursor:pointer}.qres .qi:last-child{border-bottom:0}.qres .qi:hover{background:#f5f4f1}
-.qres .qi b{font-size:12.5px}.qres .qi .s{font-size:10.5px;color:var(--mut);margin-top:2px}
-.qres .qt{font-size:8.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);font-weight:700;float:right}
-.nav{height:48px;flex:none;display:flex;align-items:center;gap:3px;padding:0 22px;border-bottom:1px solid var(--line);background:var(--panel);overflow-x:auto}
-.navtab{font-size:12.5px;color:var(--mut);padding:8px 14px;border-radius:9px;cursor:pointer;white-space:nowrap;font-weight:500;transition:.14s}
-.navtab:hover{background:#f2f1ec;color:var(--ink)}.navtab.on{background:var(--ink);color:#fff;font-weight:500;box-shadow:0 2px 10px rgba(20,19,18,.20)}
-.navtab .c{font-family:var(--num);font-size:10px;margin-left:6px;opacity:.7}
-.navtab .b{display:inline-block;background:var(--sig);color:#fff;border-radius:10px;font-size:9px;font-weight:600;padding:1px 6px;margin-left:6px}
-#view{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
-.page{flex:1;overflow:auto;padding:30px 38px 54px}
-.pagehd{display:flex;align-items:baseline;gap:12px;margin-bottom:4px}
-.pagehd h1{font-family:var(--disp);font-weight:400;font-size:30px;letter-spacing:-.025em;margin:0}
-.pagehd .s{color:var(--mut);font-size:12px}.pagehd .rt{margin-left:auto;display:flex;gap:8px;align-items:center}
-.kpis{flex:none;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding:18px 24px;border-bottom:1px solid var(--line);background:var(--bg)}
-.kpi{padding:15px 17px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);transition:.16s}.kpi:hover{box-shadow:var(--shh);transform:translateY(-1px)}
-.kpi .n{font-family:var(--num);font-weight:500;font-size:27px;margin-top:9px;letter-spacing:-.02em}
-.kpi .d{font-size:10.5px;color:var(--mut);margin-top:3px}
-.work{flex:1;display:grid;grid-template-columns:296px 1fr 336px;overflow:hidden}
-.list{border-right:1px solid var(--line);overflow:auto}
-.lhd{position:sticky;top:0;background:var(--bg);padding:16px 20px 10px;z-index:2}
-.chips{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
-.chip{font-size:11px;color:var(--mut);padding:6px 12px;border-radius:20px;cursor:pointer;border:1px solid var(--line);background:var(--panel);transition:.14s}
-.chip:hover{border-color:#cfcdc6;color:var(--ink)}.chip.on{background:var(--ink);color:#fff;border-color:var(--ink);box-shadow:0 2px 7px rgba(20,19,18,.16)}
-.lrow{padding:13px 20px;border-top:1px solid var(--hair);cursor:pointer;position:relative}
-.lrow:hover{background:#f5f4f1}.lrow.on{background:#f2f1ed}
-.lrow.on::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--sig)}
-.lrow .r1{display:flex;align-items:center;justify-content:space-between;gap:8px}.lrow .rf{font-weight:600;font-size:12.5px}
-.lrow .r2{font-size:11px;color:var(--mut);margin-top:5px;display:flex;justify-content:space-between;gap:8px}
-.detail{overflow:auto;padding:30px 34px 40px}
-.dref{font-family:var(--disp);font-weight:400;font-size:34px;letter-spacing:-.02em;margin:0}
-.dmeta{color:var(--mut);font-size:12px;margin-top:8px}
-.split{margin-top:2px;height:1px;background:var(--line)}
-.drow{display:flex;gap:44px;margin-top:26px;align-items:flex-start}
-.gauge{width:104px;height:104px;border-radius:50%;display:grid;place-items:center;position:relative;flex:none}
-.gauge::after{content:'';position:absolute;inset:7px;background:var(--bg);border-radius:50%}
-.gauge .v{position:relative;text-align:center}.gauge .v b{font-family:var(--num);font-weight:500;font-size:30px;display:block;letter-spacing:-.03em}
-.gauge .v span{font-size:8px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em}
-.verdict{font-family:var(--disp);font-size:20px;margin:0}.vsub{font-size:12px;color:var(--mut);margin-top:8px;max-width:34ch;line-height:1.55}
-.sect{margin-top:34px}.sect>.lab{padding-bottom:12px;border-bottom:1px solid var(--line);display:block}
-.bar{margin:18px 0}.bl{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px}.bl .num{font-weight:500}
-.track{height:3px;background:var(--hair);position:relative}.fill{height:100%;position:absolute;left:0;top:0}
-.note{font-size:11.5px;color:var(--mut);line-height:1.6;margin-top:14px;max-width:60ch}
-.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);margin-top:2px}
-.meta div{background:var(--bg);padding:16px 2px 4px}.meta .n{font-family:var(--num);font-size:19px;font-weight:500;margin-top:8px}
-.dacts{display:flex;gap:10px;margin-top:34px}
-.rail{border-left:1px solid var(--line);overflow:auto;padding:22px 22px 40px}
-.rlab{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:600;margin:30px 0 0;padding-bottom:11px;border-bottom:1px solid var(--line)}
-.rlab:first-child{margin-top:0}
-.dial{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--hair);font-size:12px}.dial:last-child{border-bottom:0}
-.qitem{padding:14px 0;border-bottom:1px solid var(--hair)}.qitem:last-child{border-bottom:0}
-.qitem .qt{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:600}.qitem .qs{font-size:11px;color:var(--mut);margin:7px 0 0;line-height:1.5}
-.feed{font-size:11.5px;color:var(--mut);line-height:1.9;padding-top:6px}.feed div{padding:4px 0;border-bottom:1px solid var(--hair)}.feed div:last-child{border-bottom:0}
-.feed b{color:var(--ink);font-weight:600}.feed .mk{color:var(--faint);margin-right:6px}
-.empty{font-size:11.5px;color:var(--faint);padding:14px 0}
-.tool{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--hair)}.tool:last-child{border-bottom:0}
-.tool b{font-size:12.5px;font-weight:600}.tool .qs{font-size:10.5px;color:var(--mut);margin-top:4px;line-height:1.45;max-width:32ch}.tool .btn{padding:6px 13px;flex:none}
-.tbl{width:100%;border-collapse:collapse;margin-top:6px}
-.tbl th{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);text-align:left;padding:12px 16px 12px 0;border-bottom:1px solid var(--line);font-weight:600;cursor:default}
-.tbl th.r,.tbl td.r{text-align:right}.tbl th.s{cursor:pointer}.tbl th.s:hover{color:var(--ink)}
-.tbl td{padding:13px 16px 13px 0;border-bottom:1px solid var(--hair);font-size:12.5px;vertical-align:top}
-.tbl tr:last-child td{border-bottom:0}.tbl .nm{font-weight:600}.tbl tbody tr{transition:.1s}.tbl tbody tr:hover td{background:#faf9f6}
-.two{flex:1;display:grid;grid-template-columns:302px 1fr;overflow:hidden}
-.two .l2{border-right:1px solid var(--line);overflow:auto}.two .r2{overflow:auto;padding:30px 34px 40px}
-.acthd{font-family:var(--disp);font-size:28px;font-weight:400;letter-spacing:-.02em;margin:0}
-.tl{position:relative;padding-left:16px;margin-top:6px}.tl::before{content:'';position:absolute;left:3px;top:6px;bottom:6px;width:1px;background:var(--line)}
-.tlrow{position:relative;padding:12px 0;border-bottom:1px solid var(--hair)}.tlrow:last-child{border-bottom:0}
-.tlrow::before{content:'';position:absolute;left:-16px;top:17px;width:7px;height:7px;border-radius:50%;background:var(--ink)}
-.tlrow.k-email::before{background:var(--warn)}.tlrow.k-call::before{background:var(--ok)}.tlrow.k-meeting::before{background:var(--sig)}
-.tlrow .tt{font-size:12.5px;font-weight:600}.tlrow .tb{font-size:11.5px;color:var(--mut);margin-top:4px;line-height:1.5}.tlrow .tm{font-size:10px;color:var(--faint);margin-top:5px}
-.kan{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
-.kcol .lab{display:block;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:12px}
-.card{border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:11px;background:var(--panel);box-shadow:var(--sh);transition:.14s}.card:hover{box-shadow:var(--shh);transform:translateY(-1px)}
-.card .tt{font-size:12.5px;font-weight:600;line-height:1.35}.card .mt{font-size:10.5px;color:var(--mut);margin-top:9px;display:flex;justify-content:space-between;gap:8px}
-.card[draggable]{cursor:grab}.card.dragging{opacity:.5}.kcol.kover{background:#f1f0ec;outline:2px dashed var(--faint);outline-offset:-3px;border-radius:10px}
-/* files best-in-class */
-.fmgr{flex:1;display:grid;grid-template-columns:230px 1fr;overflow:hidden}
-.fside{border-right:1px solid var(--line);overflow:auto;padding:20px 18px}
-.fside input{width:100%;background:#f4f3f1;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font:inherit;font-size:12px;outline:none;margin-bottom:16px}
-.fside .fitem{display:flex;justify-content:space-between;font-size:12px;padding:7px 8px;border-radius:7px;cursor:pointer;color:var(--mut)}
-.fside .fitem:hover{background:#f2f1ed}.fside .fitem.on{background:var(--ink);color:#fff}
-.fside .fitem .c{font-family:var(--num);font-size:10px;opacity:.7}
-.storage{margin-top:18px}.storage .tk{height:4px;background:var(--hair);border-radius:3px;overflow:hidden;margin-top:8px}.storage .fl{height:100%;background:var(--ink)}
-.fmain{overflow:auto;padding:22px 26px}
-.fbulk{display:flex;align-items:center;gap:12px;padding:9px 12px;background:#f2f1ed;border-radius:9px;margin-bottom:12px;font-size:12px}
-.fdrawer{position:fixed;top:0;right:0;bottom:0;width:340px;background:var(--panel);border-left:1px solid var(--line);box-shadow:-14px 0 40px rgba(0,0,0,.08);z-index:40;padding:26px 24px;overflow:auto}
-.fdrawer .x{position:absolute;top:18px;right:20px;cursor:pointer;color:var(--mut);font-size:16px}
-.ck{width:16px;height:16px;accent-color:var(--ink);cursor:pointer}
-/* inbox */
-.ibx{flex:1;display:grid;grid-template-columns:340px 1fr;overflow:hidden}
-.ithreads{border-right:1px solid var(--line);overflow:auto}
-.ibar{position:sticky;top:0;background:var(--bg);padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;z-index:2;font-size:11px;color:var(--mut)}
-.ithread{padding:14px 18px;border-bottom:1px solid var(--hair);cursor:pointer;display:flex;gap:10px}
-.ithread:hover{background:#f5f4f1}.ithread.on{background:#f2f1ed}
-.ithread .body{flex:1;min-width:0}
-.ithread .su{font-size:12.5px;font-weight:600;display:flex;justify-content:space-between;gap:8px}
-.ithread .pv{font-size:11px;color:var(--mut);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ithread .un{width:7px;height:7px;border-radius:50%;background:var(--sig);flex:none;margin-top:5px}
-.iconv{overflow:auto;padding:26px 30px;display:flex;flex-direction:column}
-.msg{max-width:74%;padding:12px 14px;border-radius:12px;margin-bottom:12px;font-size:12.5px;line-height:1.5}
-.msg.in{background:#f2f1ed;align-self:flex-start;border-bottom-left-radius:3px}
-.msg.out{background:var(--ink);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
-.msg .mh{font-size:10px;opacity:.7;margin-bottom:5px}
-.compose{border-top:1px solid var(--line);padding:14px 0 0;margin-top:8px;display:flex;gap:10px}
-.compose textarea{flex:1;border:1px solid var(--line);border-radius:9px;padding:10px;font:inherit;font-size:12.5px;resize:none;height:64px;outline:none}
-/* reports */
-.rbuild{display:flex;gap:10px;align-items:center;margin:16px 0 8px;flex-wrap:wrap}
-.sel{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font:inherit;font-size:12px;background:#fff;cursor:pointer}
-.chart{display:flex;align-items:flex-end;gap:10px;height:200px;border-bottom:1px solid var(--line);padding:0 4px;margin-top:10px}
-.chart .cb{flex:1;background:var(--ink);border-radius:4px 4px 0 0;min-height:2px;position:relative}
-.chart .cb span{position:absolute;top:-18px;left:0;right:0;text-align:center;font-family:var(--num);font-size:10px;color:var(--mut)}
-.chart .cx{font-size:9.5px;color:var(--mut);text-align:center;margin-top:8px;line-height:1.2}
-.cxrow{display:flex;gap:10px;padding:0 4px}.cxrow>div{flex:1;text-align:center}
-/* billing */
-.ucard{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);margin-top:4px}
-.ucard>div{background:var(--bg);padding:16px 16px 16px 0}
-.ucard .n{font-family:var(--num);font-size:22px;font-weight:500;margin-top:8px}
-.ucard .tk{height:4px;background:var(--hair);border-radius:3px;margin-top:10px;overflow:hidden}.ucard .fl{height:100%;background:var(--ink)}
-.calbar{display:flex;gap:6px}
-.calv{font-size:11px;color:var(--mut);border:1px solid var(--line);border-radius:7px;padding:6px 12px;cursor:pointer}.calv.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.mgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);margin-top:14px}
-.mgrid .dow{background:var(--bg);padding:8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;text-align:center}
-.mcell{background:var(--bg);min-height:96px;padding:7px 8px}
-.mcell .dn{font-family:var(--num);font-size:11px;color:var(--mut)}.mcell.today .dn{color:var(--ink);font-weight:600}
-.mcell.out{background:#f7f6f4}.mcell.out .dn{color:var(--faint)}
-.mev{font-size:10px;margin-top:5px;padding:3px 5px;border-radius:4px;background:#f2f1ed;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;gap:5px;align-items:center}
-.mev[data-ref]{cursor:pointer}.mev[data-ref]:hover{background:#e9e8e3}.mev.more{background:transparent;color:var(--mut);cursor:pointer}.wev[data-ref]{cursor:pointer}.wev[data-ref]:hover{background:#e9e8e3}
-.wgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-top:14px}
-.wcol .lab{display:block;text-align:center;padding-bottom:8px;border-bottom:1px solid var(--line);margin-bottom:8px}
-.wev{font-size:10.5px;padding:7px 8px;border-radius:7px;background:#f2f1ed;margin-bottom:7px}
-.calday{margin-bottom:20px}.calday .lab{display:block;padding-bottom:8px;border-bottom:1px solid var(--line);margin-bottom:2px}
-.calrow{display:flex;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--hair);font-size:12.5px}.calrow:last-child{border-bottom:0}
-.calrow .tm{font-family:var(--num);font-size:11px;color:var(--mut);width:64px;flex:none}
-.load{padding:70px;text-align:center;color:var(--faint);font-size:12px}
-.err{max-width:560px;margin:60px auto;padding:24px;border:1px solid var(--line);border-radius:12px;background:#fff}
-.copyrow{display:flex;gap:8px;align-items:center;margin-top:12px}
-.copyrow code{font-family:var(--num);font-size:11.5px;background:#f2f1ed;padding:7px 11px;border-radius:8px;flex:1;overflow:auto;white-space:nowrap}
-/* mobile bottom nav */
-.mnav{display:none;position:fixed;left:0;right:0;bottom:0;height:58px;background:var(--panel);border-top:1px solid var(--line);z-index:50}
-.mnav .mi{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:9.5px;color:var(--faint);cursor:pointer;position:relative}
-.mnav .mi.on{color:var(--ink);font-weight:600}
-.mnav .mi .ic{font-size:17px;line-height:1}
-.mnav .mi .b{position:absolute;top:7px;right:calc(50% - 20px);background:var(--sig);color:#fff;border-radius:8px;font-size:8px;font-weight:600;padding:0 4px}
-.msheet{display:none;position:fixed;left:0;right:0;bottom:58px;background:var(--panel);border-top:1px solid var(--line);z-index:49;box-shadow:0 -10px 30px rgba(0,0,0,.07)}
-.msheet.on{display:block}
-.msheet .mrow{padding:15px 20px;border-bottom:1px solid var(--hair);font-size:14px;cursor:pointer;display:flex;justify-content:space-between}
-.msheet .mrow:last-child{border-bottom:0}
-.mback{display:none;align-items:center;gap:5px;font-size:12.5px;color:var(--mut);cursor:pointer;margin-bottom:16px;font-weight:500}
-/* tablet */
-@media(max-width:1080px) and (min-width:761px){.work{grid-template-columns:260px 1fr}.rail{display:none}.two{grid-template-columns:260px 1fr}.ibx{grid-template-columns:300px 1fr}.fmgr{grid-template-columns:196px 1fr}.kan{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:repeat(3,1fr)}.kpi:nth-child(n+4){display:none}}
-/* phone */
-@media(max-width:760px){
-  .mast{gap:9px;padding:0 14px;height:52px}.org{display:none}.live{display:none}.qbox input{width:118px}
-  .nav{display:none}.mnav{display:flex}
-  #view{padding-bottom:58px}
-  .kpis{display:flex;overflow-x:auto}.kpi{min-width:44%;flex:none;border-right:1px solid var(--hair)}
-  .work,.two,.ibx,.fmgr{display:block;overflow:auto}
-  .list,.two .l2,.ithreads{border-right:0;overflow:visible}
-  .detail,.rail,.two .r2,.iconv,.fside{display:none}
-  .detail,.two .r2,.iconv{padding:20px 18px;overflow:visible}
-  .fmain{padding:16px 16px;overflow:visible}.fmgr .fmain .pagehd h1{font-size:22px}
-  body.mdet .list,body.mdet .kpis,body.mdet .two .l2,body.mdet .ithreads{display:none}
-  body.mdet .detail,body.mdet .two .r2,body.mdet .iconv{display:block}
-  body.mdet .mback{display:inline-flex}
-  .kan{grid-template-columns:1fr}
-  .page{padding:18px 16px 74px}.pagehd h1{font-size:23px}.pagehd .rt{margin-left:0;width:100%;margin-top:8px}
-  .mgrid{font-size:8px}.mcell{min-height:58px;padding:5px 5px}.mcell .mev{font-size:8.5px;padding:2px 4px}
-  .wgrid{grid-template-columns:1fr;gap:8px}
-  .fdrawer{width:100%}
-  .rbuild{gap:7px}.sel{flex:1;min-width:0}
-  .chart{gap:4px;height:150px}.cxrow>div{font-size:8px}
-  .ucard{grid-template-columns:1fr 1fr}
-  .compose textarea{height:52px}
-  .iconv .msg{max-width:86%}
+:root{
+  --ink:#141312;--mut:#5e5e57;--faint:#6c6c64;--line:#e7e5df;--hair:#efeee9;
+  --bg:#f4f2ee;--panel:#fff;--sig:#b23a2a;--sig-soft:#f6e9e6;--ok:#2f6f52;--ok-soft:#e7f0eb;
+  --warn:#8a6a1f;--warn-soft:#f6efdf;
+  --sans:'Inter',system-ui,sans-serif;--disp:'Newsreader',Georgia,serif;--num:'Space Grotesk',monospace;
+  --sh:0 1px 2px rgba(30,28,24,.04),0 6px 20px rgba(30,28,24,.05);
+  --shh:0 2px 8px rgba(30,28,24,.07),0 18px 44px rgba(30,28,24,.10);
+  --wrap:1120px;
 }
-.authsheet{display:none;position:fixed;inset:0;z-index:200;background:rgba(20,20,20,.44);align-items:center;justify-content:center;padding:20px}
-.authcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);width:100%;max-width:380px;padding:30px 28px;box-shadow:0 24px 60px rgba(20,20,20,.22)}
-.authcard .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
-.authh{font-size:23px;margin:6px 0 4px;font-weight:500}
-.authin{width:100%;border:0;border-bottom:1.5px solid var(--ink);background:transparent;padding:9px 0;font-size:15px;outline:none;margin-top:14px;font-family:inherit}
-.btn.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
-.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:9px 16px;z-index:300;font-weight:600}
-.skip:focus{left:0}
-:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.navtab:focus-visible,.mi:focus-visible,.navtab:focus,.mi:focus{outline:2px solid var(--ink);outline-offset:-2px}
-@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.62}
+h1,h2,h3{font-family:var(--disp);font-weight:400;letter-spacing:-.025em;margin:0}
+a{color:inherit;text-decoration:none}
+.num{font-family:var(--num);font-variant-numeric:tabular-nums;letter-spacing:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--sig);font-weight:600}
+.lab{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:600}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:11px;padding:12px 20px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:.15s;box-shadow:0 1px 1px rgba(30,28,24,.02)}
+.btn:hover{border-color:#cfcdc6;box-shadow:var(--sh);transform:translateY(-1px)}
+.btn.pri{background:var(--ink);color:#fff;border-color:var(--ink);box-shadow:0 2px 10px rgba(20,19,18,.18)}
+.btn.pri:hover{background:#000;box-shadow:var(--shh)}
+.btn.ghost{background:transparent}
+.btn.lg{padding:14px 26px;font-size:15px}
+.btn .ar{transition:.15s}.btn:hover .ar{transform:translateX(3px)}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:40;background:rgba(244,242,238,.82);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:.2s}
+header.nav.scr{border-bottom-color:var(--line);box-shadow:0 1px 0 rgba(30,28,24,.03),0 8px 24px rgba(30,28,24,.04)}
+.navrow{height:70px;display:flex;align-items:center;gap:26px}
+.brand{font-family:var(--disp);font-weight:500;font-size:24px;letter-spacing:-.02em;display:inline-flex;align-items:baseline}
+.brand i{color:var(--sig);font-style:normal;margin-left:1px}
+.navlinks{display:flex;gap:6px;margin-left:8px}
+.navlinks a{font-size:14px;color:var(--mut);padding:8px 12px;border-radius:9px;font-weight:500;transition:.14s}
+.navlinks a:hover{color:var(--ink);background:rgba(20,19,18,.05)}
+.navspace{flex:1}
+.navcta{display:flex;gap:10px;align-items:center}
+.signin{font-size:14px;color:var(--mut);font-weight:500;padding:8px 12px;border-radius:9px}
+.signin:hover{color:var(--ink);background:rgba(20,19,18,.05)}
+
+/* hero */
+.hero{padding:76px 0 40px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+  radial-gradient(1200px 520px at 78% -8%, rgba(178,58,42,.06), transparent 60%),
+  radial-gradient(900px 480px at 6% 4%, rgba(20,19,18,.035), transparent 55%);pointer-events:none}
+.herogrid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center;position:relative}
+.hero h1{font-size:60px;line-height:1.02;margin:20px 0 0}
+.hero h1 em{font-style:italic;color:var(--sig)}
+.hero .sub{font-size:18px;color:var(--mut);margin:24px 0 0;max-width:560px}
+.hero .ctas{display:flex;gap:12px;margin:30px 0 0;flex-wrap:wrap}
+.hero .micro{font-size:13px;color:var(--faint);margin:18px 0 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hero .micro .dotsep{width:3px;height:3px;border-radius:50%;background:var(--faint);opacity:.5}
+
+/* hero product card */
+.cardmock{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shh);padding:22px;transform:rotate(.4deg)}
+.cardmock .chd{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--hair)}
+.cardmock .cref{font-weight:600;font-size:15px}
+.cardmock .ctag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--ok);background:var(--ok-soft);padding:4px 9px;border-radius:20px}
+.mrow{display:flex;align-items:center;justify-content:space-between;margin-top:15px;font-size:13px}
+.mrow .k{color:var(--mut)}
+.mrow .v{font-family:var(--num);font-weight:500}
+.meter{height:8px;background:var(--hair);border-radius:6px;overflow:hidden;margin-top:9px}
+.meter i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--sig),#c9553f)}
+.mdl{margin-top:16px;padding:13px 15px;background:#faf9f6;border:1px solid var(--hair);border-radius:12px}
+.mdl .k{font-size:11px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.mdl .d{display:flex;align-items:center;justify-content:space-between;margin-top:7px}
+.mdl .d .dt{font-weight:600;font-size:14px}
+.mdl .d .dd{font-family:var(--num);font-size:13px;color:var(--sig);font-weight:500}
+.mfile{margin-top:15px;display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink);font-weight:500}
+.mfile .ok{width:18px;height:18px;border-radius:50%;background:var(--ok);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px}
+
+/* stats band */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.statsgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.stat{padding:40px 30px;border-right:1px solid var(--hair)}
+.stat:last-child{border-right:0}
+.stat .n{font-family:var(--num);font-weight:500;font-size:46px;letter-spacing:-.02em;line-height:1}
+.stat .n em{font-size:26px;font-style:normal;color:var(--mut)}
+.stat .t{font-size:14px;color:var(--mut);margin-top:12px;max-width:290px}
+.statscap{padding:16px 30px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--faint)}
+.statscap a{color:var(--sig);border-bottom:1px solid transparent}.statscap a:hover{border-bottom-color:var(--sig)}
+
+/* generic section */
+section.blk{padding:88px 0}
+.sechd{max-width:660px}
+.sechd h2{font-size:38px;line-height:1.08;margin-top:14px}
+.sechd p{font-size:17px;color:var(--mut);margin:16px 0 0}
+
+/* feature grid */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.fcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--sh);transition:.18s}
+.fcard:hover{box-shadow:var(--shh);transform:translateY(-2px)}
+.ficon{width:40px;height:40px;border-radius:11px;background:var(--sig-soft);color:var(--sig);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.ficon svg{width:20px;height:20px}
+.fcard h3{font-size:19px;letter-spacing:-.02em}
+.fcard p{font-size:14px;color:var(--mut);margin:9px 0 0}
+
+/* how it works */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;counter-reset:st}
+.step{position:relative;padding-top:26px;border-top:2px solid var(--ink)}
+.step .no{font-family:var(--num);font-size:13px;color:var(--sig);font-weight:600;letter-spacing:.1em}
+.step h3{font-size:22px;margin-top:12px}
+.step p{font-size:15px;color:var(--mut);margin:10px 0 0}
+
+/* pricing */
+.pricewrap{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+.tier{border:1px solid var(--line);border-radius:16px;padding:24px;background:var(--bg);display:flex;flex-direction:column;transition:.18s}
+.tier:hover{box-shadow:var(--sh)}
+.tier.reco{border:2px solid var(--ink);background:var(--panel);box-shadow:var(--shh);position:relative}
+.ribbon{position:absolute;top:-11px;left:24px;background:var(--ink);color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:4px 11px;border-radius:20px}
+.tier .tn{font-size:19px;font-family:var(--disp);letter-spacing:-.02em}
+.tier .tw{font-size:12.5px;color:var(--faint);margin-top:4px;min-height:34px}
+.tier .tp{font-family:var(--num);font-weight:500;font-size:24px;margin:14px 0 2px;letter-spacing:-.02em}
+.tier .tp small{font-size:13px;color:var(--mut);font-weight:400}
+.tier .tplus{font-size:13px;color:var(--ink);font-weight:600;min-height:38px}
+.tier ul{list-style:none;padding:0;margin:16px 0 0;border-top:1px solid var(--hair)}
+.tier li{font-size:13px;color:var(--mut);padding:9px 0 0;display:flex;gap:8px;line-height:1.45}
+.tier li:before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--sig);margin-top:7px}
+.pricenote{font-size:14px;color:var(--mut);margin-top:26px;text-align:center;max-width:660px;margin-left:auto;margin-right:auto}
+
+/* rules / trust */
+.rules{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.rulelist{margin-top:8px}
+.ruleitem{display:flex;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.ruleitem:last-child{border-bottom:1px solid var(--line)}
+.ruleitem .rn{font-family:var(--num);font-weight:500;font-size:22px;color:var(--ink);flex:none;width:96px}
+.ruleitem .rt b{font-weight:600}
+.ruleitem .rt{font-size:14.5px;color:var(--mut)}
+.ruleitem .rt b{color:var(--ink)}
+
+/* CTA / capture */
+.start{background:var(--ink);color:#f4f2ee}
+.startgrid{padding:70px 0;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.start h2{color:#fff;font-size:36px;line-height:1.1}
+.start p{color:rgba(244,242,238,.72);font-size:16px;margin-top:14px}
+.capture{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:26px}
+.seg{display:flex;gap:6px;background:rgba(255,255,255,.06);border-radius:11px;padding:5px;margin-bottom:16px}
+.seg button{flex:1;background:transparent;border:0;color:rgba(244,242,238,.7);font:inherit;font-size:13px;font-weight:500;padding:9px;border-radius:8px;cursor:pointer;transition:.14s}
+.seg button.on{background:#f4f2ee;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.capture label{font-size:12px;color:rgba(244,242,238,.6);letter-spacing:.04em}
+.field{display:flex;gap:10px;margin-top:8px}
+.field input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:11px;padding:13px 15px;font:inherit;font-size:14px;color:#fff;outline:none}
+.field input::placeholder{color:rgba(244,242,238,.4)}
+.field input:focus{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.09)}
+.field .btn.pri{background:#fff;color:var(--ink);border-color:#fff}
+.field .btn.pri:hover{background:#f4f2ee}
+.capnote{font-size:12px;color:rgba(244,242,238,.5);margin-top:12px}
+.capdone{display:none;padding:8px 0}
+.capdone.on{display:block}
+.capdone .h{font-family:var(--disp);font-size:22px;color:#fff}
+.capdone .s{font-size:14px;color:rgba(244,242,238,.72);margin-top:8px}
+
+/* footer */
+footer.ft{padding:56px 0 40px}
+.ftgrid{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap}
+.ft .brand{font-size:22px}
+.ft .tag{font-size:14px;color:var(--mut);margin-top:10px;max-width:280px}
+.ftlinks{display:flex;gap:28px;margin-left:auto;flex-wrap:wrap}
+.ftcol .lab{margin-bottom:12px}
+.ftcol a{display:block;font-size:14px;color:var(--mut);padding:4px 0}
+.ftcol a:hover{color:var(--ink)}
+.disc{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:12px;color:var(--faint);line-height:1.7}
+.disc a{color:var(--sig)}
+.copy{margin-top:16px;font-size:12px;color:var(--faint)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* responsive */
+@media(max-width:960px){
+  .herogrid{grid-template-columns:1fr;gap:36px}
+  .hero h1{font-size:46px}
+  .cardmock{max-width:420px}
+  .feat,.steps{grid-template-columns:1fr 1fr}
+  .tiers{grid-template-columns:1fr 1fr}
+  .rules,.startgrid{grid-template-columns:1fr;gap:32px}
+  .statsgrid{grid-template-columns:1fr}
+  .stat{border-right:0;border-bottom:1px solid var(--hair)}
+}
+@media(max-width:620px){
+  .wrap{padding:0 20px}
+  .navlinks,.signin{display:none}
+  .hero{padding:48px 0 28px}
+  .hero h1{font-size:38px}
+  .feat,.steps,.tiers{grid-template-columns:1fr}
+  section.blk{padding:60px 0}
+  .stat .n{font-size:38px}
+  .ruleitem{flex-direction:column;gap:6px}.ruleitem .rn{width:auto}
+}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1.05fr;gap:0;margin-top:40px;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shh);background:var(--panel)}
+.calc .ctrls{padding:34px 34px 30px;border-right:1px solid var(--line)}
+.calc .field{display:block;width:100%;margin-top:22px}
+.calc .field:first-child{margin-top:0}
+.calc .field .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.calc .field label{font-size:14px;color:var(--ink);font-weight:500}
+.calc .field .val{font-family:var(--num);font-weight:500;font-size:17px}
+.calc .field .hint{font-size:12px;color:var(--faint);margin-top:8px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:var(--hair);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;box-shadow:0 2px 6px rgba(20,19,18,.28);border:3px solid #fff;transition:.12s}
+input[type=range]::-webkit-slider-thumb:hover{background:var(--sig)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 6px rgba(20,19,18,.28)}
+.calc .out{padding:34px;background:linear-gradient(180deg,#faf9f6,var(--panel));display:flex;flex-direction:column}
+.calc .out .lab{margin-bottom:6px}
+.calc .big{font-family:var(--num);font-weight:500;font-size:52px;letter-spacing:-.03em;line-height:1;color:var(--sig)}
+.calc .bigsub{font-size:13px;color:var(--mut);margin-top:8px}
+.calc .split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.calc .metric{padding:15px 16px;background:var(--panel);border:1px solid var(--line);border-radius:13px}
+.calc .metric .n{font-family:var(--num);font-weight:500;font-size:22px;letter-spacing:-.02em}
+.calc .metric .n.ok{color:var(--ok)}
+.calc .metric .d{font-size:11.5px;color:var(--mut);margin-top:4px;line-height:1.4}
+.calc .assume{font-size:12px;color:var(--faint);margin-top:auto;padding-top:22px;line-height:1.6}
+.calc .cta{margin-top:18px}
+.calcnote{font-size:12.5px;color:var(--faint);margin-top:20px;text-align:center;max-width:720px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+/* who it's for */
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.whocard{padding:26px;border:1px solid var(--line);border-radius:16px;background:var(--panel);box-shadow:var(--sh)}
+.whocard .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sig);font-weight:600}
+.whocard h3{font-size:20px;margin-top:10px}
+.whocard p{font-size:14px;color:var(--mut);margin-top:9px}
+
+/* comparison */
+.cmp{margin-top:40px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);box-shadow:var(--sh)}
+.cmp table{width:100%;border-collapse:collapse;font-size:14px}
+.cmp th,.cmp td{padding:15px 18px;text-align:left;border-bottom:1px solid var(--hair)}
+.cmp thead th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;background:#faf9f6}
+.cmp thead th.av{color:var(--sig)}
+.cmp tbody tr:last-child td{border-bottom:0}
+.cmp td.lbl{color:var(--mut);font-weight:500;width:34%}
+.cmp td.av{font-weight:600;color:var(--ink);background:rgba(178,58,42,.03)}
+.cmp td.no{color:var(--faint)}
+.cmp .x{color:#b6b4ad;font-weight:600}
+.cmp .ch{color:var(--ok);font-weight:700}
+@media(max-width:620px){.cmp{overflow-x:auto}.cmp table{min-width:560px}}
+
+/* faq */
+.faq{margin-top:40px;max-width:820px}
+.faq details{border-top:1px solid var(--line);padding:4px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;font-family:var(--disp);font-size:19px;letter-spacing:-.02em;position:relative;transition:.14s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--sig)}
+.faq summary:after{content:"+";position:absolute;right:4px;top:18px;font-family:var(--num);font-size:22px;color:var(--mut);transition:.2s}
+.faq details[open] summary:after{transform:rotate(45deg);color:var(--sig)}
+.faq .ans{padding:0 40px 22px 0;font-size:15px;color:var(--mut);line-height:1.66}
+.faq .ans a{color:var(--sig)}
+
+/* trust strip */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.trustrow{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.trustitem{padding:30px 26px;border-right:1px solid var(--hair);display:flex;flex-direction:column;gap:10px}
+.trustitem:last-child{border-right:0}
+.trustitem .ti{width:30px;height:30px;color:var(--sig)}
+.trustitem .th{font-size:15px;font-weight:600}
+.trustitem .td{font-size:12.5px;color:var(--mut);line-height:1.5}
+.trustitem .st{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--ok);background:var(--ok-soft);padding:2px 8px;border-radius:20px;align-self:flex-start}
+.trustitem .st.wip{color:var(--warn);background:var(--warn-soft)}
+@media(max-width:960px){.who,.trustrow{grid-template-columns:1fr 1fr}.trustitem:nth-child(2){border-right:0}.calc{grid-template-columns:1fr}.calc .ctrls{border-right:0;border-bottom:1px solid var(--line)}}
+@media(max-width:620px){.who,.trustrow{grid-template-columns:1fr}.trustitem{border-right:0;border-bottom:1px solid var(--hair)}.calc .big{font-size:42px}.calc .split{grid-template-columns:1fr}}
 </style></head>
 <body>
-<a href="/intelligence.html" style="position:fixed;right:18px;bottom:18px;z-index:99999;background:#141312;color:#fff;font:600 13px Inter,-apple-system,BlinkMacSystemFont,sans-serif;padding:11px 17px;border-radius:24px;text-decoration:none;box-shadow:0 6px 22px rgba(20,19,18,.28);letter-spacing:-.01em">Live IDR Intelligence &rsaquo;</a>
-<a href="#view" class="skip">Skip to content</a>
-<div class="app">
-  <div class="mast" role="banner">
-    <div class="brand">Avertyn<i>.</i></div>
-    <div class="org" id="org">—</div>
-    <span class="live"><span class="p"></span>Live</span>
-    <div class="grow"></div>
-    <div class="qbox"><input id="q" placeholder="Search…" autocomplete="off" aria-label="Search disputes, clients and files"><div id="qres" role="listbox" aria-label="Search results"></div></div>
-    <button class="btn" id="btn-auth">Sign in</button>
-    <button class="btn" id="btn-reload">Reload</button>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap navrow">
+    <a href="#top" class="brand">Avertyn<i>.</i></a>
+    <nav class="navlinks">
+      <a href="#calculator">Calculator</a>
+      <a href="#product">What it does</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <span class="navspace"></span>
+    <div class="navcta">
+      <a href="app/" class="signin">Sign in</a>
+      <a href="#start" class="btn pri">See your exposure — free</a>
+    </div>
   </div>
-  <nav class="nav" id="nav" role="tablist" aria-label="Primary"></nav>
-  <div class="authsheet" id="authsheet"></div>
-  <div id="view" role="main" tabindex="-1"><div class="load" aria-live="polite">Loading live data…</div></div>
-  <div class="msheet" id="msheet"></div>
-  <div class="mnav" id="mnav"></div>
+</header>
+
+<!-- HERO -->
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap herogrid">
+    <div class="reveal in">
+      <span class="eyebrow">Plan-side IDR defense · No Surprises Act</span>
+      <h1>Plans lose four of five IDR disputes. <em>Yours don't have to.</em></h1>
+      <p class="sub">The No Surprises Act runs two separate processes: <b>open negotiation</b> first, then <b>IDR</b> — baseball-style arbitration where the arbiter picks one side's exact number. The cheapest win comes before the arbiter: settle in open negotiation and you skip the fees and the coin-flip. Avertyn builds the QPA-anchored, defensible offer that wins at either stage, and files it for you.</p>
+      <div class="ctas">
+        <a href="#start" class="btn pri lg">See your IDR exposure — free <span class="ar">→</span></a>
+        <a href="#calculator" class="btn ghost lg">Estimate what you're losing</a>
+      </div>
+      <p class="micro">Free exposure analysis <span class="dotsep"></span> no card, no sales call <span class="dotsep"></span> built on the June 2026 Federal IDR Operations Final Rule</p>
+    </div>
+
+    <div class="reveal in" style="transition-delay:.08s">
+      <div class="cardmock">
+        <div class="chd">
+          <div>
+            <div class="cref">Case #IDR-4471</div>
+            <div style="font-size:12px;color:var(--faint);margin-top:2px">Out-of-network · Radiology · CPT 74177</div>
+          </div>
+          <span class="ctag">Defensible</span>
+        </div>
+        <div class="mrow"><span class="k">QPA</span><span class="v">$412.00</span></div>
+        <div class="mrow"><span class="k">Provider demand</span><span class="v">$1,860.00</span></div>
+        <div class="mrow"><span class="k">Avertyn offer · 125% of QPA</span><span class="v" style="color:var(--sig)">$515.00</span></div>
+        <div class="meter"><i style="width:64%"></i></div>
+        <div class="mdl">
+          <div class="k">Deadline · business-day, holiday-aware</div>
+          <div class="d"><span class="dt">Notice of offer due</span><span class="dd">Mon Jul 13 · 5 biz days</span></div>
+        </div>
+        <div class="mfile"><span class="ok">✓</span> Filing generated — offer, evidence &amp; rationale ready</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS / PROBLEM -->
+<div class="stats" id="problem">
+  <div class="wrap">
+    <div class="statsgrid">
+      <div class="stat reveal"><div class="n">~80<em>%</em></div><div class="t">Providers' win rate in decided IDR disputes (2023–mid-2024) — up from 68% to 85% in a year.</div></div>
+      <div class="stat reveal" style="transition-delay:.06s"><div class="n">2–10<em>×</em></div><div class="t">How far median winning awards ran above the QPA, depending on specialty.</div></div>
+      <div class="stat reveal" style="transition-delay:.12s"><div class="n">99.9<em>%</em></div><div class="t">Of decisions where the arbiter awarded one side's exact submitted offer. The better-prepared number wins.</div></div>
+    </div>
+    <div class="statscap">Sources: <a href="https://www.healthsystemtracker.org/brief/the-performance-of-the-federal-independent-dispute-resolution-process-through-mid-2024/" target="_blank" rel="noopener">Peterson-KFF Health System Tracker</a> · <a href="https://www.cms.gov/nosurprises/policies-and-resources/reports" target="_blank" rel="noopener">CMS IDR reporting</a>. Figures describe the market through mid-2024, not a guarantee of results.</div>
+  </div>
 </div>
+
+<!-- TWO STAGES -->
+<section class="blk" id="stages" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sechd reveal">
+      <span class="eyebrow">Two processes, not one</span>
+      <h2>Win in open negotiation — before the fees and the arbiter.</h2>
+      <p>The No Surprises Act keeps open negotiation and IDR separate and sequential. Most disputes should end in the first stage, where there's no fee and no arbitration.</p>
+    </div>
+    <div class="who" style="grid-template-columns:1fr 1fr">
+      <div class="whocard reveal" style="border-color:var(--ok)">
+        <div class="k" style="color:var(--ok)">Stage 1 · settle here</div>
+        <h3>Open Negotiation</h3>
+        <p>A 30-business-day, party-to-party window, with a response due by the 15th business day. No arbiter, no fee. Avertyn drafts the QPA-anchored counteroffer that gets providers to settle — because escalating costs them too.</p>
+      </div>
+      <div class="whocard reveal" style="transition-delay:.05s">
+        <div class="k">Stage 2 · only if it fails</div>
+        <h3>IDR arbitration</h3>
+        <p>Now it costs: $15 per party plus the certified-IDRE fee, and it's baseball-style — one number wins, and providers have prevailed ~80% of the time. Avertyn still builds the winning offer, but this is the stage to avoid.</p>
+      </div>
+    </div>
+    <p class="pricenote" style="margin-top:22px">Every dispute resolved in open negotiation skips the IDR fees and the arbitration entirely — that's the cheapest, fastest win, at a defensible number.</p>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="blk" id="calculator">
+  <div class="wrap">
+    <div class="sechd reveal">
+      <span class="eyebrow">Your exposure</span>
+      <h2>Put your book in. See what's at risk.</h2>
+      <p>Move the sliders to your out-of-network dispute volume. This models what you're likely overpaying today versus a QPA-anchored defense — using the public IDR outcome ranges, not a sales fantasy.</p>
+    </div>
+    <div class="calc reveal" style="transition-delay:.05s">
+      <div class="ctrls">
+        <div class="field">
+          <div class="row"><label for="cN">IDR disputes per year</label><span class="val num" id="vN">500</span></div>
+          <input id="cN" type="range" min="50" max="5000" step="50" value="500">
+          <div class="hint">Out-of-network claims you take (or could take) to federal IDR.</div>
+        </div>
+        <div class="field">
+          <div class="row"><label for="cQ">Average QPA per service</label><span class="val num" id="vQ">$350</span></div>
+          <input id="cQ" type="range" min="100" max="3000" step="25" value="350">
+          <div class="hint">The in-network benchmark — your defensible anchor.</div>
+        </div>
+        <div class="field">
+          <div class="row"><label for="cM">Average provider demand</label><span class="val num" id="vM">3.0× QPA</span></div>
+          <input id="cM" type="range" min="1.5" max="8" step="0.1" value="3">
+          <div class="hint">How far above QPA providers ask. Awards have run 2–10× by specialty.</div>
+        </div>
+      </div>
+      <div class="out">
+        <span class="lab">At risk of overpaying this year</span>
+        <div class="big" id="rBig">$245,000</div>
+        <div class="bigsub" id="rBigSub">On ~80% of disputes you'd otherwise lose or default, above a 125%-of-QPA offer.</div>
+        <div class="split">
+          <div class="metric"><div class="n" id="rPool">$306,250</div><div class="d">Excess demand over a defensible offer — the pool Avertyn contests.</div></div>
+          <div class="metric"><div class="n ok" id="rNet">$196,000</div><div class="d">You keep ~80% after Avertyn's 20% fee on what's defended.</div></div>
+        </div>
+        <div class="bigsub" id="rOnFee" style="margin-top:14px;color:var(--ok);font-weight:500"></div>
+        <div class="assume" id="rAssume"></div>
+        <a href="#start" class="btn pri cta">Get this run as a real report — free <span class="ar">→</span></a>
+      </div>
+    </div>
+    <p class="calcnote">Illustrative model for orientation, not a quote or a guarantee. It applies public federal-IDR outcome ranges (Peterson-KFF, CMS) to the numbers you enter; your actual results depend on your book, your specialties, and the arbiter. A real Avertyn exposure report uses your own claims.</p>
+  </div>
+</section>
+
+<!-- WHAT IT DOES -->
+<section class="blk" id="product">
+  <div class="wrap">
+    <div class="sechd reveal">
+      <span class="eyebrow">What Avertyn does</span>
+      <h2>Everything that decides an IDR case — handled before the deadline.</h2>
+      <p>The process rewards the side that submits the better-documented, more defensible number, on time. Avertyn builds exactly that, on every case.</p>
+    </div>
+    <div class="feat">
+      <div class="fcard reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>QPA-anchored defense</h3>
+        <p>Every offer is anchored to the qualifying payment amount and a defensible ceiling — default 125% of QPA, capped at the regional median. Un-inflatable, and credible to the arbiter.</p>
+      </div>
+      <div class="fcard reveal" style="transition-delay:.05s">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8.5 14l2 2 4-4"/></svg></div>
+        <h3>Holiday-aware deadline engine</h3>
+        <p>Two separate clocks on one calendar: the 30-business-day open-negotiation window (response due by day 15) and, only if it fails, the IDR timeline — entity selection, eligibility, offer, additional info. CMS counts federal holidays, so we do too.</p>
+      </div>
+      <div class="fcard reveal" style="transition-delay:.1s">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <h3>Eligibility catching</h3>
+        <p>Screen every dispute inside the 5-business-day review window and catch the ineligible ones before you overpay a claim that never belonged in IDR.</p>
+      </div>
+      <div class="fcard reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12h16M4 12l5-5M4 12l5 5"/><path d="M20 6v12"/></svg></div>
+        <h3>Repricer rebuttal</h3>
+        <p>Turn the repricer's number into a documented counter the arbiter can adopt — with the evidence that makes your offer the reasonable one.</p>
+      </div>
+      <div class="fcard reveal" style="transition-delay:.05s">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="4" width="7" height="7" rx="1.5"/><rect x="3" y="15" width="7" height="5" rx="1.5"/><rect x="14" y="15" width="7" height="5" rx="1.5"/></svg></div>
+        <h3>Compliant batching</h3>
+        <p>Batch up to the 50-line-item limit — including cross-specialty batching for radiology, anesthesia, pathology and lab under the June 2026 rule — without tripping eligibility.</p>
+      </div>
+      <div class="fcard reveal" style="transition-delay:.1s">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
+        <h3>One-click filing</h3>
+        <p>Generate the complete IDR submission — offer, supporting evidence, and rationale — formatted and ready to file. Best-in-class, in a click.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="blk" id="how" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sechd reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>From a pile of disputes to filed, defensible offers.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="no">STEP 01</div><h3>Connect</h3><p>Bring in your remittances and open disputes. Avertyn maps every case to its QPA, its eligibility, and its exact deadline.</p></div>
+      <div class="step reveal" style="transition-delay:.06s"><div class="no">STEP 02</div><h3>Anchor &amp; calendar</h3><p>Each case gets a defensible, QPA-anchored offer and a holiday-aware business-day deadline. The cases most at risk surface first.</p></div>
+      <div class="step reveal" style="transition-delay:.12s"><div class="no">STEP 03</div><h3>Settle — or file to win</h3><p>Send the open-negotiation offer that ends most disputes before any fee. Only the ones that don't settle go to IDR, where the same defensible offer is filed to win.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="blk" id="who">
+  <div class="wrap">
+    <div class="sechd reveal">
+      <span class="eyebrow">Who it's for</span>
+      <h2>Built for the teams the process leaves outgunned.</h2>
+      <p>IDR rewards preparation and punishes thin staffing. Avertyn gives lean teams the leverage of a specialized defense unit.</p>
+    </div>
+    <div class="who">
+      <div class="whocard reveal">
+        <div class="k">Core</div>
+        <h3>Independent &amp; mid-tier TPAs</h3>
+        <p>You administer the plan and eat the losses when a dispute goes sideways. Avertyn defends every case to a QPA-anchored number and never misses a deadline — without adding headcount.</p>
+      </div>
+      <div class="whocard reveal" style="transition-delay:.05s">
+        <div class="k">Wedge</div>
+        <h3>Self-funded employers &amp; brokers</h3>
+        <p>Start free with an exposure view: what IDR is costing the plan in default losses and winnable cases. Bring the numbers to your TPA — or to renewal.</p>
+      </div>
+      <div class="whocard reveal" style="transition-delay:.1s">
+        <div class="k">Enterprise</div>
+        <h3>Large TPAs &amp; payers</h3>
+        <p>Want certainty, not just defense? The Performance Guarantee puts a contracted ceiling on your IDR-loss rate, priced as a premium over fair value.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="blk" id="why" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sechd reveal">
+      <span class="eyebrow">Why Avertyn</span>
+      <h2>The difference between defending a case and forfeiting one.</h2>
+    </div>
+    <div class="cmp reveal" style="transition-delay:.05s"><table>
+      <thead><tr><th>On every dispute</th><th>Doing nothing</th><th>A repricer alone</th><th class="av">Avertyn</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Offer anchored to the QPA</td><td class="no"><span class="x">—</span> pay near the demand</td><td class="no">a number, not a defense</td><td class="av"><span class="ch">✓</span> 125% of QPA, capped at median</td></tr>
+        <tr><td class="lbl">Deadlines tracked (holiday-aware)</td><td class="no"><span class="x">✕</span> easy to forfeit</td><td class="no">not their job</td><td class="av"><span class="ch">✓</span> every window, to the day</td></tr>
+        <tr><td class="lbl">Eligibility screened</td><td class="no"><span class="x">✕</span></td><td class="no"><span class="x">✕</span></td><td class="av"><span class="ch">✓</span> caught in the 5-day window</td></tr>
+        <tr><td class="lbl">Filing generated &amp; evidenced</td><td class="no"><span class="x">✕</span> manual</td><td class="no">partial</td><td class="av"><span class="ch">✓</span> one click, arbiter-ready</td></tr>
+        <tr><td class="lbl">Priced on</td><td class="no">the default loss</td><td class="no">% of "savings"</td><td class="av">work + defended dollars</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="blk pricewrap" id="pricing">
+  <div class="wrap">
+    <div class="sechd reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2>Priced on outcomes. Never on making the gap look bigger.</h2>
+      <p>No upfront risk. Start free, and only pay when Avertyn catches or defends real dollars — anchored to the QPA, un-gameable by design.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tn">Exposure</div>
+        <div class="tw">Employers &amp; brokers</div>
+        <div class="tp">Free</div>
+        <div class="tplus">See what you're losing</div>
+        <ul><li>IDR exposure analytics</li><li>Default-loss &amp; win visibility</li><li>Broker-distributable</li></ul>
+      </div>
+      <div class="tier reco reveal" style="transition-delay:.05s">
+        <span class="ribbon">Recommended</span>
+        <div class="tn">Fair-Value Defense</div>
+        <div class="tw">Independent &amp; mid-tier TPAs</div>
+        <div class="tp">$0<small> /mo base</small></div>
+        <div class="tplus">$25 / catch + 20% of QPA defense</div>
+        <ul><li>Priced on work, not % of the demand</li><li>Fee anchored to QPA — can't be inflated</li><li>Win in open negotiation → 12% (vs 20% at IDR)</li><li>Default-loss guarantee · capped at 25% of savings</li></ul>
+      </div>
+      <div class="tier reveal" style="transition-delay:.1s">
+        <div class="tn">Per-Outcome</div>
+        <div class="tw">Transparency-first buyers</div>
+        <div class="tp">Rate<small> card</small></div>
+        <div class="tplus">$40/case · $75/catch · $250/defense</div>
+        <ul><li>Price = work done, nothing fictional</li><li>No cut of "savings"</li><li>Fully transparent &amp; un-gameable</li><li>Pay only for cases we work</li></ul>
+      </div>
+      <div class="tier reveal" style="transition-delay:.15s">
+        <div class="tn">Performance Guarantee</div>
+        <div class="tw">Enterprise · certainty-led</div>
+        <div class="tp">Fair-Value<small> +20%</small></div>
+        <div class="tplus">Guaranteed max IDR-loss rate</div>
+        <ul><li>Same base as Fair-Value</li><li>+20% buys a contracted loss ceiling</li><li>Miss it → we refund the premium</li><li>SSO / SCIM / BAA / SLA</li></ul>
+      </div>
+    </div>
+    <p class="pricenote">No setup fees, no long-term contract, no per-seat charges — you pay only when Avertyn catches or defends real dollars. Priced to keep our incentives aligned with yours.</p>
+  </div>
+</section>
+
+<!-- RULES / TRUST -->
+<section class="blk" id="rules">
+  <div class="wrap rules">
+    <div class="reveal">
+      <span class="eyebrow">Built on the rules as they are</span>
+      <h2 style="font-size:34px;margin-top:14px">Accurate to the current process — not a promise dressed up as one.</h2>
+      <p style="font-size:16px;color:var(--mut);margin-top:16px">Avertyn is built directly on the June 2026 Federal IDR Operations Final Rule. No inflated demands, no cut of fictional "savings" — you win when the number is right and defensible, not when it's big. That alignment is the product.</p>
+      <p style="font-size:13px;color:var(--faint);margin-top:18px">Sources: <a href="https://www.cms.gov/newsroom/fact-sheets/federal-independent-dispute-resolution-operations-final-rule" target="_blank" rel="noopener" style="color:var(--sig)">CMS — Federal IDR Operations Final Rule fact sheet</a>.</p>
+    </div>
+    <div class="rulelist reveal" style="transition-delay:.06s">
+      <div class="ruleitem"><div class="rn">$15</div><div class="rt">Administrative fee <b>per party, per dispute</b> — regardless of the amount in dispute. Every case has to clear that floor to be worth filing; Avertyn tells you which ones do.</div></div>
+      <div class="ruleitem"><div class="rn">50</div><div class="rt">Line-item cap on a single <b>batched</b> determination — with cross-specialty batching allowed for radiology, anesthesia, pathology and lab. Batch to the edge of the rule, safely.</div></div>
+      <div class="ruleitem"><div class="rn">30 / 5</div><div class="rt">A <b>30-business-day</b> open negotiation period, then strict <b>5-business-day</b> windows for eligibility review and additional information. Miss one and you forfeit. Avertyn counts the days — holidays included.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="blk" id="faq">
+  <div class="wrap">
+    <div class="sechd reveal">
+      <span class="eyebrow">Questions</span>
+      <h2>The objections worth raising.</h2>
+    </div>
+    <div class="faq reveal" style="transition-delay:.05s">
+      <details><summary>Isn't lowballing providers what got the No Surprises Act in trouble?</summary><div class="ans">Avertyn doesn't lowball — it anchors. Every offer is tied to the qualifying payment amount and a defensible ceiling, the same benchmark the statute points arbiters to. The goal is a number you can defend on the record, not the smallest number you can get away with. That's exactly why it holds up when the arbiter picks one side's figure.</div></details>
+      <details><summary>We already use a repricer. Why add this?</summary><div class="ans">A repricer gives you a number. It doesn't track your IDR deadlines, screen eligibility inside the 5-business-day window, build the evidentiary rationale, or file the submission. Avertyn turns the repricer's number into a defended case — and catches the disputes that never belonged in IDR in the first place.</div></details>
+      <details><summary>How do you charge — and what's the catch?</summary><div class="ans">Start free with an exposure view. On the Fair-Value plan you pay $25 per ineligible dispute caught plus 20% of the QPA-defended amount, capped at 25% of savings, with a default-loss guarantee. The fee is anchored to the QPA, so it can't be inflated by making the gap look bigger. Prefer a flat rate card or a contracted loss ceiling? Those are the Per-Outcome and Performance Guarantee plans.</div></details>
+      <details><summary>Is our claims data safe?</summary><div class="ans">Data is encrypted in transit and at rest, access is scoped per-tenant with row-level security, and a Business Associate Agreement is available. SOC 2 readiness is underway. See the security summary below — we're specific about what's live today versus in progress.</div></details>
+      <details><summary>How fast can we start, and does it fit our system?</summary><div class="ans">The free exposure analysis runs off a remittance/claims export — no rip-and-replace. Defense workflows layer on top of how you already work IDR, so there's no migration to stall on.</div></details>
+      <details><summary>Do you guarantee we'll win?</summary><div class="ans">No one honest can. What we guarantee is that every case is defended to a QPA-anchored offer, filed on time, with the evidence the arbiter needs — the things that actually move win rates. The market figures on this page describe outcomes through mid-2024; they're context, not a promise about your book.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST & COMPLIANCE -->
+<div class="trust" id="security">
+  <div class="wrap" style="padding-top:26px;padding-bottom:6px"><span class="lab">Security &amp; compliance</span></div>
+  <div class="wrap"><div class="trustrow">
+    <div class="trustitem reveal">
+      <svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 4-3 7-7 9-4-2-7-5-7-9V6z"/></svg>
+      <span class="st">Live</span>
+      <div class="th">HIPAA-aligned handling</div>
+      <div class="td">PHI treated under HIPAA safeguards across the platform.</div>
+    </div>
+    <div class="trustitem reveal" style="transition-delay:.05s">
+      <svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg>
+      <span class="st">Available</span>
+      <div class="th">BAA on request</div>
+      <div class="td">Business Associate Agreement ready to execute before any PHI moves.</div>
+    </div>
+    <div class="trustitem reveal" style="transition-delay:.1s">
+      <svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      <span class="st wip">In progress</span>
+      <div class="th">SOC 2 readiness</div>
+      <div class="td">Controls being formalized toward a SOC 2 examination.</div>
+    </div>
+    <div class="trustitem reveal" style="transition-delay:.15s">
+      <svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <span class="st">Live</span>
+      <div class="th">Encrypted &amp; tenant-isolated</div>
+      <div class="td">Encryption in transit and at rest; per-tenant row-level access control.</div>
+    </div>
+  </div></div>
+  <div class="wrap"><p style="font-size:12px;color:var(--faint);padding:16px 0 26px;margin:0">We state what's live versus in progress on purpose. Security posture is documented and updated as controls mature.</p></div>
+</div>
+
+<!-- START / CAPTURE -->
+<section class="start" id="start">
+  <div class="wrap startgrid">
+    <div class="reveal">
+      <h2>See what you're leaving on the IDR table.</h2>
+      <p>Get a free exposure analysis of your out-of-network disputes — default losses, winnable cases, and dollars at risk. No card, no sales call. We'll follow up when your early-access spot opens.</p>
+    </div>
+    <div class="capture reveal" style="transition-delay:.06s">
+      <div id="capForm">
+        <div class="seg">
+          <button type="button" class="on" data-intent="exposure" onclick="setIntent(this)">Free exposure report</button>
+          <button type="button" data-intent="early-access" onclick="setIntent(this)">Early access</button>
+        </div>
+        <label for="email">Work email</label>
+        <div class="field">
+          <input id="email" type="email" placeholder="you@yourtpa.com" autocomplete="email">
+          <button type="button" class="btn pri" onclick="submitCapture()">Send</button>
+        </div>
+        <p class="capnote" id="capnote">We'll email your exposure report. No spam, no reselling — one message, from a person.</p>
+      </div>
+      <div class="capdone" id="capDone">
+        <div class="h">You're on the list.</div>
+        <div class="s" id="capDoneMsg"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ftgrid">
+      <div>
+        <div class="brand">Avertyn<i>.</i></div>
+        <p class="tag">Plan-side IDR defense for the No Surprises Act. The offer that wins — built and filed for you.</p>
+      </div>
+      <div class="ftlinks">
+        <div class="ftcol">
+          <div class="lab">Product</div>
+          <a href="#calculator">Exposure calculator</a>
+          <a href="#product">What it does</a>
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="app/">Sign in</a>
+        </div>
+        <div class="ftcol">
+          <div class="lab">Company</div>
+          <a href="#faq">FAQ</a>
+          <a href="#security">Security</a>
+          <a href="#start">Free exposure report</a>
+          <a href="#start">Request early access</a>
+        </div>
+      </div>
+    </div>
+    <p class="disc">Avertyn is a dispute-defense platform, not a law firm, insurer, or financial advisor; nothing here is legal, actuarial, or investment advice. Statistics cited describe the federal IDR market for 2023–mid-2024 from public <a href="https://www.healthsystemtracker.org/brief/the-performance-of-the-federal-independent-dispute-resolution-process-through-mid-2024/" target="_blank" rel="noopener">Peterson-KFF</a> and <a href="https://www.cms.gov/nosurprises/policies-and-resources/reports" target="_blank" rel="noopener">CMS</a> reporting and are not a prediction or guarantee of outcomes. Rule details reflect the June 2026 Federal IDR Operations Final Rule as summarized by <a href="https://www.cms.gov/newsroom/fact-sheets/federal-independent-dispute-resolution-operations-final-rule" target="_blank" rel="noopener">CMS</a>.</p>
+    <p class="copy">© 2026 Avertyn. All rights reserved.</p>
+  </div>
+</footer>
+
 <script>
-var SUPA="https://ssjougrsaecdwfuxeasd.supabase.co";
-var KEY="sb_publishable_XcM-JO1GQ92RbgDQ4eKKqQ_a970au8Z";
-var view="disputes",busy=false,sel=null,filter="all",crmFilter="all",acctSel=null;
-var fileFolder="all",fileKind="all",fileQ="",fileSort="at",fileSelId=null,fileChecks={};
-var inboxSel=null,inboxChecks={},inboxFilter="all",repMetric="defended",repDim="initiator",repData=null,calView="agenda";
-var D={};
-var SESSION=null,ME=null,authStep=1,authEmail="";
-try{SESSION=localStorage.getItem('av_session')||null;}catch(e){}
-var isMobile=window.matchMedia("(max-width:760px)").matches, mOpen=false;
-function setMdet(){document.body.classList.toggle("mdet", isMobile&&mOpen);}
-function mBack(){mOpen=false;setMdet();}
-function backBtn(){return isMobile?"<div class='mback' onclick='mBack()'>‹ Back</div>":"";}
-var MNAV=[["disputes","Cases","▦"],["clients","Clients","◍"],["inbox","Inbox","✉"],["files","Files","▤"],["__more","More","⋯"]];
-var MORE=[["exposure","Exposure"],["governance","Governance"],["tasks","Tasks"],["calendar","Calendar"],["reports","Reports"],["billing","Billing"],["settings","Settings"]];
-function renderMobileNav(){
-  var el=document.getElementById("mnav");var moreOn=MORE.some(function(m){return m[0]===view;});
-  el.innerHTML=MNAV.map(function(t){var b=(t[0]==="inbox"&&D.inbox&&D.inbox.unread>0)?"<span class='b'>"+D.inbox.unread+"</span>":"";
-    var on=(view===t[0]||(t[0]==="__more"&&moreOn))?" on":"";return "<div class='mi"+on+"' data-mv='"+t[0]+"'><span class='ic'>"+t[2]+"</span>"+t[1]+b+"</div>";}).join("");
-  document.getElementById("msheet").innerHTML=MORE.map(function(m){return "<div class='mrow' data-ms='"+m[0]+"'>"+m[1]+"<span class='dmeta'>›</span></div>";}).join("");
-  el.querySelectorAll("[data-mv]").forEach(function(n){n.onclick=function(){var v=this.getAttribute("data-mv");if(v==="__more"){document.getElementById("msheet").classList.toggle("on");return;}document.getElementById("msheet").classList.remove("on");switchView(v);};});
-  document.getElementById("msheet").querySelectorAll("[data-ms]").forEach(function(n){n.onclick=function(){document.getElementById("msheet").classList.remove("on");switchView(this.getAttribute("data-ms"));};});
+// Nav shadow on scroll
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('scr',scrollY>8);},{passive:true});
+
+// Reveal on scroll
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+// Capture form (intent + graceful confirm + mailto fallback so leads actually reach you today)
+var intent='exposure';
+function setIntent(b){intent=b.getAttribute('data-intent');
+  document.querySelectorAll('.seg button').forEach(function(x){x.classList.remove('on');});
+  b.classList.add('on');
+  document.getElementById('capnote').textContent = intent==='exposure'
+    ? "We'll email your exposure report. No spam, no reselling — one message, from a person."
+    : "We'll save your early-access spot and reach out when it opens.";
 }
-window.addEventListener("resize",function(){var m=window.matchMedia("(max-width:760px)").matches;if(m!==isMobile){isMobile=m;setMdet();renderMobileNav();paint();}});
-function money(n){return n==null?"—":"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:0});}
-function esc(s){return (s==null?"":String(s)).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
-function titl(s){return esc(s||"").replace(/_/g," ").replace(/\b\w/g,function(c){return c.toUpperCase();});}
-function ago(t){if(!t)return"";var d=new Date(t),m=Math.round((new Date()-d)/60000);if(m<1)return"now";if(m<60)return m+"m ago";var h=Math.round(m/60);if(h<24)return h+"h ago";return Math.round(h/24)+"d ago";}
-function dstr(t){return new Date(t).toLocaleDateString([], {month:'short',day:'numeric'});}
-function tstr(t){return new Date(t).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});}
-function call(fn,body){return fetch(SUPA+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+(SESSION||KEY),"Content-Type":"application/json"},body:JSON.stringify(body||{})}).then(function(r){if(!r.ok){return r.text().then(function(t){throw new Error("HTTP "+r.status+" "+t.slice(0,140));});}return r.json();});}
-function logErr(msg,stack){try{if(fetch)fetch(SUPA+"/rest/v1/rpc/log_client_error",{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+(SESSION||KEY),"Content-Type":"application/json"},body:JSON.stringify({p_message:String(msg||"").slice(0,500),p_stack:String(stack||"").slice(0,2000),p_section:(typeof view!=="undefined"?view:""),p_url:location.href,p_ua:navigator.userAgent})});}catch(e){}}
-window.addEventListener("error",function(e){logErr(e.message,(e.error&&e.error.stack)||"");});
-window.addEventListener("unhandledrejection",function(e){var r=e.reason||{};logErr("unhandledrejection: "+(r.message||r),r.stack||"");});
-
-var TABS=[["disputes","Disputes"],["clients","Clients"],["inbox","Inbox"],["files","Files"],["exposure","Exposure"],["governance","Governance"],["tasks","Tasks"],["calendar","Calendar"],["reports","Reports"],["billing","Billing"],["settings","Settings"]];
-function renderNav(){
-  var h="";
-  TABS.forEach(function(t){var c="";
-    if(t[0]==="disputes"&&D.disputes)c="<span class='c'>"+(D.disputes.disputes||[]).length+"</span>";
-    if(t[0]==="clients"&&D.crm)c="<span class='c'>"+((D.crm.counts||{}).accounts||0)+"</span>";
-    if(t[0]==="files"&&D.files)c="<span class='c'>"+((D.files.counts||{}).total||0)+"</span>";
-    if(t[0]==="tasks"&&D.tasks){var k=D.tasks.counts||{};c="<span class='c'>"+((k.todo||0)+(k.in_progress||0)+(k.blocked||0))+"</span>";}
-    if(t[0]==="inbox"&&D.inbox&&D.inbox.unread>0)c="<span class='b'>"+D.inbox.unread+"</span>";
-    h+="<div class='navtab"+(view===t[0]?" on":"")+"' role='tab' tabindex='0' aria-selected='"+(view===t[0])+"' data-v='"+t[0]+"'>"+t[1]+c+"</div>";});
-  document.getElementById("nav").innerHTML=h;
-  document.querySelectorAll("[data-v]").forEach(function(n){var go=function(){switchView(n.getAttribute("data-v"));};n.onclick=go;n.onkeydown=function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();go();}};});
-  renderMobileNav();
+function submitCapture(){
+  var email=(document.getElementById('email').value||'').trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+    document.getElementById('capnote').textContent='Please enter a valid work email.';
+    return;
+  }
+  // TODO: wire to a form endpoint (Formspree / Tally / your API) to store leads server-side.
+  // Day-one fallback: open the visitor's mail client addressed to you, so no lead is lost.
+  var subj=intent==='exposure'?'Free IDR exposure report request':'Avertyn early-access request';
+  var body='Email: '+email+'%0D%0AIntent: '+intent+'%0D%0A%0D%0A(Sent from avertyn landing page)';
+  window.location.href='mailto:product@sanoire.com?subject='+encodeURIComponent(subj)+'&body='+body;
+  document.getElementById('capForm').style.display='none';
+  var d=document.getElementById('capDone');d.classList.add('on');
+  document.getElementById('capDoneMsg').textContent = intent==='exposure'
+    ? "Your request is ready to send — we'll get your exposure report back to you shortly."
+    : "Your early-access request is ready to send — we'll be in touch as spots open.";
 }
-function switchView(v){view=v;mOpen=false;setMdet();renderNav();renderView();}
-var LOADERS={disputes:["demo_live_snapshot","disputes"],clients:["demo_crm_snapshot","crm"],files:["demo_files_snapshot","files"],tasks:["demo_tasks_snapshot","tasks"],calendar:["demo_calendar_snapshot","cal"],settings:["demo_admin_snapshot","admin"],inbox:["demo_inbox_snapshot","inbox"],billing:["demo_billing_snapshot","billing"],reports:["demo_reports_meta","reports"],exposure:["demo_exposure","exposure"],governance:["demo_governance","governance"]};
-function renderView(){var L=LOADERS[view],key=L[1],el=document.getElementById("view");
-  var rpc=(SESSION&&view==="disputes")?"live_snapshot":L[0];
-  if(D[key]){paint();return;}
-  el.innerHTML="<div class='load'>Loading…</div>";
-  call(rpc).then(function(r){D[key]=r;renderNav();paint();}).catch(function(e){el.innerHTML="<div class='err'><b>Couldn’t load.</b><br><span class='dmeta'>"+esc(e.message)+"</span></div>";});}
-function emptyOrg(v){var n={clients:"clients",inbox:"messages",files:"files",tasks:"tasks",calendar:"events",reports:"reports",billing:"billing invoices",settings:"settings"}[v]||v;
-  return "<div class='page'><div class='pagehd'><h1>"+titl(v)+"</h1></div><div style='padding:56px 8px;text-align:center;color:var(--mut)'><div style='font-size:15px;color:var(--ink);margin-bottom:6px'>No "+n+" yet</div><div class='dmeta' style='max-width:340px;margin:0 auto'>This is your live workspace, <b>"+esc((ME&&ME.org)||"your org")+"</b>. Ingest an 835 or add records and they'll appear here.</div></div></div>";}
-function paint(){({disputes:paintDisputes,clients:paintCRM,files:paintFiles,tasks:paintTasks,calendar:paintCalendar,settings:paintSettings,inbox:paintInbox,billing:paintBilling,reports:paintReports,exposure:paintExposure,governance:paintGovernance}[view])();}
 
-/* DISPUTES */
-function readOf(d){if(d.disposition==="provider_win"||d.state==="award_payment")return["Award — pay","d-ink"];if(d.disposition==="eligibility_challenged")return["Challenged","d-ink"];if((d.score||0)>=80)return["Ineligible","d-red"];if((d.score||0)>=60)return["Review","d-amber"];if(d.state==="qpa_defense")return["Defend QPA","d-ink"];if(d.disposition&&d.disposition!=="open")return[titl(d.disposition),"d-green"];return["Defensible","d-green"];}
-function catOf(d){if(d.disposition==="provider_win"||d.state==="award_payment")return"award";if((d.score||0)>=80||d.disposition==="eligibility_challenged")return"challenge";if(d.state==="qpa_defense")return"defend";return"open";}
-function setBusy(b){busy=b;var e=document.getElementById("btn-reload");if(e)e.disabled=b;}
-function act(fn,arg){if(busy)return;setBusy(true);call(fn,arg?{p_ref:arg}:{}).then(function(s){D.disputes=s;setBusy(false);paintDisputes();}).catch(function(e){setBusy(false);alert(e.message);});}
-function runOp(fn){if(busy)return;setBusy(true);call(fn).then(function(){D={};renderView();}).catch(function(e){setBusy(false);alert(e.message);});}
-var metricMode="at_risk";
-function paintDisputes(){var s=D.disputes;document.getElementById("org").textContent=s.org;
-  document.getElementById("view").innerHTML="<div class='kpis' id='kpis'></div><div style='display:flex;align-items:center;gap:6px;margin:6px 0 14px'><span class='dmeta' style='margin-right:2px'>Dollars:</span><span class='chip"+(metricMode==='at_risk'?' on':'')+"' data-mm='at_risk'>At risk</span><span class='chip"+(metricMode==='saved'?' on':'')+"' data-mm='saved'>Saved</span></div><div class='work'><div class='list' id='list'></div><div class='detail' id='detail'></div><div class='rail' id='rail'></div></div>";
-  var m=s.metrics||{},a=s.agent||{},over=(a.human_released+a.human_rejected)?Math.round(a.human_rejected/(a.human_released+a.human_rejected)*100):0;
-  var ds=s.disputes||[];
-  var atRisk=ds.filter(function(d){return d.state!=="closed";}).reduce(function(t,d){return t+Math.max(0,(d.demand||0)-(d.qpa||0));},0);
-  var wins=ds.filter(function(d){return d.disposition==="plan_win"||d.disposition==="settled";}).length;
-  function k(l,v,d){return "<div class='kpi'><div class='lab'>"+l+"</div><div class='n'>"+(v==null?"—":v)+"</div><div class='d'>"+(d||"")+"</div></div>";}
-  var mid=metricMode==="saved"?k("Saved",money(m.dollars_defended),"vs. demands"):k("At risk",money(atRisk),"open, vs QPA");
-  document.getElementById("kpis").innerHTML=k("Open disputes",m.open_disputes,"in the queue")+mid+k("Wins",wins,"plan-favorable")+k("Challenges filed",m.challenges_filed,"eligibility")+k("Human override",over+"%","of releases");
-  document.querySelectorAll('[data-mm]').forEach(function(n){n.onclick=function(){metricMode=this.getAttribute('data-mm');paintDisputes();};});
-  dList();dDetail();dRail();}
-function dList(){var s=D.disputes,el=document.getElementById("list"),items=s.disputes.filter(function(d){return filter==="all"||catOf(d)===filter;});
-  var chips=[["all","All"],["challenge","Challenge"],["defend","Defend"],["award","Awards"]];
-  var h="<div class='lhd'><div class='lab'>Disputes · "+items.length+"</div><div class='chips'>";chips.forEach(function(c){h+="<span class='chip"+(filter===c[0]?" on":"")+"' data-f='"+c[0]+"'>"+c[1]+"</span>";});h+="</div></div>";
-  items.forEach(function(d){var r=readOf(d);h+="<div class='lrow"+(sel===d.ref?" on":"")+"' data-ref='"+esc(d.ref)+"'><div class='r1'><span class='rf'>#"+esc(d.ref)+"</span><span class='tag'><i class='dot "+r[1]+"'></i>"+r[0]+"</span></div><div class='r2'><span>"+esc(d.initiator)+"</span><span class='num'>"+money(d.demand)+"</span></div></div>";});
-  el.innerHTML=h;el.querySelectorAll("[data-f]").forEach(function(c){c.onclick=function(){filter=this.getAttribute("data-f");dList();};});
-  el.querySelectorAll("[data-ref]").forEach(function(x){x.onclick=function(){sel=this.getAttribute("data-ref");if(isMobile)mOpen=true;setMdet();dList();dDetail();};});}
-function dDetail(){var s=D.disputes,el=document.getElementById("detail"),d=null;if(sel){for(var i=0;i<s.disputes.length;i++)if(s.disputes[i].ref===sel)d=s.disputes[i];}
-  if(!d){var rows=(s.scorecard||[]).map(function(y){return "<tr><td class='nm'>"+esc(y.initiator)+"</td><td class='r num'>"+y.disputes+"</td><td class='r num'>"+(y.avg_ineligibility==null?"—":y.avg_ineligibility)+"</td><td class='r num'>"+y.challenged+"</td><td class='r num'>"+money(y.avg_demand)+"</td><td class='r num'>"+money(y.avg_qpa)+"</td></tr>";}).join("");
-    el.innerHTML="<h1 class='acthd'>Initiator scorecard</h1><div class='dmeta'>Who is filing against your plans. Select a dispute to open the case.</div><table class='tbl' style='margin-top:20px'><thead><tr><th>Initiator</th><th class='r'>Disputes</th><th class='r'>Avg&nbsp;inelig.</th><th class='r'>Challenged</th><th class='r'>Avg&nbsp;demand</th><th class='r'>Avg&nbsp;QPA</th></tr></thead><tbody>"+rows+"</tbody></table>";return;}
-  var scr=d.score||0,gc=scr>=80?"var(--sig)":scr>=60?"var(--warn)":"var(--ok)";
-  var verd=scr>=80?["Challenge — likely ineligible","Eligibility gates fail; the rule engine flags this as disqualifiable."]:scr>=60?["Review eligibility","Mixed signals — worth a human eligibility check."]:d.state==="qpa_defense"?["Defend the QPA","Eligibility clears; hold your QPA against the demand."]:["Defensible","Clean file — proceed on the merits."];
-  var mx=Math.max(d.demand,d.qpa)||1;function bar(l,v,c){return "<div class='bar'><div class='bl'><span>"+l+"</span><span class='num'>"+money(v)+"</span></div><div class='track'><div class='fill' style='width:"+Math.round(v/mx*100)+"%;background:"+c+"'></div></div></div>";}
-  var mult=d.qpa?(d.demand/d.qpa):0,gap=d.demand-d.qpa;
-  var acts="<button class='btn' id='btn-engine'>Run engine</button><button class='btn' id='btn-pos'>Position statement</button><button class='btn' id='btn-onp'>ONP notice</button><button class='btn pri' id='btn-chal'>Challenge letter</button>";
-  var wp=d.win_prob!=null?Math.round(d.win_prob*100):null;
-  var model=wp==null?"":("<div class='sect'><span class='lab'>Model · win probability</span><div style='display:flex;gap:40px;margin-top:18px;align-items:center'><div><div class='num' style='font-size:40px'>"+wp+"%</div><div class='lab' style='margin-top:4px'>plan prevails</div></div><div style='flex:1'><div class='bl'><span>Recommended</span><span style='font-weight:600;text-transform:capitalize'>"+(d.recommended||"—")+"</span></div><div class='track' style='margin:8px 0 16px'><div class='fill' style='width:"+wp+"%;background:var(--ink)'></div></div><div class='bl'><span>Optimal offer</span><span class='num'>"+money(d.recommended_offer)+"</span></div><div class='bl' style='margin-top:8px'><span>Expected savings</span><span class='num'>"+money(d.expected_value)+"</span></div>"+((d.autopilot&&d.autopilot.action)?"<div class='bl' style='margin-top:8px'><span>Autopilot routes to</span><span style='font-weight:600'>"+titl(d.autopilot.action)+" · "+titl(d.autopilot.mode)+"</span></div>":"")+"</div></div></div>");
-  var disc=!d.registration_number?"":("<div class='sect'><span class='lab'>Disclosure · 835 remittance</span><div class='meta' style='grid-template-columns:1fr 1fr'><div><div class='lab'>IDR registration #</div><div class='n' style='font-size:13px;font-family:var(--sans);font-weight:600'>"+esc(d.registration_number)+"</div></div><div><div class='lab'>Plan legal name</div><div class='n' style='font-size:13px;font-family:var(--sans);font-weight:600'>"+esc(d.plan_legal_name||"—")+"</div></div><div><div class='lab'>CARC / RARC</div><div class='n' style='font-size:13px;font-family:var(--sans);font-weight:600'>"+esc((d.carc||"—")+" / "+(d.rarc||"—"))+"</div></div><div><div class='lab'>NSA signal</div><div class='n' style='font-size:13px;font-family:var(--sans);font-weight:600;text-transform:capitalize'>"+esc(d.nsa_signal||"—")+"</div></div></div></div>");
-  el.innerHTML=backBtn()+"<h1 class='dref'>#"+esc(d.ref)+"</h1><div class='dmeta'>"+esc(d.initiator)+" &nbsp;·&nbsp; CPT "+esc(d.cpt)+" &nbsp;·&nbsp; "+esc(d.plan)+" &nbsp;·&nbsp; "+titl(d.state)+"</div><div class='split' style='margin-top:22px'></div><div class='drow'><div class='gauge' style='background:conic-gradient("+gc+" "+scr+"%, var(--hair) 0)'><div class='v'><b style='color:"+gc+"'>"+scr+"</b><span>Inelig.</span></div></div><div style='flex:1'><div class='lab'>Verdict</div><p class='verdict' style='margin-top:10px'>"+verd[0]+"</p><p class='vsub'>"+verd[1]+"</p></div></div><div class='sect'><span class='lab'>Demand vs. QPA</span>"+bar("Initiator demand",d.demand,"var(--sig)")+bar("Plan QPA",d.qpa,"var(--ink)")+"<p class='note'>The demand is <b class='num'>"+(mult?mult.toFixed(1):"—")+"×</b> the QPA — a <span class='num'>"+money(gap)+"</span> spread.</p></div>"+model+disc+"<div class='sect' id='qpa-sect'><span class='lab'>QPA defense &amp; rebuttal</span><div id='qpa-body' style='padding:12px 0;color:var(--faint);font-size:12px'>Loading defensible position…</div></div><div class='sect' id='idr-sect'><span class='lab'>CMS Federal IDR Gateway</span><div id='idr-body' style='padding:16px 0;color:var(--faint);font-size:12px'>Loading connector…</div></div><div class='dacts'>"+acts+"</div>";
-  var be=document.getElementById("btn-engine");if(be)be.onclick=function(){act("demo_run_engine",sel);};
-  var bp=document.getElementById("btn-pos");if(bp)bp.onclick=function(){genDocModal(sel,"position_statement");};
-  var bo=document.getElementById("btn-onp");if(bo)bo.onclick=function(){genDocModal(sel,"open_negotiation");};
-  var bc=document.getElementById("btn-chal");if(bc)bc.onclick=function(){genDocModal(sel,"challenge_letter");};
-  caseExtraLoad(d.ref);
-  idrLoad(d.ref,d.qpa);}
-function idrRender(ref,data,qpa){
-  var c=data.connection, evs=data.events||[], subs=data.submissions||[];
-  var h="<div class='dial' style='border-bottom:1px solid var(--hair)'><span>Connection</span><span class='tag'>"+(c?"<i class='dot d-green'></i>"+titl(c.adapter)+" · "+esc(c.status):"<i class='dot d-amber'></i>not connected")+"</span></div>";
-  h+="<div class='rlab' style='margin:18px 0 0'>Sync feed · inbound</div>";
-  if(evs.length){h+="<div class='feed'>";evs.forEach(function(e){var n=e.normalized||{};var t=e.kind==='deadline_set'?((n.deadline_kind||'deadline')+' due '+(n.due_at?new Date(n.due_at).toLocaleDateString():'—')):e.kind==='status_changed'?('→ '+titl(n.workflow_state||'updated')):e.kind==='determination_issued'?('determination: '+titl(n.disposition||'issued')):titl(e.kind);h+="<div><b>"+titl(e.kind)+"</b> — "+esc(t)+(e.reconciled?" · reconciled":"")+"</div>";});h+="</div>";}
-  else h+="<div class='empty'>No Gateway events yet for this case.</div>";
-  h+="<div class='rlab' style='margin:18px 0 0'>Submissions · outbound</div>";
-  if(subs.length){subs.forEach(function(s){var rc=(s.receipt&&s.receipt.confirmationNumber)?(" · receipt "+s.receipt.confirmationNumber):"";h+="<div class='qitem'><div class='qt'><span>"+titl(s.kind)+"</span><span class='num'>"+money(s.payload&&s.payload.amount)+"</span></div><div class='qs'>"+titl(s.status)+esc(rc)+"</div></div>";});}
-  else h+="<div class='empty'>Nothing staged.</div>";
-  h+="<div class='dacts' style='margin-top:20px'><button class='btn' id='idr-stage'>Stage offer · "+money(qpa)+"</button><button class='btn pri' id='idr-push'>Approve &amp; submit</button></div>";
-  h+="<p class='note'>Approve &amp; submit runs the governed loop — writes the tamper-evident ledger and routes a confirmed offer through the <b>submit_response</b> kernel action.</p>";
-  var body=document.getElementById('idr-body');if(!body)return;body.style.color="";body.style.padding="";body.innerHTML=h;
-  var bs=document.getElementById('idr-stage');if(bs)bs.onclick=function(){idrAct('demo_idr_stage',ref,qpa);};
-  var bp=document.getElementById('idr-push');if(bp)bp.onclick=function(){idrAct('demo_idr_push',ref,qpa);};}
-function idrLoad(ref,qpa){call('demo_idr_case',{p_ref:ref}).then(function(d){if(sel===ref)idrRender(ref,d,qpa);}).catch(function(e){var b=document.getElementById('idr-body');if(b){b.style.color="";b.innerHTML="<div class='empty'>"+esc(e.message)+"</div>";}});}
-function idrAct(fn,ref,qpa){if(busy)return;setBusy(true);var body=(fn==='demo_idr_stage')?{p_ref:ref,p_amount:qpa}:{p_ref:ref};call(fn,body).then(function(d){setBusy(false);if(sel===ref)idrRender(ref,d,qpa);}).catch(function(e){setBusy(false);alert(e.message);});}
-function dRail(){var s=D.disputes,el=document.getElementById("rail"),q=s.queue||[],led=s.ledger||[],ent=s.enterprise||{},fil=s.filings||{};
-  var h="<div class='rlab'>Autopilot</div><div class='dial'><span>Status</span><span class='tag'><i class='dot d-green'></i>On · governed</span></div><div class='dial'><span>Waiting on you</span><span class='num' style='font-weight:600'>"+q.length+"</span></div>";
-  h+="<div class='rlab'>Tools</div>";[["op-835","Ingest 835","Parse an 835 → CARC/RARC, registration #, legal names"],["op-score","Score all","Run the win-probability model across every dispute"],["op-batch","Build batches","Group disputes (2026 rules), pick IDRE, file to portal"],["op-alert","Send alerts","Push deadline alerts to email + webhook"]].forEach(function(t){h+="<div class='tool'><div><b>"+t[1]+"</b><div class='qs'>"+t[2]+"</div></div><button class='btn' id='"+t[0]+"'>Run</button></div>";});
-  h+="<div class='rlab'>Waiting for you</div>";if(q.length){q.forEach(function(x){h+="<div class='qitem'><div class='qt'><span>"+titl(x.action)+"</span><span class='num'>"+money(x.amount)+"</span></div><div class='qs'>"+esc(x.rationale)+"</div></div>";});}else h+="<div class='empty'>Nothing staged.</div>";
-  h+="<div class='rlab'>Federal IDR filings</div><div class='dial'><span>Batches</span><span class='num'>"+(fil.batches||0)+"</span></div><div class='dial'><span>Portal submissions</span><span class='num'>"+(fil.submitted||0)+"</span></div>";
-  (fil.items||[]).slice(0,4).forEach(function(x,i){h+="<div class='qitem'><div class='qt'><span>"+esc(x.ref)+"</span><span class='num' style='font-weight:400;color:var(--faint);font-size:10px'>"+(x.lines||0)+" ln</span></div><div class='qs'>"+esc(x.idre||'—')+" · reg "+esc(x.registration||'—')+" · "+esc(x.status)+"</div><button class='btn sm' data-cms-copy='"+i+"' style='margin-top:8px'>Copy filing packet</button></div>";});
-  h+="<div style='padding-top:10px'><div class='qs'>Avertyn stages each batch with its IDRE and registration number. The government portal blocks web embedding, so the in-app CMS portal browser lives in the Avertyn mobile app — on web, copy the packet to file at nsa-idr.cms.gov.</div></div>";
-  h+="<div class='rlab'>Agent ledger</div><div class='feed'>";if(led.length){led.slice(0,6).forEach(function(e){h+="<div><span class='mk'>"+(e.actor==="agent"?"◆":"·")+"</span><b>"+titl(e.action)+"</b> — "+esc(e.actor)+"</div>";});}else h+="<div class='empty'>No actions.</div>";h+="</div>";
-  el.innerHTML=h;var ops={"op-835":"demo_ingest_835","op-score":"demo_predict_all","op-batch":"demo_run_batching","op-alert":"demo_send_alerts"};Object.keys(ops).forEach(function(id){var b=document.getElementById(id);if(b)b.onclick=function(){runOp(ops[id]);};});
-  document.querySelectorAll('[data-cms-copy]').forEach(function(n){n.onclick=function(){var x=(fil.items||[])[+this.getAttribute('data-cms-copy')]||{};var t="AVERTYN — Federal IDR filing packet\nSubmission ref: "+(x.ref||'')+"\nIDR registration #: "+(x.registration||'')+"\nSelected IDRE: "+(x.idre||'')+"\nLine items: "+(x.lines||0)+"\nStatus: "+(x.status||'')+"\nFile at: https://nsa-idr.cms.gov/paymentdisputes/s/";if(navigator.clipboard)navigator.clipboard.writeText(t);this.textContent="Copied ✓";};});}
-
-/* EXPOSURE — employer/broker wedge */
-function paintExposure(){var list=Array.isArray(D.exposure)?D.exposure:[];
-  var cards=list.map(function(e){return "<div class='sect'><div class='bl'><b style='font-size:15px'>"+esc(e.employer||"—")+"</b><span class='dmeta'>"+e.plans+" plan"+(e.plans===1?"":"s")+"</span></div>"+
-    "<div class='bl' style='margin-top:10px'><span>Open disputes</span><span class='num'>"+e.open_disputes+"</span></div>"+
-    "<div class='bl' style='margin-top:6px'><span>At risk</span><span class='num' style='color:var(--sig)'>"+money(e.at_risk)+"</span></div>"+
-    "<div class='bl' style='margin-top:6px'><span>Defended</span><span class='num' style='color:var(--ok)'>"+money(e.defended)+"</span></div>"+
-    "<div class='bl' style='margin-top:6px'><span>Default losses</span><span class='num'>"+e.default_losses+"</span></div></div>";}).join("");
-  document.getElementById("view").innerHTML="<div class='page'><div class='pagehd'><h1>Exposure</h1><span class='s'>employer &amp; broker view</span></div><div class='dmeta' style='margin-bottom:8px'>Self-funded employer IDR exposure — the seat the employer funds but rarely sees.</div>"+(list.length?cards:"<div class='empty'>No employer exposure on record.</div>")+"</div>";}
-
-/* AI GOVERNANCE */
-function paintGovernance(){var g=D.governance||{},a=g.automation||{},o=g.human_oversight||{},ex=g.explainability||{},li=ex.ledger_integrity||{};
-  function row(l,v){return "<div class='bl' style='margin-top:6px'><span>"+l+"</span><span class='num'>"+v+"</span></div>";}
-  var fair=(g.fairness_check||[]).map(function(f){return "<tr><td class='nm'>"+esc(f.initiator)+"</td><td class='r num'>"+f.disputes+"</td><td class='r num'>"+f.challenged+"</td><td class='r num'>"+f.challenge_rate_pct+"%</td></tr>";}).join("");
-  document.getElementById("view").innerHTML="<div class='page'><div class='pagehd'><h1>AI Governance</h1><span class='s'>NAIC-aligned oversight</span></div>"+
-    "<div class='sect'><span class='lab'>Automation</span>"+row("Total actions",a.total_actions==null?"—":a.total_actions)+row("By agent",a.by_agent||0)+row("By human",a.by_human||0)+"</div>"+
-    "<div class='sect'><span class='lab'>Human oversight</span>"+row("Override rate",(o.override_rate_pct||0)+"%")+row("Approvals in queue",o.approvals_total||0)+"</div>"+
-    "<div class='sect'><span class='lab'>Explainability</span><div class='bl' style='margin-top:6px'><span>Ledger integrity</span><span style='font-weight:600;color:"+(li.ok?"var(--ok)":"var(--sig)")+"'>"+(li.ok?"verified ✓":"check failed")+"</span></div>"+row("Actions with citations",ex.actions_with_citations||0)+"</div>"+
-    "<div class='sect'><span class='lab'>Fairness · challenge rate by initiator</span><table class='tbl' style='margin-top:10px'><thead><tr><th>Initiator</th><th class='r'>Disputes</th><th class='r'>Challenged</th><th class='r'>Rate</th></tr></thead><tbody>"+fair+"</tbody></table></div></div>";}
-
-/* case-detail loader + document modal (surface Groups B/C/E on the detail) */
-function caseExtraLoad(ref){call('demo_case_detail',{p_ref:ref}).then(function(x){if(sel!==ref)return;var b=document.getElementById('qpa-body');if(!b)return;b.style.color="";b.style.padding="";var q=x.qpa||{};var h="";
-  h+="<div class='bl'><span>Plan QPA</span><span class='num'>"+money(q.plan_qpa)+"</span></div>";
-  h+="<div class='bl' style='margin-top:6px'><span>Defensible ceiling</span><span class='num'>"+money(q.defensible_ceiling)+"</span></div>";
-  var basis=q.basis==='manual_ceiling'?'manual override':(String(q.basis||'').replace('pct_of_qpa_','')+'% of QPA');
-  h+="<div class='qs' style='margin-top:4px'>Most the plan should concede · "+basis+"</div>";
-  h+="<div class='bl' style='margin-top:6px'><span>FAIR Health regional</span><span class='num'>"+money(q.fair_health)+"</span></div>";
-  h+="<div class='dacts' style='margin-top:10px'><button class='btn sm' data-ceil='115'>115% QPA</button><button class='btn sm' data-ceil='125'>125% QPA</button><button class='btn sm' data-ceil='150'>150% QPA</button><button class='btn sm' data-ceil='0'>Auto</button></div>";
-  if(x.deadlines&&x.deadlines.length){h+="<div class='rlab' style='margin:14px 0 6px'>Deadlines · business-day, holiday-aware</div>";x.deadlines.forEach(function(dl){h+="<div class='bl'><span>"+esc(dl.label||titl(dl.kind))+"</span><span class='num'>"+dstr(dl.due_at)+"</span></div>";});}
-  if(x.rebuttal&&x.rebuttal.ok){h+="<div class='rlab' style='margin:14px 0 6px'>Repricer rebuttal · "+esc(x.rebuttal.repricer)+"</div>";(x.rebuttal.points||[]).forEach(function(p,i){h+="<div style='font-size:12px;color:var(--mut);margin-top:6px'>"+(i+1)+". "+esc(p)+"</div>";});}
-  b.innerHTML=h;
-  b.querySelectorAll('[data-ceil]').forEach(function(n){n.onclick=function(){var pct=+this.getAttribute('data-ceil');if(busy)return;setBusy(true);call('demo_set_ceiling',{p_ref:ref,p_pct:pct}).then(function(){setBusy(false);caseExtraLoad(ref);}).catch(function(e){setBusy(false);alert(e.message);});};});
-}).catch(function(e){var b=document.getElementById('qpa-body');if(b)b.innerHTML="<div class='empty'>"+esc(e.message)+"</div>";});}
-function genDocModal(ref,kind){if(busy)return;setBusy(true);call('demo_generate_doc',{p_ref:ref,p_kind:kind}).then(function(r){setBusy(false);if(!r||!r.ok){alert('Could not generate.');return;}showDoc(r);}).catch(function(e){setBusy(false);alert(e.message);});}
-function showDoc(r){var m=document.getElementById('docmodal');if(!m){m=document.createElement('div');m.id='docmodal';m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px';document.body.appendChild(m);}
-  m.innerHTML="<div style='background:#fff;max-width:680px;width:100%;max-height:86vh;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3)'><div style='display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)'><b>"+esc(r.title||'Document')+"</b><span id='docclose' style='cursor:pointer;color:var(--mut);font-weight:600'>Close</span></div><div style='padding:18px;overflow:auto'><pre style='white-space:pre-wrap;font-family:var(--sans);font-size:13px;line-height:1.5;margin:0'>"+esc(r.content)+"</pre><div class='dmeta' style='margin-top:14px'>SHA-256 · "+esc(r.sha256||'')+" · tamper-evident seal</div></div></div>";
-  document.getElementById('docclose').onclick=function(){m.remove();};m.onclick=function(e){if(e.target===m)m.remove();};}
-
-/* CLIENTS */
-function paintCRM(){var c=D.crm,accts=(c.accounts||[]).filter(function(a){return crmFilter==="all"||a.kind===crmFilter;});if(!isMobile&&!acctSel&&accts.length)acctSel=accts[0].id;
-  document.getElementById("view").innerHTML="<div class='two'><div class='l2' id='acctlist'></div><div class='r2' id='acctdet'></div></div>";
-  var chips=[["all","All"],["initiator","Initiators"],["employer","Employers"],["idre","IDREs"],["broker","Brokers"]];
-  var h="<div class='lhd'><div class='lab'>Accounts · "+accts.length+"</div><div class='chips'>";chips.forEach(function(x){h+="<span class='chip"+(crmFilter===x[0]?" on":"")+"' data-cf='"+x[0]+"'>"+x[1]+"</span>";});h+="</div></div>";
-  accts.forEach(function(a){h+="<div class='lrow"+(acctSel===a.id?" on":"")+"' data-ac='"+a.id+"'><div class='r1'><span class='rf'>"+esc(a.name)+"</span><span class='pill'>"+esc(a.kind)+"</span></div><div class='r2'><span>"+(a.contacts?a.contacts.length:0)+" contacts</span><span class='num'>"+(a.open_disputes||0)+" open</span></div></div>";});
-  document.getElementById("acctlist").innerHTML=h;
-  document.querySelectorAll("[data-cf]").forEach(function(n){n.onclick=function(){crmFilter=this.getAttribute("data-cf");acctSel=null;paintCRM();};});
-  document.querySelectorAll("[data-ac]").forEach(function(n){n.onclick=function(){acctSel=this.getAttribute("data-ac");if(isMobile)mOpen=true;setMdet();paintCRM();};});
-  var a=null;accts.forEach(function(x){if(x.id===acctSel)a=x;});var el=document.getElementById("acctdet");
-  if(!a){el.innerHTML="<div class='empty'>Select an account to see its contacts, activity, and IDR exposure.</div>";return;}
-  if(!D.disputes){call("demo_live_snapshot").then(function(s){D.disputes=s;if(view==="clients")paintCRM();});}
-  var mine=[];if(D.disputes&&D.disputes.disputes){mine=D.disputes.disputes.filter(function(d){return a.kind==="initiator"?d.initiator===a.name:(a.kind==="employer"?((d.plan||"").indexOf(a.name)===0):false);});}
-  var openM=mine.filter(function(d){return d.state!=="closed";});
-  var atRisk=openM.reduce(function(s,d){return s+Math.max(0,(d.demand||0)-(d.qpa||0));},0);
-  var expRows=mine.map(function(d){var rd=d.score>=80?"Ineligible":d.state==="qpa_defense"?"Defend QPA":titl(d.disposition&&d.disposition!=="open"?d.disposition:d.state);return "<tr><td class='nm'><span class='num'>#"+esc(d.ref)+"</span></td><td>"+rd+"</td><td class='r num'>"+money(d.demand)+"</td><td class='r num'>"+money(d.qpa)+"</td></tr>";}).join("");
-  var expSec=(a.kind==="initiator"||a.kind==="employer")?("<div class='sect'><span class='lab'>IDR exposure</span><div class='dmeta' style='margin:8px 0 2px'><b class='num' style='color:var(--ink)'>"+openM.length+"</b> open · <b class='num' style='color:var(--sig)'>"+money(atRisk)+"</b> at risk vs QPA</div>"+(mine.length?("<table class='tbl'><thead><tr><th>Dispute</th><th>Read</th><th class='r'>Demand</th><th class='r'>QPA</th></tr></thead><tbody>"+expRows+"</tbody></table>"):("<div class='empty'>"+(D.disputes?"No linked disputes on file.":"Loading exposure…")+"</div>"))+"</div>"):"";
-  var cts=(a.contacts||[]).map(function(c){return "<tr><td class='nm'>"+esc(c.name)+"</td><td>"+esc(c.title||"—")+"</td><td>"+esc(c.email||"—")+"</td></tr>";}).join("")||"<tr><td colspan='3' class='dmeta'>No contacts on file — they'll appear here as you log emails and calls.</td></tr>";
-  var acts=(a.activities||[]).map(function(v){return "<div class='tlrow k-"+esc(v.kind)+"'><div class='tt'>"+esc(v.subject||titl(v.kind))+(v.dispute?" · <span class='num' style='color:var(--mut)'>#"+esc(v.dispute)+"</span>":"")+"</div>"+(v.body?"<div class='tb'>"+esc(v.body)+"</div>":"")+"<div class='tm'>"+titl(v.kind)+" · "+esc(v.actor||"")+" · "+ago(v.at)+"</div></div>";}).join("")||"<div class='empty'>No activity yet — emails, calls, and filings for this account will show up here.</div>";
-  el.innerHTML=backBtn()+"<h1 class='acthd'>"+esc(a.name)+"</h1><div class='dmeta'><span class='pill'>"+esc(a.kind)+"</span> &nbsp; Owner "+esc(a.owner||"—")+" &nbsp;·&nbsp; "+(a.open_disputes||0)+" open</div>"+expSec+"<div class='sect'><span class='lab'>Contacts</span><table class='tbl'><thead><tr><th>Name</th><th>Title</th><th>Email</th></tr></thead><tbody>"+cts+"</tbody></table></div><div class='sect'><span class='lab'>Activity</span><div class='tl' style='margin-top:14px'>"+acts+"</div></div>";}
-
-/* FILES best-in-class */
-function paintFiles(){var f=D.files,files=(f.files||[]).slice();
-  var folders=(f.counts||{}).folders||{},total=(f.counts||{}).total||0;
-  var kinds={};files.forEach(function(x){kinds[x.kind]=(kinds[x.kind]||0)+1;});
-  var totBytes=0;files.forEach(function(x){totBytes+=(x.size||0);});
-  var shown=files.filter(function(x){return (fileFolder==="all"||x.folder===fileFolder)&&(fileKind==="all"||x.kind===fileKind)&&(!fileQ||(x.name+" "+(x.tags||[]).join(" ")).toLowerCase().indexOf(fileQ.toLowerCase())>=0);});
-  shown.sort(function(a,b){if(fileSort==="name")return (a.name||"").localeCompare(b.name||"");if(fileSort==="size")return (b.size||0)-(a.size||0);return new Date(b.at)-new Date(a.at);});
-  var side="<input id='fq' placeholder='Search files…' value='"+esc(fileQ)+"'>";
-  side+="<div class='lab' style='margin-bottom:8px'>Folders</div><div class='fitem"+(fileFolder==="all"?" on":"")+"' data-fo='all'><span>All files</span><span class='c'>"+total+"</span></div>";
-  Object.keys(folders).forEach(function(fo){side+="<div class='fitem"+(fileFolder===fo?" on":"")+"' data-fo='"+esc(fo)+"'><span>"+esc(fo)+"</span><span class='c'>"+folders[fo]+"</span></div>";});
-  side+="<div class='lab' style='margin:16px 0 8px'>Type</div><div class='fitem"+(fileKind==="all"?" on":"")+"' data-ki='all'><span>All types</span></div>";
-  Object.keys(kinds).forEach(function(ki){side+="<div class='fitem"+(fileKind===ki?" on":"")+"' data-ki='"+esc(ki)+"'><span>"+titl(ki)+"</span><span class='c'>"+kinds[ki]+"</span></div>";});
-  side+="<div class='storage'><div class='lab'>Storage</div><div style='font-size:11.5px;color:var(--mut);margin-top:6px'>"+(totBytes/1048576).toFixed(1)+" MB of 250 GB</div><div class='tk'><div class='fl' style='width:"+Math.max(1,Math.min(100,totBytes/1048576/2560*100))+"%'></div></div></div>";
-  var checked=Object.keys(fileChecks).filter(function(k){return fileChecks[k];});
-  var bulk=checked.length?"<div class='fbulk'><b>"+checked.length+" selected</b><button class='btn sm' id='f-csv'>Export CSV</button><button class='btn sm' id='f-clear'>Clear</button></div>":"";
-  var rows=shown.map(function(x){var link=x.dispute?"#"+esc(x.dispute):(x.account?esc(x.account):"—");
-    return "<tr><td style='width:22px'><input type='checkbox' class='ck' data-ck='"+esc(x.name)+"'"+(fileChecks[x.name]?" checked":"")+"></td><td class='nm' data-fd='"+esc(x.name)+"' style='cursor:pointer'>"+esc(x.name)+(x.generated?" <span class='pill'>gen</span>":"")+"</td><td>"+titl(x.kind)+"</td><td>"+esc(x.folder)+"</td><td>"+link+"</td><td class='r num'>"+(x.size?Math.round(x.size/1024)+" KB":"—")+"</td><td class='r num'>v"+x.version+"</td><td>"+dstr(x.at)+"</td></tr>";}).join("");
-  document.getElementById("view").innerHTML="<div class='fmgr'><div class='fside'>"+side+"</div><div class='fmain'><div class='pagehd'><h1>Files</h1><span class='s'>"+shown.length+" of "+total+"</span></div>"+bulk+"<table class='tbl' style='margin-top:10px'><thead><tr><th></th><th class='s' data-so='name'>Name</th><th>Kind</th><th>Folder</th><th>Linked</th><th class='r s' data-so='size'>Size</th><th class='r'>Ver</th><th class='s' data-so='at'>Date</th></tr></thead><tbody>"+rows+"</tbody></table></div></div>";
-  var fq=document.getElementById("fq");fq.oninput=function(){fileQ=this.value;var p=this.selectionStart;paintFiles();var n=document.getElementById("fq");n.focus();n.setSelectionRange(p,p);};
-  document.querySelectorAll("[data-fo]").forEach(function(n){n.onclick=function(){fileFolder=this.getAttribute("data-fo");paintFiles();};});
-  document.querySelectorAll("[data-ki]").forEach(function(n){n.onclick=function(){fileKind=this.getAttribute("data-ki");paintFiles();};});
-  document.querySelectorAll("[data-so]").forEach(function(n){n.onclick=function(){fileSort=this.getAttribute("data-so");paintFiles();};});
-  document.querySelectorAll("[data-ck]").forEach(function(n){n.onchange=function(){fileChecks[this.getAttribute("data-ck")]=this.checked;paintFiles();};});
-  document.querySelectorAll("[data-fd]").forEach(function(n){n.onclick=function(){fileDrawer(this.getAttribute("data-fd"),files);};});
-  var fc=document.getElementById("f-clear");if(fc)fc.onclick=function(){fileChecks={};paintFiles();};
-  var fcsv=document.getElementById("f-csv");if(fcsv)fcsv.onclick=function(){var sel=files.filter(function(x){return fileChecks[x.name];});var csv="name,kind,folder,linked,size_kb,version,date\n"+sel.map(function(x){return [x.name,x.kind,x.folder,x.dispute||x.account||"",Math.round((x.size||0)/1024),x.version,new Date(x.at).toISOString().slice(0,10)].join(",");}).join("\n");dl(csv,"files.csv");};}
-function fileDrawer(name,files){var x=null;files.forEach(function(f){if(f.name===name)x=f;});if(!x)return;
-  var old=document.getElementById("fdr");if(old)old.remove();
-  var el=document.createElement("div");el.className="fdrawer";el.id="fdr";
-  el.innerHTML="<div class='x' id='fdx'>✕</div><div class='lab'>"+titl(x.kind)+"</div><h2 style='font-family:var(--disp);font-weight:400;font-size:20px;margin:8px 0 4px;line-height:1.25'>"+esc(x.name)+"</h2><div class='dmeta'>"+esc(x.folder)+" · v"+x.version+" · "+(x.size?Math.round(x.size/1024)+" KB":"—")+"</div><div class='sect' style='margin-top:22px'><span class='lab'>Linked</span><div style='margin-top:10px;font-size:12.5px'>"+(x.dispute?"Dispute #"+esc(x.dispute):(x.account?esc(x.account):"—"))+"</div></div><div class='sect'><span class='lab'>Tags</span><div style='margin-top:10px'>"+((x.tags||[]).map(function(t){return "<span class='pill' style='margin:0 4px 4px 0'>"+esc(t)+"</span>";}).join("")||"—")+"</div></div><div class='sect'><span class='lab'>Uploaded</span><div style='margin-top:10px;font-size:12.5px'>"+esc(x.by||"—")+" · "+dstr(x.at)+"</div></div><div class='dacts' style='margin-top:26px'><button class='btn pri' onclick=\"alert('Download is stubbed in the demo.')\">Download</button><button class='btn' onclick=\"alert('Versions: v"+x.version+" current')\">Versions</button></div>";
-  document.body.appendChild(el);document.getElementById("fdx").onclick=function(){el.remove();};}
-function dl(text,name){var b=new Blob([text],{type:"text/csv"});var u=URL.createObjectURL(b);var a=document.createElement("a");a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}
-
-/* TASKS */
-function paintTasks(){var t=D.tasks,items=t.items||[];var cols=[["todo","To do"],["in_progress","In progress"],["blocked","Blocked"],["done","Done"]];var pdot={urgent:"d-red",high:"d-amber",med:"d-ink",low:"d-green"};
-  var open=items.filter(function(i){return i.status!=="done";}).length,over=items.filter(function(i){return i.overdue&&i.status!=="done";}).length;
-  var h="<div class='page'><div class='pagehd'><h1>Tasks</h1><span class='s'>"+open+" open"+(over?" · "+over+" overdue":"")+" · drag to move</span></div><div class='kan' style='margin-top:18px'>";
-  cols.forEach(function(c){var list=items.filter(function(i){return i.status===c[0];});h+="<div class='kcol' data-col='"+c[0]+"'><span class='lab'>"+c[1]+" · "+list.length+"</span>";list.forEach(function(i){h+="<div class='card' draggable='true' data-tid='"+i.id+"'><div class='tt'>"+esc(i.title)+"</div><div class='mt'><span class='tag'><i class='dot "+(pdot[i.priority]||"d-ink")+"'></i>"+titl(i.priority)+"</span><span>"+esc(i.assignee||"—")+"</span></div><div class='mt'><span>"+(i.dispute?"#"+esc(i.dispute):(i.account?esc(i.account):""))+"</span><span"+(i.overdue&&i.status!=="done"?" style='color:var(--sig);font-weight:600'":"")+">"+(i.due?dstr(i.due):"")+"</span></div></div>";});if(!list.length)h+="<div class='empty'>Nothing here.</div>";h+="</div>";});
-  h+="</div></div>";document.getElementById("view").innerHTML=h;
-  document.querySelectorAll(".card[draggable]").forEach(function(cd){cd.ondragstart=function(e){e.dataTransfer.setData("text/plain",this.getAttribute("data-tid"));e.dataTransfer.effectAllowed="move";cd.classList.add("dragging");};cd.ondragend=function(){cd.classList.remove("dragging");};});
-  document.querySelectorAll(".kcol[data-col]").forEach(function(col){col.ondragover=function(e){e.preventDefault();col.classList.add("kover");};col.ondragleave=function(){col.classList.remove("kover");};col.ondrop=function(e){e.preventDefault();col.classList.remove("kover");moveTask(e.dataTransfer.getData("text/plain"),col.getAttribute("data-col"));};});}
-function moveTask(tid,status){var it=null,items=(D.tasks&&D.tasks.items)||[];items.forEach(function(x){if(x.id===tid)it=x;});if(it&&it.status!==status){it.status=status;paintTasks();}}
-
-/* CALENDAR month/week/agenda */
-function paintCalendar(){var c=D.cal,ev=(c.events||[]).slice();
-  var toggle="<div class='calbar'>"+[["agenda","Agenda"],["week","Week"],["month","Month"]].map(function(v){return "<span class='calv"+(calView===v[0]?" on":"")+"' data-cv='"+v[0]+"'>"+v[1]+"</span>";}).join("")+"</div>";
-  var body="";
-  if(calView==="agenda"){var groups={};ev.forEach(function(e){var d=dstr(e.at);(groups[d]=groups[d]||[]).push(e);});var kd={deadline:"d-red",filing:"d-ink",meeting:"d-amber",reminder:"d-green"};
-    Object.keys(groups).forEach(function(day){body+="<div class='calday'><span class='lab'>"+day+"</span>";groups[day].forEach(function(e){body+="<div class='calrow'><span class='tm'>"+tstr(e.at)+"</span><span class='tag'><i class='dot "+(kd[e.kind]||"d-ink")+"'></i></span><span style='flex:1'><b>"+esc(e.title)+"</b>"+(e.dispute?" <span class='num' style='color:var(--mut)'>#"+esc(e.dispute)+"</span>":"")+"</span><span class='pill'>"+titl(e.kind)+"</span></div>";});body+="</div>";});if(!ev.length)body="<div class='empty'>No events.</div>";}
-  else if(calView==="month"){body=monthGrid(ev);}
-  else{body=weekGrid(ev);}
-  document.getElementById("view").innerHTML="<div class='page'><div class='pagehd'><h1>Calendar</h1><span class='s'>"+ev.length+" upcoming</span><div class='rt'>"+toggle+"</div></div>"+body+"</div>";
-  document.querySelectorAll("[data-cv]").forEach(function(n){n.onclick=function(){calView=this.getAttribute("data-cv");paintCalendar();};});
-  document.querySelectorAll("[data-ref]").forEach(function(n){n.onclick=function(){window.sel=this.getAttribute("data-ref");switchView("disputes");};});
-  document.querySelectorAll("[data-cvmore]").forEach(function(n){n.onclick=function(){calView="agenda";paintCalendar();};});}
-function monthGrid(ev){var now=new Date();var y=now.getFullYear(),mo=now.getMonth();var first=new Date(y,mo,1);var start=new Date(first);start.setDate(1-((first.getDay()+6)%7));
-  var byday={};ev.forEach(function(e){var k=new Date(e.at);k.setHours(0,0,0,0);byday[k.getTime()]=byday[k.getTime()]||[];byday[k.getTime()].push(e);});
-  var kd={deadline:"d-red",filing:"d-ink",meeting:"d-amber",reminder:"d-green"};
-  var h="<div class='mgrid'>";["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach(function(d){h+="<div class='dow'>"+d+"</div>";});
-  for(var i=0;i<42;i++){var d=new Date(start);d.setDate(start.getDate()+i);var out=d.getMonth()!==mo;var td=new Date();td.setHours(0,0,0,0);var istoday=d.getTime()===td.getTime();
-    h+="<div class='mcell"+(out?" out":"")+(istoday?" today":"")+"'><div class='dn'>"+d.getDate()+"</div>";
-    var evs=byday[d.getTime()]||[];evs.slice(0,3).forEach(function(e){h+="<div class='mev'"+(e.dispute?" data-ref='"+esc(e.dispute)+"'":"")+"><i class='dot "+(kd[e.kind]||"d-ink")+"' title='"+esc(e.kind)+"'></i>"+esc(e.title)+"</div>";});if(evs.length>3)h+="<div class='mev more' data-cvmore='1'>+"+(evs.length-3)+" more</div>";h+="</div>";}
-  h+="</div>";return h;}
-function weekGrid(ev){var now=new Date();var mon=new Date(now);mon.setDate(now.getDate()-((now.getDay()+6)%7));mon.setHours(0,0,0,0);
-  var kd={deadline:"d-red",filing:"d-ink",meeting:"d-amber",reminder:"d-green"};var h="<div class='wgrid'>";
-  for(var i=0;i<7;i++){var d=new Date(mon);d.setDate(mon.getDate()+i);var day=new Date(d);day.setHours(0,0,0,0);
-    h+="<div class='wcol'><span class='lab'>"+["Mon","Tue","Wed","Thu","Fri","Sat","Sun"][i]+" "+d.getDate()+"</span>";
-    ev.filter(function(e){var x=new Date(e.at);x.setHours(0,0,0,0);return x.getTime()===day.getTime();}).forEach(function(e){h+="<div class='wev'"+(e.dispute?" data-ref='"+esc(e.dispute)+"'":"")+"><i class='dot "+(kd[e.kind]||"d-ink")+"' title='"+esc(e.kind)+"'></i> "+tstr(e.at)+" "+esc(e.title)+"</div>";});h+="</div>";}
-  h+="</div>";return h;}
-
-/* INBOX */
-function paintInbox(){var ib=D.inbox,ths=ib.threads||[];if(!isMobile&&!inboxSel&&ths.length)inboxSel=ths[0].id;
-  var vths=ths.filter(function(t){return inboxFilter==="all"||(inboxFilter==="unread"&&t.unread);});
-  document.getElementById("view").innerHTML="<div class='ibx'><div class='ithreads' id='ithreads'></div><div class='iconv' id='iconv'></div></div>";
-  var checked=Object.keys(inboxChecks).filter(function(k){return inboxChecks[k];});
-  var fchips="<div class='chips' style='margin:0'><span class='chip"+(inboxFilter==="all"?" on":"")+"' data-if='all'>All · "+ths.length+"</span><span class='chip"+(inboxFilter==="unread"?" on":"")+"' data-if='unread'>Unread · "+ib.unread+"</span></div>";
-  var bar="<div class='ibar'><input type='checkbox' class='ck' id='ib-all'>"+(checked.length?"<b>"+checked.length+" selected</b><button class='btn sm' id='ib-read'>Mark read</button><button class='btn sm' id='ib-close'>Close</button>":fchips)+"</div>";
-  var h=bar;vths.forEach(function(t){h+="<div class='ithread"+(inboxSel===t.id?" on":"")+"'><input type='checkbox' class='ck' data-ib='"+t.id+"'"+(inboxChecks[t.id]?" checked":"")+"><div class='body' data-it='"+t.id+"'><div class='su'><span>"+esc(t.subject)+"</span><span class='num' style='color:var(--faint);font-size:10px;font-weight:400'>"+ago(t.at)+"</span></div><div class='pv'>"+esc(t.account||"")+(t.dispute?" · #"+esc(t.dispute):"")+" — "+esc(t.preview||"")+"</div></div>"+(t.unread?"<div class='un'></div>":"")+"</div>";});
-  if(!vths.length)h+="<div class='empty' style='padding:16px 18px'>No "+(inboxFilter==="unread"?"unread ":"")+"threads.</div>";
-  document.getElementById("ithreads").innerHTML=h;
-  document.querySelectorAll("[data-if]").forEach(function(n){n.onclick=function(){inboxFilter=this.getAttribute("data-if");paintInbox();};});
-  document.querySelectorAll("[data-it]").forEach(function(n){n.onclick=function(){inboxSel=this.getAttribute("data-it");if(isMobile)mOpen=true;setMdet();paintInbox();};});
-  document.querySelectorAll("[data-ib]").forEach(function(n){n.onchange=function(){inboxChecks[this.getAttribute("data-ib")]=this.checked;paintInbox();};});
-  var all=document.getElementById("ib-all");if(all)all.onchange=function(){var v=this.checked;ths.forEach(function(t){inboxChecks[t.id]=v;});paintInbox();};
-  var mr=document.getElementById("ib-read");if(mr)mr.onclick=function(){bulkInbox(checked,"read");};
-  var mc=document.getElementById("ib-close");if(mc)mc.onclick=function(){bulkInbox(checked,"close");};
-  var t=null;ths.forEach(function(x){if(x.id===inboxSel)t=x;});var el=document.getElementById("iconv");
-  if(!t){el.innerHTML="<div class='empty'>Select a thread.</div>";return;}
-  var msgs=(t.messages||[]).map(function(m){return "<div class='msg "+m.dir+"'><div class='mh'>"+esc(m.sender||"")+" · "+tstr(m.at)+"</div>"+esc(m.body)+"</div>";}).join("");
-  el.innerHTML=backBtn()+"<div style='font-family:var(--disp);font-size:19px;margin-bottom:4px'>"+esc(t.subject)+"</div><div class='dmeta' style='margin-bottom:20px'>"+esc(t.account||"")+(t.dispute?" · <span class='num xref' style='color:var(--mut)'>#"+esc(t.dispute)+"</span>":"")+" · "+esc(t.assignee||"")+"</div><div style='flex:1;display:flex;flex-direction:column'>"+msgs+"</div><div class='compose'><textarea id='ib-body' placeholder='Reply…'></textarea><button class='btn pri' id='ib-send'>Send</button></div>";
-  document.getElementById("ib-send").onclick=function(){var b=document.getElementById("ib-body").value.trim();if(!b)return;call("demo_inbox_send",{p_thread:inboxSel,p_body:b}).then(function(){D.inbox=null;renderView();});};}
-function bulkInbox(ids,action){call("demo_inbox_bulk",{p_ids:ids,p_action:action}).then(function(){inboxChecks={};D.inbox=null;renderView();});}
-
-/* REPORTS */
-function paintReports(){var meta=D.reports;
-  var mOpts=meta.metrics.map(function(m){return "<option value='"+m.k+"'"+(m.k===repMetric?" selected":"")+">"+m.label+"</option>";}).join("");
-  var dOpts=meta.dims.map(function(d){return "<option value='"+d.k+"'"+(d.k===repDim?" selected":"")+">"+d.label+"</option>";}).join("");
-  var saved=meta.saved.map(function(s){return "<span class='chip' data-sm='"+s.metric+"' data-sd='"+s.dim+"'>"+esc(s.name)+"</span>";}).join("");
-  var chart="",table="";
-  if(repData){var rows=repData.rows||[];var max=Math.max.apply(null,rows.map(function(r){return Number(r.value);}).concat([1]));
-    var fmt=(repMetric==="count"||repMetric==="avg_score")?function(v){return v;}:money;
-    chart="<div class='chart'>"+rows.map(function(r){return "<div class='cb' style='height:"+Math.max(2,Math.round(r.value/max*180))+"px'><span>"+fmt(r.value)+"</span></div>";}).join("")+"</div><div class='cxrow'>"+rows.map(function(r){return "<div class='cx'>"+esc(r.label)+"</div>";}).join("")+"</div>";
-    table="<table class='tbl' style='margin-top:26px'><thead><tr><th>"+esc(dimLabel())+"</th><th class='r'>"+esc(metLabel())+"</th></tr></thead><tbody>"+rows.map(function(r){return "<tr><td class='nm'>"+esc(r.label)+"</td><td class='r num'>"+fmt(r.value)+"</td></tr>";}).join("")+"<tr><td class='nm'>Total</td><td class='r num'>"+fmt(repData.total)+"</td></tr></tbody></table>";}
-  document.getElementById("view").innerHTML="<div class='page'><div class='pagehd'><h1>Reports</h1><span class='s'>Build a report, then export</span></div><div class='rbuild'><select class='sel' id='r-met'>"+mOpts+"</select><span class='dmeta'>by</span><select class='sel' id='r-dim'>"+dOpts+"</select><button class='btn pri' id='r-run'>Run</button>"+(repData?"<button class='btn' id='r-csv'>Export CSV</button>":"")+"</div><div class='chips' style='margin:6px 0 4px'><span class='lab' style='margin-right:8px'>Saved</span>"+saved+"</div>"+(repData?chart+table:"<div class='empty' style='margin-top:20px'>Pick a metric and dimension, then Run.</div>")+"</div>";
-  document.getElementById("r-met").onchange=function(){repMetric=this.value;};
-  document.getElementById("r-dim").onchange=function(){repDim=this.value;};
-  document.getElementById("r-run").onclick=runReport;
-  document.querySelectorAll("[data-sm]").forEach(function(n){n.onclick=function(){repMetric=this.getAttribute("data-sm");repDim=this.getAttribute("data-sd");runReport();};});
-  var rc=document.getElementById("r-csv");if(rc)rc.onclick=function(){var rows=repData.rows||[];var csv=dimLabel()+","+metLabel()+"\n"+rows.map(function(r){return '"'+r.label+'",'+r.value;}).join("\n");dl(csv,"report.csv");};}
-function dimLabel(){var x="";(D.reports.dims||[]).forEach(function(d){if(d.k===repDim)x=d.label;});return x;}
-function metLabel(){var x="";(D.reports.metrics||[]).forEach(function(m){if(m.k===repMetric)x=m.label;});return x;}
-function runReport(){call("demo_report_custom",{p_metric:repMetric,p_dim:repDim}).then(function(r){repData=r;paintReports();});}
-
-/* BILLING */
-function paintBilling(){var b=D.billing,u=b.usage||{};
-  function ub(l,o){var pct=o.included?Math.min(100,Math.round(o.used/o.included*100)):0;return "<div><div class='lab'>"+l+"</div><div class='n'>"+o.used+"<span style='font-size:12px;color:var(--mut)'> / "+o.included+"</span></div><div class='tk'><div class='fl' style='width:"+pct+"%'></div></div></div>";}
-  var inv=(b.invoices||[]).map(function(i){return "<tr><td class='nm'>"+esc(i.period)+"</td><td>"+money(i.amount)+"</td><td><span class='tag'><i class='dot "+(i.status==='paid'?'d-green':'d-amber')+"'></i>"+titl(i.status)+"</span></td><td>"+dstr(i.at)+"</td></tr>";}).join("");
-  var renews=b.renews_at?new Date(b.renews_at).toLocaleDateString([], {month:'long',day:'numeric',year:'numeric'}):"—";
-  document.getElementById("view").innerHTML="<div class='page'><div class='pagehd'><h1>Billing</h1><span class='s'>Plan &amp; metered usage</span></div><div class='sect' style='margin-top:16px'><div style='display:flex;align-items:baseline;gap:14px'><h2 style='font-family:var(--disp);font-weight:400;font-size:24px;margin:0'>"+esc(b.plan)+"</h2><span class='num' style='font-size:18px'>"+money(b.base_price)+"</span><span class='dmeta'>/ month · renews "+renews+"</span></div></div><div class='sect'><span class='lab'>Usage this period</span><div class='ucard'>"+ub("Disputes",u.disputes||{})+ub("Documents",u.docs||{})+ub("Alerts",u.alerts||{})+ub("Seats",u.seats||{})+"</div></div><div class='sect'><span class='lab'>This month</span><div class='meta' style='grid-template-columns:1fr 1fr 1fr;margin-top:8px'><div><div class='lab'>Base</div><div class='n'>"+money(b.base_price)+"</div></div><div><div class='lab'>Overage</div><div class='n'>"+money(b.overage)+"</div></div><div><div class='lab'>Estimated total</div><div class='n'>"+money(b.est_month)+"</div></div></div></div><div class='sect'><span class='lab'>Invoices</span><table class='tbl'><thead><tr><th>Period</th><th>Amount</th><th>Status</th><th>Issued</th></tr></thead><tbody>"+inv+"</tbody></table></div></div>";}
-
-/* SETTINGS */
-function paintSettings(){var a=D.admin;
-  var users=(a.users||[]).map(function(u){return "<tr><td class='nm'>"+esc(u.name||"—")+"</td><td>"+esc(u.email||"—")+"</td><td>"+titl(u.role)+"</td><td>"+(u.active?"<span class='tag'><i class='dot d-green'></i>Active</span>":"Disabled")+"</td></tr>";}).join("")||"<tr><td colspan='4' class='dmeta'>No users.</td></tr>";
-  var dial=(a.autonomy||[]).map(function(x){var dot=x.mode==="auto"?"d-ink":x.mode==="off"?"d-red":"d-amber";return "<tr><td class='nm'>"+titl(x.action)+"</td><td><span class='tag'><i class='dot "+dot+"'></i>"+titl(x.mode)+"</span></td><td class='r num'>"+(x.cap?money(x.cap):"—")+"</td></tr>";}).join("");
-  var sso=a.sso||{};
-  document.getElementById("view").innerHTML="<div class='page'><div class='pagehd'><h1>Settings</h1><span class='s'>Users, autonomy, portal, SSO &amp; trust</span></div><div class='sect' style='margin-top:16px'><span class='lab'>Client portal</span><div class='dmeta' style='margin-top:10px'>Share a read-only portal so a plan sponsor can see their own disputes.</div><div class='copyrow'><code id='ptl'>loading…</code><button class='btn' id='ptl-copy'>Copy</button><button class='btn' id='ptl-open'>Open</button></div></div><div class='sect'><span class='lab'>Users &amp; roles</span><table class='tbl'><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th></tr></thead><tbody>"+users+"</tbody></table></div><div class='sect'><span class='lab'>Autonomy dial</span><table class='tbl'><thead><tr><th>Action</th><th>Mode</th><th class='r'>Money cap</th></tr></thead><tbody>"+dial+"</tbody></table></div><div class='sect'><span class='lab'>Single sign-on</span><div class='meta' style='grid-template-columns:1fr 1fr'><div><div class='lab'>Identity provider</div><div class='n' style='font-size:14px;font-family:var(--sans);font-weight:600'>"+esc(sso.idp||"—")+" · "+String(sso.protocol||"").toUpperCase()+"</div></div><div><div class='lab'>Domain</div><div class='n' style='font-size:14px;font-family:var(--sans);font-weight:600'>"+esc(sso.domain||"—")+(sso.enforced?" · enforced":"")+"</div></div></div></div><div class='sect'><span class='lab'>Trust &amp; compliance</span><div id='trustgrid' style='margin-top:12px'><span class='dmeta'>Loading posture…</span></div></div></div>";
-  call("demo_portal_link").then(function(p){var c=document.getElementById("ptl");if(c)c.textContent=p.url;var cp=document.getElementById("ptl-copy");if(cp)cp.onclick=function(){navigator.clipboard&&navigator.clipboard.writeText(p.url);cp.textContent="Copied";};var op=document.getElementById("ptl-open");if(op)op.onclick=function(){window.open(p.url,"_blank");};});
-  call("trust_posture").then(function(tp){var g=document.getElementById("trustgrid");if(!g)return;var L=tp.ledger||{};
-    var ok=function(st){return /verif|enforc|immut|avail|enabl|256|year|tls/i.test(st);};
-    g.innerHTML="<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px'>"+(tp.controls||[]).map(function(c){return "<div style='border:1px solid var(--line);border-radius:10px;padding:12px 14px'><div style='display:flex;justify-content:space-between;align-items:baseline;gap:8px'><span style='font-family:var(--sans);font-weight:600;color:var(--ink);font-size:13px'>"+esc(c.name)+"</span><span style='font-size:11px;font-weight:700;white-space:nowrap;color:"+(ok(c.status)?'var(--ok)':'var(--warn)')+"'>"+esc(c.status)+"</span></div><div style='margin-top:5px;font-size:11.5px;color:var(--mut);line-height:1.45'>"+esc(c.detail)+"</div></div>";}).join("")+"</div><div class='dmeta' style='margin-top:12px'>Hash-chain integrity: <b style='color:"+(L.ok?'var(--ok)':'var(--sig)')+"'>"+(L.ok?'verified ✓':'mismatch')+"</b> · "+(L.rows||0)+" ledger entries · SOC 2 Type II, HIPAA BAA &amp; risk analysis available on request.</div>";}).catch(function(){});}
-
-/* SEARCH */
-var qtimer=null;
-document.getElementById("q").oninput=function(){var v=this.value.trim(),box=document.getElementById("qres");clearTimeout(qtimer);if(v.length<2){box.innerHTML="";return;}
-  qtimer=setTimeout(function(){call("demo_search",{p_q:v}).then(function(res){if(!res||!res.length){box.innerHTML="<div class='qi'><span class='s'>No matches.</span></div>";return;}
-    box.innerHTML=res.slice(0,20).map(function(r){return "<div class='qi' data-type='"+r.type+"' data-ref='"+esc(r.ref)+"'><span class='qt'>"+r.type+"</span><b>"+esc(r.label)+"</b><div class='s'>"+esc(r.sub||"")+"</div></div>";}).join("");
-    box.querySelectorAll(".qi[data-ref]").forEach(function(n){n.onclick=function(){var ty=this.getAttribute("data-type"),rf=this.getAttribute("data-ref");box.innerHTML="";document.getElementById("q").value="";
-      if(ty==="dispute"){sel=rf;switchView("disputes");}else if(ty==="account"||ty==="contact"){acctSel=(ty==="account"?rf:null);crmFilter="all";switchView("clients");}else if(ty==="file"){switchView("files");}else if(ty==="task"){switchView("tasks");}};});});},200);};
-document.addEventListener("click",function(e){if(!e.target.closest(".qbox"))document.getElementById("qres").innerHTML="";});
-document.getElementById("btn-reload").onclick=function(){D={};sel=null;renderView();};
-// ---- auth (real Supabase email OTP + org provisioning) ----
-function authApi(path,body){return fetch(SUPA+"/auth/v1/"+path,{method:"POST",headers:{apikey:KEY,"Content-Type":"application/json"},body:JSON.stringify(body)});}
-function setAuthUI(){var b=document.getElementById("btn-auth");if(SESSION&&ME&&ME.org){b.textContent="Sign out";document.getElementById("org").textContent=ME.org;}else{b.textContent="Sign in";if(!SESSION)document.getElementById("org").textContent="Demo workspace";}}
-function openAuth(){if(SESSION){signOut();return;}authStep=1;document.getElementById("authsheet").style.display="flex";renderAuth();}
-function closeAuth(){document.getElementById("authsheet").style.display="none";}
-function renderAuth(){var h="<div class='authcard'>";
-  if(authStep===1){h+="<div class='lab'>Sign in to Avertyn</div><h2 class='authh'>Your workspace</h2><div class='dmeta'>We'll email you a 6-digit code — no password.</div><input id='auth-email' class='authin' type='email' placeholder='you@company.com' autocomplete='email'><button class='btn pri' id='auth-send' style='width:100%;margin-top:16px'>Send code</button>";}
-  else if(authStep===2){h+="<div class='lab'>Check "+esc(authEmail)+"</div><h2 class='authh'>Enter code</h2><input id='auth-code' class='authin' inputmode='numeric' placeholder='6-digit code'><button class='btn pri' id='auth-verify' style='width:100%;margin-top:16px'>Verify &amp; continue</button><div class='dmeta' id='auth-back' style='margin-top:12px;cursor:pointer'>‹ Use a different email</div>";}
-  else if(authStep===3){h+="<div class='lab'>Welcome</div><h2 class='authh'>Name your workspace</h2><div class='dmeta'>We'll set you up as admin with a starter set to explore.</div><input id='auth-org' class='authin' placeholder='e.g. Meridian Plan Administrators'><button class='btn pri' id='auth-provision' style='width:100%;margin-top:16px'>Create workspace</button>";}
-  h+="<div class='dmeta' id='auth-close' style='margin-top:18px;text-align:center;cursor:pointer'>Continue with the demo</div></div>";
-  var sh=document.getElementById("authsheet");sh.innerHTML=h;
-  var q=function(id){return document.getElementById(id);};
-  if(q("auth-send"))q("auth-send").onclick=sendCode;
-  if(q("auth-verify"))q("auth-verify").onclick=verifyCode;
-  if(q("auth-provision"))q("auth-provision").onclick=doProvision;
-  if(q("auth-back"))q("auth-back").onclick=function(){authStep=1;renderAuth();};
-  if(q("auth-close"))q("auth-close").onclick=closeAuth;
-  var f=q("auth-email")||q("auth-code")||q("auth-org");if(f)f.focus();}
-function sendCode(){var e=(document.getElementById("auth-email").value||"").trim();if(!e)return;authEmail=e;var b=document.getElementById("auth-send");b.textContent="Sending…";b.disabled=true;
-  authApi("otp",{email:e,create_user:true}).then(function(r){if(!r.ok)return r.text().then(function(t){throw new Error(t.slice(0,160));});authStep=2;renderAuth();}).catch(function(err){alert("Couldn't send code: "+err.message);b.textContent="Send code";b.disabled=false;});}
-function verifyCode(){var c=(document.getElementById("auth-code").value||"").trim();if(!c)return;var b=document.getElementById("auth-verify");b.textContent="Verifying…";b.disabled=true;
-  authApi("verify",{email:authEmail,token:c,type:"email"}).then(function(r){return r.json();}).then(function(j){if(!j.access_token)throw new Error(j.error_description||j.msg||"Invalid or expired code");SESSION=j.access_token;try{localStorage.setItem('av_session',SESSION);}catch(e){}return call("me");}).then(function(m){ME=m;if(m&&m.needs_org){authStep=3;renderAuth();}else{closeAuth();afterAuth();}}).catch(function(err){alert("Verify failed: "+err.message);b.textContent="Verify & continue";b.disabled=false;});}
-function doProvision(){var n=(document.getElementById("auth-org").value||"").trim();var b=document.getElementById("auth-provision");b.textContent="Creating…";b.disabled=true;
-  call("provision_org",{p_name:n}).then(function(){return call("me");}).then(function(m){ME=m;closeAuth();afterAuth();}).catch(function(err){alert(err.message);b.textContent="Create workspace";b.disabled=false;});}
-function afterAuth(){D={};sel=null;view="disputes";setAuthUI();renderNav();renderView();renderMobileNav();}
-function signOut(){SESSION=null;ME=null;try{localStorage.removeItem('av_session');}catch(e){}D={};sel=null;view="disputes";setAuthUI();renderNav();renderView();renderMobileNav();}
-document.getElementById("btn-auth").onclick=openAuth;
-if(SESSION){call("me").then(function(m){ME=m;if(!m||!m.authed){SESSION=null;try{localStorage.removeItem('av_session');}catch(e){}}setAuthUI();renderNav();renderView();}).catch(function(){SESSION=null;setAuthUI();renderNav();renderView();});}
-else{setAuthUI();renderNav();renderView();}
-
-/* best-in-class: cross-link dispute refs everywhere */
+// Exposure calculator — illustrative model grounded in public IDR outcome ranges
 (function(){
-  function isRef(t){t=(t||'').trim();return /^#IN-[A-Za-z0-9]+$/.test(t);}
-  function openRef(ref){try{window.sel=ref;}catch(e){}if(typeof switchView==='function')switchView('disputes');}
-  document.addEventListener('click',function(ev){var el=ev.target,h=0;while(el&&h<4){try{if(el.nodeType===1&&el.children.length===0&&isRef(el.textContent)){openRef(el.textContent.trim().slice(1));ev.preventDefault();ev.stopPropagation();return;}}catch(e){}el=el.parentElement;h++;}},true);
-  function tagRefs(){try{var ns=document.querySelectorAll('.num,td,b,span');for(var i=0;i<ns.length;i++){var el=ns[i];if(el.children.length===0&&isRef(el.textContent)&&!el.classList.contains('xref'))el.classList.add('xref');}}catch(e){}}
-  try{new MutationObserver(function(){tagRefs();}).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
-  var st=document.createElement('style');st.textContent='.xref{cursor:pointer;border-bottom:1px solid var(--line)}.xref:hover{border-bottom-color:var(--ink);color:var(--ink)}';(document.head||document.documentElement).appendChild(st);
-  tagRefs();
+  var cN=document.getElementById('cN'),cQ=document.getElementById('cQ'),cM=document.getElementById('cM');
+  if(!cN) return;
+  var CEIL=1.25;       // defensible offer = 125% of QPA
+  var WIN=0.80;        // providers prevail in ~80% of decided disputes when under-prepared
+  var FEE=0.20;        // Fair-Value fee = 20% of QPA defense
+  function usd(n){return '$'+Math.round(n).toLocaleString('en-US');}
+  function calc(){
+    var N=+cN.value, Q=+cQ.value, M=+cM.value;
+    document.getElementById('vN').textContent=N.toLocaleString();
+    document.getElementById('vQ').textContent=usd(Q);
+    document.getElementById('vM').textContent=M.toFixed(1)+'× QPA';
+    var pool=N*Q*Math.max(0,M-CEIL);   // excess demand above a defensible offer
+    var atRisk=pool*WIN;               // likely overpayment if under-prepared
+    var net=atRisk*(1-FEE);            // what you keep after Avertyn's 20% fee on defended $
+    document.getElementById('rBig').textContent=usd(atRisk);
+    document.getElementById('rPool').textContent=usd(pool);
+    document.getElementById('rNet').textContent=usd(net);
+    document.getElementById('rOnFee').innerHTML='Settle these in open negotiation and you also skip ≈ '+usd(N*(15+Math.round(WIN*350)))+'/yr in IDR fees ($15/party + the IDRE fee) — on top of the overpayment risk above.';
+    document.getElementById('rAssume').innerHTML='Assumes '+N.toLocaleString()+' disputes · '+usd(Q)+' avg QPA · '+M.toFixed(1)+'× avg demand · defensible offer at 125% of QPA · ~80% provider win when under-prepared. Total in dispute ≈ '+usd(N*Q*M)+'/yr.';
+  }
+  [cN,cQ,cM].forEach(function(el){el.addEventListener('input',calc);});
+  calc();
 })();
 </script>
 </body></html>
