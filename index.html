@@ -473,5 +473,16 @@ document.getElementById("q").oninput=function(){var v=this.value.trim(),box=docu
 document.addEventListener("click",function(e){if(!e.target.closest(".qbox"))document.getElementById("qres").innerHTML="";});
 document.getElementById("btn-reload").onclick=function(){D={};sel=null;renderView();};
 renderNav();renderView();
+
+/* best-in-class: cross-link dispute refs everywhere */
+(function(){
+  function isRef(t){t=(t||'').trim();return /^#IN-[A-Za-z0-9]+$/.test(t);}
+  function openRef(ref){try{window.sel=ref;}catch(e){}if(typeof switchView==='function')switchView('disputes');}
+  document.addEventListener('click',function(ev){var el=ev.target,h=0;while(el&&h<4){try{if(el.nodeType===1&&el.children.length===0&&isRef(el.textContent)){openRef(el.textContent.trim().slice(1));ev.preventDefault();ev.stopPropagation();return;}}catch(e){}el=el.parentElement;h++;}},true);
+  function tagRefs(){try{var ns=document.querySelectorAll('.num,td,b,span');for(var i=0;i<ns.length;i++){var el=ns[i];if(el.children.length===0&&isRef(el.textContent)&&!el.classList.contains('xref'))el.classList.add('xref');}}catch(e){}}
+  try{new MutationObserver(function(){tagRefs();}).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
+  var st=document.createElement('style');st.textContent='.xref{cursor:pointer;border-bottom:1px solid var(--line)}.xref:hover{border-bottom-color:var(--ink);color:var(--ink)}';(document.head||document.documentElement).appendChild(st);
+  tagRefs();
+})();
 </script>
 </body></html>
