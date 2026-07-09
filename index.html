@@ -210,21 +210,27 @@ body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);lett
 .authh{font-size:23px;margin:6px 0 4px;font-weight:500}
 .authin{width:100%;border:0;border-bottom:1.5px solid var(--ink);background:transparent;padding:9px 0;font-size:15px;outline:none;margin-top:14px;font-family:inherit}
 .btn.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:9px 16px;z-index:300;font-weight:600}
+.skip:focus{left:0}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.navtab:focus-visible,.mi:focus-visible,.navtab:focus,.mi:focus{outline:2px solid var(--ink);outline-offset:-2px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
 </style></head>
 <body>
+<a href="#view" class="skip">Skip to content</a>
 <div class="app">
-  <div class="mast">
+  <div class="mast" role="banner">
     <div class="brand">Avertyn<i>.</i></div>
     <div class="org" id="org">—</div>
     <span class="live"><span class="p"></span>Live</span>
     <div class="grow"></div>
-    <div class="qbox"><input id="q" placeholder="Search…" autocomplete="off"><div id="qres"></div></div>
+    <div class="qbox"><input id="q" placeholder="Search…" autocomplete="off" aria-label="Search disputes, clients and files"><div id="qres" role="listbox" aria-label="Search results"></div></div>
     <button class="btn" id="btn-auth">Sign in</button>
     <button class="btn" id="btn-reload">Reload</button>
   </div>
-  <div class="nav" id="nav"></div>
+  <nav class="nav" id="nav" role="tablist" aria-label="Primary"></nav>
   <div class="authsheet" id="authsheet"></div>
-  <div id="view"><div class="load">Loading live data…</div></div>
+  <div id="view" role="main" tabindex="-1"><div class="load" aria-live="polite">Loading live data…</div></div>
   <div class="msheet" id="msheet"></div>
   <div class="mnav" id="mnav"></div>
 </div>
@@ -259,6 +265,9 @@ function ago(t){if(!t)return"";var d=new Date(t),m=Math.round((new Date()-d)/600
 function dstr(t){return new Date(t).toLocaleDateString([], {month:'short',day:'numeric'});}
 function tstr(t){return new Date(t).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});}
 function call(fn,body){return fetch(SUPA+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+(SESSION||KEY),"Content-Type":"application/json"},body:JSON.stringify(body||{})}).then(function(r){if(!r.ok){return r.text().then(function(t){throw new Error("HTTP "+r.status+" "+t.slice(0,140));});}return r.json();});}
+function logErr(msg,stack){try{if(fetch)fetch(SUPA+"/rest/v1/rpc/log_client_error",{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+(SESSION||KEY),"Content-Type":"application/json"},body:JSON.stringify({p_message:String(msg||"").slice(0,500),p_stack:String(stack||"").slice(0,2000),p_section:(typeof view!=="undefined"?view:""),p_url:location.href,p_ua:navigator.userAgent})});}catch(e){}}
+window.addEventListener("error",function(e){logErr(e.message,(e.error&&e.error.stack)||"");});
+window.addEventListener("unhandledrejection",function(e){var r=e.reason||{};logErr("unhandledrejection: "+(r.message||r),r.stack||"");});
 
 var TABS=[["disputes","Disputes"],["clients","Clients"],["inbox","Inbox"],["files","Files"],["exposure","Exposure"],["governance","Governance"],["tasks","Tasks"],["calendar","Calendar"],["reports","Reports"],["billing","Billing"],["settings","Settings"]];
 function renderNav(){
@@ -269,9 +278,9 @@ function renderNav(){
     if(t[0]==="files"&&D.files)c="<span class='c'>"+((D.files.counts||{}).total||0)+"</span>";
     if(t[0]==="tasks"&&D.tasks){var k=D.tasks.counts||{};c="<span class='c'>"+((k.todo||0)+(k.in_progress||0)+(k.blocked||0))+"</span>";}
     if(t[0]==="inbox"&&D.inbox&&D.inbox.unread>0)c="<span class='b'>"+D.inbox.unread+"</span>";
-    h+="<div class='navtab"+(view===t[0]?" on":"")+"' data-v='"+t[0]+"'>"+t[1]+c+"</div>";});
+    h+="<div class='navtab"+(view===t[0]?" on":"")+"' role='tab' tabindex='0' aria-selected='"+(view===t[0])+"' data-v='"+t[0]+"'>"+t[1]+c+"</div>";});
   document.getElementById("nav").innerHTML=h;
-  document.querySelectorAll("[data-v]").forEach(function(n){n.onclick=function(){switchView(this.getAttribute("data-v"));};});
+  document.querySelectorAll("[data-v]").forEach(function(n){var go=function(){switchView(n.getAttribute("data-v"));};n.onclick=go;n.onkeydown=function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();go();}};});
   renderMobileNav();
 }
 function switchView(v){view=v;mOpen=false;setMdet();renderNav();renderView();}
