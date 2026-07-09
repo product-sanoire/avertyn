@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/live", "destination": "/intelligence", "permanent": false },
+    { "source": "/demo", "destination": "/intelligence", "permanent": false }
+  ]
+}
