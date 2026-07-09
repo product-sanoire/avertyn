@@ -216,6 +216,22 @@ function renderDetail(){
   function bar(l,v,c,ref){return "<div class='bar'><div class='bl'><span>"+l+"</span><span class='num'>"+money(v)+"</span></div><div class='track'><div class='fill' style='width:"+Math.round(v/mx*100)+"%;background:"+c+"'></div>"+(ref?"<div class='qref' style='left:"+Math.round(v/mx*100)+"%'></div>":"")+"</div></div>";}
   var gap=d.demand-d.qpa, mult=d.qpa?(d.demand/d.qpa):0;
   var acts="<button class='btn' id='btn-engine'>Run engine</button>"+(sc>=80?"<button class='btn pri' id='btn-letter'>Generate &amp; sign letter</button>":d.state==="qpa_defense"?"<button class='btn pri' id='btn-letter'>Draft QPA response</button>":"");
+  var wp=d.win_prob!=null?Math.round(d.win_prob*100):null;
+  var model=wp==null?"":(
+    "<div class='sect'><span class='lab'>Model · win probability</span><div style='display:flex;gap:40px;margin-top:18px;align-items:center'>"+
+    "<div><div class='num' style='font-size:40px;letter-spacing:-.03em'>"+wp+"%</div><div class='lab' style='margin-top:4px'>plan prevails</div></div>"+
+    "<div style='flex:1'><div class='bl'><span>Recommended</span><span style='font-weight:600;text-transform:capitalize'>"+(d.recommended||"—")+"</span></div>"+
+    "<div class='track' style='margin:8px 0 16px'><div class='fill' style='width:"+wp+"%;background:var(--ink)'></div></div>"+
+    "<div class='bl'><span>Optimal offer</span><span class='num'>"+money(d.recommended_offer)+"</span></div>"+
+    "<div class='bl' style='margin-top:8px'><span>Expected savings vs demand</span><span class='num'>"+money(d.expected_value)+"</span></div>"+
+    "</div></div></div>");
+  var disc=!d.registration_number?"":(
+    "<div class='sect'><span class='lab'>Disclosure · 835 remittance</span><div class='meta' style='grid-template-columns:1fr 1fr'>"+
+    "<div><div class='lab'>IDR registration #</div><div class='n' style='font-size:13px;font-family:var(--sans);font-weight:600'>"+esc(d.registration_number)+"</div></div>"+
+    "<div><div class='lab'>Plan legal name</div><div class='n' style='font-size:13px;font-family:var(--sans);font-weight:600'>"+esc(d.plan_legal_name||"—")+"</div></div>"+
+    "<div><div class='lab'>CARC / RARC</div><div class='n' style='font-size:13px;font-family:var(--sans);font-weight:600'>"+esc((d.carc||"—")+" / "+(d.rarc||"—"))+"</div></div>"+
+    "<div><div class='lab'>NSA signal</div><div class='n' style='font-size:13px;font-family:var(--sans);font-weight:600;text-transform:capitalize'>"+esc(d.nsa_signal||"—")+"</div></div>"+
+    "</div></div>");
   el.innerHTML=
     "<h1 class='dref'>#"+esc(d.ref)+"</h1>"+
     "<div class='dmeta'>"+esc(d.initiator)+" &nbsp;·&nbsp; CPT "+esc(d.cpt)+" &nbsp;·&nbsp; "+esc(d.plan)+" &nbsp;·&nbsp; "+titl(d.state)+"</div>"+
@@ -229,6 +245,7 @@ function renderDetail(){
       bar("Plan QPA",d.qpa,"var(--ink)",true)+
       "<p class='note'>The demand is <b class='num'>"+(mult?mult.toFixed(1):"—")+"×</b> the plan's qualifying payment amount — a <span class='num'>"+money(gap)+"</span> spread the initiator must justify against independent benchmarks.</p>"+
     "</div>"+
+    model+disc+
     "<div class='sect'><span class='lab'>Case record</span>"+
       "<div class='meta'>"+
         "<div><div class='lab'>Demand</div><div class='n'>"+money(d.demand)+"</div></div>"+
@@ -254,23 +271,47 @@ function renderOverview(el){
 
 function renderRail(){
   var s=state, el=document.getElementById("rail");
-  var q=s.queue||[], led=s.ledger||[];
+  var q=s.queue||[], led=s.ledger||[], ent=s.enterprise||{}, fil=s.filings||{};
   var h="<div class='rlab'>Autopilot</div>";
   h+="<div class='dial'><span>Status</span><span class='tag'><i class='dot d-green'></i>On · governed</span></div>";
   h+="<div class='dial'><span>Waiting on you</span><span class='num' style='font-weight:600'>"+q.length+"</span></div>";
+
+  h+="<div class='rlab'>Operations</div><div style='display:flex;flex-wrap:wrap;gap:7px;padding-top:12px'>"+
+     "<button class='btn' id='op-835'>Ingest 835</button><button class='btn' id='op-score'>Score all</button>"+
+     "<button class='btn' id='op-batch'>Build batches</button><button class='btn' id='op-alert'>Send alerts</button></div>";
+
   h+="<div class='rlab'>Autonomy</div>";
   [["Triage · Defend · Challenge","d-ink","Auto"],["Submit response","d-amber","Review"],["Schedule pay · Settle","d-amber","Review"]].forEach(function(x){
     h+="<div class='dial'><span>"+x[0]+"</span><span class='tag'><i class='dot "+x[1]+"'></i>"+x[2]+"</span></div>";
   });
+
   h+="<div class='rlab'>Waiting for you</div>";
   if(q.length){ q.forEach(function(x){h+="<div class='qitem'><div class='qt'><span>"+titl(x.action)+"</span><span class='num'>"+money(x.amount)+"</span></div><div class='qs'>"+esc(x.rationale)+"</div></div>";}); }
   else h+="<div class='empty'>Nothing staged.</div>";
+
+  h+="<div class='rlab'>Federal IDR filings</div>";
+  h+="<div class='dial'><span>Batches</span><span class='num'>"+(fil.batches||0)+"</span></div>";
+  h+="<div class='dial'><span>Portal submissions</span><span class='num'>"+(fil.submitted||0)+"</span></div>";
+  (fil.items||[]).slice(0,4).forEach(function(x){
+    h+="<div class='qitem'><div class='qt'><span>"+esc(x.ref)+"</span><span class='num'>"+(x.lines||0)+" ln</span></div><div class='qs'>"+esc(x.idre||"—")+" · "+esc(x.registration||"—")+" · "+esc(x.status)+"</div></div>";
+  });
+
+  h+="<div class='rlab'>Enterprise</div>";
+  var sso=(ent.sso&&ent.sso[0])||null;
+  h+="<div class='dial'><span>SSO</span><span class='tag'>"+(sso?esc(sso.idp)+" · "+String(sso.protocol).toUpperCase():"—")+"</span></div>";
+  h+="<div class='dial'><span>SCIM users</span><span class='num'>"+(ent.scim_users||0)+"</span></div>";
+  h+="<div class='dial'><span>Alerts delivered</span><span class='num'>"+((ent.outbox&&ent.outbox.sent)||0)+"</span></div>";
+
   h+="<div class='rlab'>Agent ledger</div><div class='feed'>";
   if(led.length){ led.slice(0,8).forEach(function(e){h+="<div><span class='mk'>"+(e.actor==="agent"?"◆":e.actor==="system"?"·":"›")+"</span><b>"+titl(e.action)+"</b> — "+esc(e.actor)+"</div>";}); }
   else h+="<div class='empty'>No actions yet.</div>";
   h+="</div>";
   el.innerHTML=h;
+
+  var ops={"op-835":"demo_ingest_835","op-score":"demo_predict_all","op-batch":"demo_run_batching","op-alert":"demo_send_alerts"};
+  Object.keys(ops).forEach(function(id){var b=document.getElementById(id);if(b)b.onclick=function(){runOp(ops[id]);};});
 }
+function runOp(fn){ if(busy)return; setBusy(true); call(fn).then(function(){ load(); }).catch(function(e){setBusy(false);alert(e.message);}); }
 
 function render(){
   document.getElementById("org").textContent=state.org;
