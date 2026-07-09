@@ -204,6 +204,12 @@ body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);lett
   .compose textarea{height:52px}
   .iconv .msg{max-width:86%}
 }
+.authsheet{display:none;position:fixed;inset:0;z-index:200;background:rgba(20,20,20,.44);align-items:center;justify-content:center;padding:20px}
+.authcard{background:var(--card);border:1px solid var(--line);width:100%;max-width:380px;padding:30px 28px;box-shadow:0 24px 60px rgba(20,20,20,.22)}
+.authcard .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.authh{font-size:23px;margin:6px 0 4px;font-weight:500}
+.authin{width:100%;border:0;border-bottom:1.5px solid var(--ink);background:transparent;padding:9px 0;font-size:15px;outline:none;margin-top:14px;font-family:inherit}
+.btn.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
 </style></head>
 <body>
 <div class="app">
@@ -213,9 +219,11 @@ body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);lett
     <span class="live"><span class="p"></span>Live</span>
     <div class="grow"></div>
     <div class="qbox"><input id="q" placeholder="Search…" autocomplete="off"><div id="qres"></div></div>
+    <button class="btn" id="btn-auth">Sign in</button>
     <button class="btn" id="btn-reload">Reload</button>
   </div>
   <div class="nav" id="nav"></div>
+  <div class="authsheet" id="authsheet"></div>
   <div id="view"><div class="load">Loading live data…</div></div>
   <div class="msheet" id="msheet"></div>
   <div class="mnav" id="mnav"></div>
@@ -227,6 +235,8 @@ var view="disputes",busy=false,sel=null,filter="all",crmFilter="all",acctSel=nul
 var fileFolder="all",fileKind="all",fileQ="",fileSort="at",fileSelId=null,fileChecks={};
 var inboxSel=null,inboxChecks={},inboxFilter="all",repMetric="defended",repDim="initiator",repData=null,calView="agenda";
 var D={};
+var SESSION=null,ME=null,authStep=1,authEmail="";
+try{SESSION=localStorage.getItem('av_session')||null;}catch(e){}
 var isMobile=window.matchMedia("(max-width:760px)").matches, mOpen=false;
 function setMdet(){document.body.classList.toggle("mdet", isMobile&&mOpen);}
 function mBack(){mOpen=false;setMdet();}
@@ -248,7 +258,7 @@ function titl(s){return esc(s||"").replace(/_/g," ").replace(/\b\w/g,function(c)
 function ago(t){if(!t)return"";var d=new Date(t),m=Math.round((new Date()-d)/60000);if(m<1)return"now";if(m<60)return m+"m ago";var h=Math.round(m/60);if(h<24)return h+"h ago";return Math.round(h/24)+"d ago";}
 function dstr(t){return new Date(t).toLocaleDateString([], {month:'short',day:'numeric'});}
 function tstr(t){return new Date(t).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});}
-function call(fn,body){return fetch(SUPA+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json"},body:JSON.stringify(body||{})}).then(function(r){if(!r.ok){return r.text().then(function(t){throw new Error("HTTP "+r.status+" "+t.slice(0,140));});}return r.json();});}
+function call(fn,body){return fetch(SUPA+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+(SESSION||KEY),"Content-Type":"application/json"},body:JSON.stringify(body||{})}).then(function(r){if(!r.ok){return r.text().then(function(t){throw new Error("HTTP "+r.status+" "+t.slice(0,140));});}return r.json();});}
 
 var TABS=[["disputes","Disputes"],["clients","Clients"],["inbox","Inbox"],["files","Files"],["tasks","Tasks"],["calendar","Calendar"],["reports","Reports"],["billing","Billing"],["settings","Settings"]];
 function renderNav(){
@@ -267,9 +277,13 @@ function renderNav(){
 function switchView(v){view=v;mOpen=false;setMdet();renderNav();renderView();}
 var LOADERS={disputes:["demo_live_snapshot","disputes"],clients:["demo_crm_snapshot","crm"],files:["demo_files_snapshot","files"],tasks:["demo_tasks_snapshot","tasks"],calendar:["demo_calendar_snapshot","cal"],settings:["demo_admin_snapshot","admin"],inbox:["demo_inbox_snapshot","inbox"],billing:["demo_billing_snapshot","billing"],reports:["demo_reports_meta","reports"]};
 function renderView(){var L=LOADERS[view],key=L[1],el=document.getElementById("view");
+  if(SESSION&&view!=="disputes"){el.innerHTML=emptyOrg(view);return;}
+  var rpc=(SESSION&&view==="disputes")?"live_snapshot":L[0];
   if(D[key]){paint();return;}
   el.innerHTML="<div class='load'>Loading…</div>";
-  call(L[0]).then(function(r){D[key]=r;renderNav();paint();}).catch(function(e){el.innerHTML="<div class='err'><b>Couldn’t load.</b><br><span class='dmeta'>"+esc(e.message)+"</span></div>";});}
+  call(rpc).then(function(r){D[key]=r;renderNav();paint();}).catch(function(e){el.innerHTML="<div class='err'><b>Couldn’t load.</b><br><span class='dmeta'>"+esc(e.message)+"</span></div>";});}
+function emptyOrg(v){var n={clients:"clients",inbox:"messages",files:"files",tasks:"tasks",calendar:"events",reports:"reports",billing:"billing invoices",settings:"settings"}[v]||v;
+  return "<div class='page'><div class='pagehd'><h1>"+titl(v)+"</h1></div><div style='padding:56px 8px;text-align:center;color:var(--mut)'><div style='font-size:15px;color:var(--ink);margin-bottom:6px'>No "+n+" yet</div><div class='dmeta' style='max-width:340px;margin:0 auto'>This is your live workspace, <b>"+esc((ME&&ME.org)||"your org")+"</b>. Ingest an 835 or add records and they'll appear here.</div></div></div>";}
 function paint(){({disputes:paintDisputes,clients:paintCRM,files:paintFiles,tasks:paintTasks,calendar:paintCalendar,settings:paintSettings,inbox:paintInbox,billing:paintBilling,reports:paintReports}[view])();}
 
 /* DISPUTES */
@@ -490,7 +504,35 @@ document.getElementById("q").oninput=function(){var v=this.value.trim(),box=docu
       if(ty==="dispute"){sel=rf;switchView("disputes");}else if(ty==="account"||ty==="contact"){acctSel=(ty==="account"?rf:null);crmFilter="all";switchView("clients");}else if(ty==="file"){switchView("files");}else if(ty==="task"){switchView("tasks");}};});});},200);};
 document.addEventListener("click",function(e){if(!e.target.closest(".qbox"))document.getElementById("qres").innerHTML="";});
 document.getElementById("btn-reload").onclick=function(){D={};sel=null;renderView();};
-renderNav();renderView();
+// ---- auth (real Supabase email OTP + org provisioning) ----
+function authApi(path,body){return fetch(SUPA+"/auth/v1/"+path,{method:"POST",headers:{apikey:KEY,"Content-Type":"application/json"},body:JSON.stringify(body)});}
+function setAuthUI(){var b=document.getElementById("btn-auth");if(SESSION&&ME&&ME.org){b.textContent="Sign out";document.getElementById("org").textContent=ME.org;}else{b.textContent="Sign in";if(!SESSION)document.getElementById("org").textContent="Demo workspace";}}
+function openAuth(){if(SESSION){signOut();return;}authStep=1;document.getElementById("authsheet").style.display="flex";renderAuth();}
+function closeAuth(){document.getElementById("authsheet").style.display="none";}
+function renderAuth(){var h="<div class='authcard'>";
+  if(authStep===1){h+="<div class='lab'>Sign in to Avertyn</div><h2 class='authh'>Your workspace</h2><div class='dmeta'>We'll email you a 6-digit code — no password.</div><input id='auth-email' class='authin' type='email' placeholder='you@company.com' autocomplete='email'><button class='btn pri' id='auth-send' style='width:100%;margin-top:16px'>Send code</button>";}
+  else if(authStep===2){h+="<div class='lab'>Check "+esc(authEmail)+"</div><h2 class='authh'>Enter code</h2><input id='auth-code' class='authin' inputmode='numeric' placeholder='6-digit code'><button class='btn pri' id='auth-verify' style='width:100%;margin-top:16px'>Verify &amp; continue</button><div class='dmeta' id='auth-back' style='margin-top:12px;cursor:pointer'>‹ Use a different email</div>";}
+  else if(authStep===3){h+="<div class='lab'>Welcome</div><h2 class='authh'>Name your workspace</h2><div class='dmeta'>We'll set you up as admin with a starter set to explore.</div><input id='auth-org' class='authin' placeholder='e.g. Meridian Plan Administrators'><button class='btn pri' id='auth-provision' style='width:100%;margin-top:16px'>Create workspace</button>";}
+  h+="<div class='dmeta' id='auth-close' style='margin-top:18px;text-align:center;cursor:pointer'>Continue with the demo</div></div>";
+  var sh=document.getElementById("authsheet");sh.innerHTML=h;
+  var q=function(id){return document.getElementById(id);};
+  if(q("auth-send"))q("auth-send").onclick=sendCode;
+  if(q("auth-verify"))q("auth-verify").onclick=verifyCode;
+  if(q("auth-provision"))q("auth-provision").onclick=doProvision;
+  if(q("auth-back"))q("auth-back").onclick=function(){authStep=1;renderAuth();};
+  if(q("auth-close"))q("auth-close").onclick=closeAuth;
+  var f=q("auth-email")||q("auth-code")||q("auth-org");if(f)f.focus();}
+function sendCode(){var e=(document.getElementById("auth-email").value||"").trim();if(!e)return;authEmail=e;var b=document.getElementById("auth-send");b.textContent="Sending…";b.disabled=true;
+  authApi("otp",{email:e,create_user:true}).then(function(r){if(!r.ok)return r.text().then(function(t){throw new Error(t.slice(0,160));});authStep=2;renderAuth();}).catch(function(err){alert("Couldn't send code: "+err.message);b.textContent="Send code";b.disabled=false;});}
+function verifyCode(){var c=(document.getElementById("auth-code").value||"").trim();if(!c)return;var b=document.getElementById("auth-verify");b.textContent="Verifying…";b.disabled=true;
+  authApi("verify",{email:authEmail,token:c,type:"email"}).then(function(r){return r.json();}).then(function(j){if(!j.access_token)throw new Error(j.error_description||j.msg||"Invalid or expired code");SESSION=j.access_token;try{localStorage.setItem('av_session',SESSION);}catch(e){}return call("me");}).then(function(m){ME=m;if(m&&m.needs_org){authStep=3;renderAuth();}else{closeAuth();afterAuth();}}).catch(function(err){alert("Verify failed: "+err.message);b.textContent="Verify & continue";b.disabled=false;});}
+function doProvision(){var n=(document.getElementById("auth-org").value||"").trim();var b=document.getElementById("auth-provision");b.textContent="Creating…";b.disabled=true;
+  call("provision_org",{p_name:n}).then(function(){return call("me");}).then(function(m){ME=m;closeAuth();afterAuth();}).catch(function(err){alert(err.message);b.textContent="Create workspace";b.disabled=false;});}
+function afterAuth(){D={};sel=null;view="disputes";setAuthUI();renderNav();renderView();renderMobileNav();}
+function signOut(){SESSION=null;ME=null;try{localStorage.removeItem('av_session');}catch(e){}D={};sel=null;view="disputes";setAuthUI();renderNav();renderView();renderMobileNav();}
+document.getElementById("btn-auth").onclick=openAuth;
+if(SESSION){call("me").then(function(m){ME=m;if(!m||!m.authed){SESSION=null;try{localStorage.removeItem('av_session');}catch(e){}}setAuthUI();renderNav();renderView();}).catch(function(){SESSION=null;setAuthUI();renderNav();renderView();});}
+else{setAuthUI();renderNav();renderView();}
 
 /* best-in-class: cross-link dispute refs everywhere */
 (function(){
