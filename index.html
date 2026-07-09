@@ -4,7 +4,7 @@
 <title>Avertyn — Plan-side IDR defense for the No Surprises Act</title>
 <meta name="description" content="Avertyn builds the QPA-anchored, deadline-perfect, defensible offer that wins No Surprises Act IDR disputes — and files it for you. Plan-side dispute defense for TPAs.">
 <link rel="canonical" href="https://avertyn.com/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23141312'/%3E%3Ctext x='48' y='73' font-family='Georgia,serif' font-size='66' fill='%23fff' text-anchor='middle'%3EA%3C/text%3E%3Ccircle cx='79' cy='67' r='7' fill='%23b23a2a'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23141414'/%3E%3Cg fill='none' stroke='%23F5F4F2' stroke-width='44' stroke-linecap='butt' stroke-linejoin='round'%3E%3Cpath d='M172 374 L244 196'/%3E%3Cpath d='M340 374 L268 196'/%3E%3C/g%3E%3Ccircle cx='256' cy='182' r='27' fill='%23B23A2A'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Avertyn">
 <meta property="og:title" content="Avertyn — plan-side IDR defense that wins">
@@ -35,7 +35,6 @@ html{scroll-behavior:smooth}
 body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.62}
 h1,h2,h3{font-family:var(--disp);font-weight:400;letter-spacing:-.025em;margin:0}
 a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:8px}
 .num{font-family:var(--num);font-variant-numeric:tabular-nums;letter-spacing:0}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
 .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--sig);font-weight:600}
@@ -54,8 +53,10 @@ a{color:inherit;text-decoration:none}
 header.nav{position:sticky;top:0;z-index:40;background:rgba(244,242,238,.82);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:.2s}
 header.nav.scr{border-bottom-color:var(--line);box-shadow:0 1px 0 rgba(30,28,24,.03),0 8px 24px rgba(30,28,24,.04)}
 .navrow{height:70px;display:flex;align-items:center;gap:26px}
-.brand{font-family:var(--disp);font-weight:500;font-size:24px;letter-spacing:-.02em;display:inline-flex;align-items:baseline}
-.brand i{color:var(--sig);font-style:normal;margin-left:1px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none}
+.brand .bmk{width:28px;height:28px;border-radius:7px;display:block;flex:none}
+.brand .btype{font-family:var(--num);font-weight:500;font-size:21px;letter-spacing:-.03em;color:var(--ink);line-height:1}
+.brand .btype i{color:var(--sig);font-style:normal;margin-left:.5px}
 .navlinks{display:flex;gap:6px;margin-left:8px}
 .navlinks a{font-size:14px;color:var(--mut);padding:8px 12px;border-radius:9px;font-weight:500;transition:.14s}
 .navlinks a:hover{color:var(--ink);background:rgba(20,19,18,.05)}
@@ -180,7 +181,8 @@ section.blk{padding:88px 0}
 /* footer */
 footer.ft{padding:56px 0 40px}
 .ftgrid{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap}
-.ft .brand{font-size:22px}
+.ft .brand .btype{font-size:23px}
+.ft .brand .bmk{width:30px;height:30px;border-radius:8px}
 .ft .tag{font-size:14px;color:var(--mut);margin-top:10px;max-width:280px}
 .ftlinks{display:flex;gap:28px;margin-left:auto;flex-wrap:wrap}
 .ftcol .lab{margin-bottom:12px}
@@ -294,18 +296,20 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="wrap navrow">
-    <a href="#top" class="brand">Avertyn<i>.</i></a>
+    <a href="#top" class="brand" aria-label="Avertyn — home">
+      <svg class="bmk" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><rect width="512" height="512" rx="112" fill="#141414"/><g fill="none" stroke="#F5F4F2" stroke-width="44" stroke-linecap="butt" stroke-linejoin="round"><path d="M172 374 L244 196"/><path d="M340 374 L268 196"/></g><circle cx="256" cy="182" r="27" fill="#B23A2A"/></svg>
+      <span class="btype">Avertyn<i>.</i></span>
+    </a>
     <nav class="navlinks">
       <a href="#calculator">Calculator</a>
       <a href="#product">What it does</a>
       <a href="#how">How it works</a>
       <a href="#pricing">Pricing</a>
-      <a href="intelligence.html" style="display:inline-flex;align-items:center;gap:6px">Intelligence <span style="width:6px;height:6px;border-radius:50%;background:var(--ok);display:inline-block" title="Live"></span></a>
       <a href="#faq">FAQ</a>
     </nav>
     <span class="navspace"></span>
     <div class="navcta">
-      <a href="/app/" class="signin">Sign in</a>
+      <a href="https://platform.avertyn.com" class="signin">Sign in</a>
       <a href="#start" class="btn pri">See your exposure — free</a>
     </div>
   </div>
@@ -321,7 +325,6 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
       <p class="sub">The No Surprises Act runs two separate processes: <b>open negotiation</b> first, then <b>IDR</b> — baseball-style arbitration where the arbiter picks one side's exact number. The cheapest win comes before the arbiter: settle in open negotiation and you skip the fees and the coin-flip. Avertyn builds the QPA-anchored, defensible offer that wins at either stage, and files it for you.</p>
       <div class="ctas">
         <a href="#start" class="btn pri lg">See your IDR exposure — free <span class="ar">→</span></a>
-        <a href="intelligence.html" class="btn ghost lg">See it live <span class="ar">→</span></a>
         <a href="#calculator" class="btn ghost lg">Estimate what you're losing</a>
       </div>
       <p class="micro">Free exposure analysis <span class="dotsep"></span> no card, no sales call <span class="dotsep"></span> built on the June 2026 Federal IDR Operations Final Rule</p>
@@ -678,7 +681,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   <div class="wrap">
     <div class="ftgrid">
       <div>
-        <div class="brand">Avertyn<i>.</i></div>
+        <div class="brand"><svg class="bmk" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><rect width="512" height="512" rx="112" fill="#141414"/><g fill="none" stroke="#F5F4F2" stroke-width="44" stroke-linecap="butt" stroke-linejoin="round"><path d="M172 374 L244 196"/><path d="M340 374 L268 196"/></g><circle cx="256" cy="182" r="27" fill="#B23A2A"/></svg><span class="btype">Avertyn<i>.</i></span></div>
         <p class="tag">Plan-side IDR defense for the No Surprises Act. The offer that wins — built and filed for you.</p>
       </div>
       <div class="ftlinks">
@@ -688,8 +691,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
           <a href="#product">What it does</a>
           <a href="#how">How it works</a>
           <a href="#pricing">Pricing</a>
-          <a href="intelligence.html">Live intelligence</a>
-          <a href="/app/">Sign in</a>
+          <a href="https://platform.avertyn.com">Sign in</a>
         </div>
         <div class="ftcol">
           <div class="lab">Company</div>
