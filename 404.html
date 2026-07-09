@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avertyn — page not found</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23141414'/%3E%3Cpath d='M31 72 L44 36 M69 72 L56 36' stroke='%23F5F4F2' stroke-width='8' fill='none'/%3E%3Ccircle cx='50' cy='33' r='6' fill='%23b23a2a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,1,400&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#141414; --mut:#6f6a67; --faint:#a4a29e; --line:#e8e6e2; --bg:#f4f2ee; --panel:#fff; --sig:#b23a2a;
+    --sans:'Inter',system-ui,sans-serif; --disp:'Fraunces',Georgia,serif; --num:'Space Grotesk',monospace; }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;letter-spacing:-.01em;display:flex;flex-direction:column;min-height:100%}
+  .top{display:flex;align-items:center;padding:26px 32px}
+  .wm{font-family:var(--disp);font-size:22px;font-weight:500;color:var(--ink)}
+  .wm b{color:var(--sig);font-weight:500}
+  main{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+    max-width:680px;margin:0 auto;padding:0 32px 8vh;width:100%}
+  .code{font-family:var(--num);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-bottom:18px}
+  h1{font-family:var(--disp);font-weight:400;font-size:clamp(38px,7vw,68px);line-height:1.02;letter-spacing:-.02em;margin:0}
+  h1 em{font-style:italic;color:var(--sig)}
+  p{font-size:16px;line-height:1.6;color:var(--mut);max-width:46ch;margin:22px 0 34px}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  a.btn{font-weight:600;font-size:14.5px;text-decoration:none;padding:13px 20px;border-radius:12px;display:inline-block}
+  a.dark{background:var(--ink);color:#fff}
+  a.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  a.dark:hover{opacity:.9} a.ghost:hover{border-color:var(--ink)}
+  footer{padding:22px 32px;color:var(--faint);font-size:12.5px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+  <div class="top"><span class="wm">Avertyn<b>.</b></span></div>
+  <main>
+    <div class="code">404 · not found</div>
+    <h1>This page <em>averted</em> you.</h1>
+    <p>The link you followed doesn't lead anywhere — it may have moved or never existed. Everything else is right where you left it.</p>
+    <div class="row">
+      <a class="btn dark" href="/">Back to home</a>
+      <a class="btn ghost" href="/app/">Open the dashboard</a>
+    </div>
+  </main>
+  <footer>Avertyn — plan-side IDR defense for the No Surprises Act.</footer>
+</body>
+</html>
