@@ -17,17 +17,19 @@
 <meta name="twitter:title" content="Avertyn — plan-side IDR defense that wins">
 <meta name="twitter:description" content="Plans lose four of five IDR disputes. Yours don't have to. The offer that wins IDR — built and filed for you.">
 <meta name="twitter:image" content="https://avertyn.com/og.png">
-<meta name="theme-color" content="#141312">
+<meta name="theme-color" content="#181b20">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#141312;--mut:#5e5e57;--faint:#6c6c64;--line:#e7e5df;--hair:#efeee9;
-  --bg:#f4f2ee;--panel:#fff;--sig:#b23a2a;--sig-soft:#f6e9e6;--ok:#2f6f52;--ok-soft:#e7f0eb;
-  --warn:#8a6a1f;--warn-soft:#f6efdf;
+  /* Cool porcelain — kin to the platform's blue-grey palette, kept a touch
+     lighter and airier so the marketing site reads as related, not identical. */
+  --ink:#181b20;--mut:#5f656e;--faint:#878d97;--line:#e2e5ea;--hair:#edeff2;
+  --bg:#f0f2f4;--panel:#fff;--sig:#b23a2a;--sig-soft:#f4e9e6;--ok:#2e6b52;--ok-soft:#e6efe9;
+  --warn:#8a6a1f;--warn-soft:#f4eede;
   --sans:'Inter',system-ui,sans-serif;--disp:'Newsreader',Georgia,serif;--num:'Space Grotesk',monospace;
-  --sh:0 1px 2px rgba(30,28,24,.04),0 6px 20px rgba(30,28,24,.05);
-  --shh:0 2px 8px rgba(30,28,24,.07),0 18px 44px rgba(30,28,24,.10);
+  --sh:0 1px 2px rgba(24,32,48,.05),0 6px 20px rgba(24,32,48,.06);
+  --shh:0 2px 8px rgba(24,32,48,.07),0 18px 44px rgba(24,32,48,.12);
   --wrap:1120px;
 }
 *{box-sizing:border-box}
@@ -50,7 +52,7 @@ a{color:inherit;text-decoration:none}
 .btn .ar{transition:.15s}.btn:hover .ar{transform:translateX(3px)}
 
 /* nav */
-header.nav{position:sticky;top:0;z-index:40;background:rgba(244,242,238,.82);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:.2s}
+header.nav{position:sticky;top:0;z-index:40;background:rgba(240,242,244,.82);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:.2s}
 header.nav.scr{border-bottom-color:var(--line);box-shadow:0 1px 0 rgba(30,28,24,.03),0 8px 24px rgba(30,28,24,.04)}
 .navrow{height:70px;display:flex;align-items:center;gap:26px}
 .brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none}
@@ -88,7 +90,7 @@ header.nav.scr{border-bottom-color:var(--line);box-shadow:0 1px 0 rgba(30,28,24,
 .mrow .v{font-family:var(--num);font-weight:500}
 .meter{height:8px;background:var(--hair);border-radius:6px;overflow:hidden;margin-top:9px}
 .meter i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--sig),#c9553f)}
-.mdl{margin-top:16px;padding:13px 15px;background:#faf9f6;border:1px solid var(--hair);border-radius:12px}
+.mdl{margin-top:16px;padding:13px 15px;background:#f6f8fa;border:1px solid var(--hair);border-radius:12px}
 .mdl .k{font-size:11px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
 .mdl .d{display:flex;align-items:center;justify-content:space-between;margin-top:7px}
 .mdl .d .dt{font-weight:600;font-size:14px}
@@ -232,7 +234,7 @@ input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;box-shadow:0 2px 6px rgba(20,19,18,.28);border:3px solid #fff;transition:.12s}
 input[type=range]::-webkit-slider-thumb:hover{background:var(--sig)}
 input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 6px rgba(20,19,18,.28)}
-.calc .out{padding:34px;background:linear-gradient(180deg,#faf9f6,var(--panel));display:flex;flex-direction:column}
+.calc .out{padding:34px;background:linear-gradient(180deg,#f6f8fa,var(--panel));display:flex;flex-direction:column}
 .calc .out .lab{margin-bottom:6px}
 .calc .big{font-family:var(--num);font-weight:500;font-size:52px;letter-spacing:-.03em;line-height:1;color:var(--sig)}
 .calc .bigsub{font-size:13px;color:var(--mut);margin-top:8px}
@@ -256,7 +258,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .cmp{margin-top:40px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);box-shadow:var(--sh)}
 .cmp table{width:100%;border-collapse:collapse;font-size:14px}
 .cmp th,.cmp td{padding:15px 18px;text-align:left;border-bottom:1px solid var(--hair)}
-.cmp thead th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;background:#faf9f6}
+.cmp thead th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;background:#f6f8fa}
 .cmp thead th.av{color:var(--sig)}
 .cmp tbody tr:last-child td{border-bottom:0}
 .cmp td.lbl{color:var(--mut);font-weight:500;width:34%}
@@ -290,6 +292,49 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .trustitem .st.wip{color:var(--warn);background:var(--warn-soft)}
 @media(max-width:960px){.who,.trustrow{grid-template-columns:1fr 1fr}.trustitem:nth-child(2){border-right:0}.calc{grid-template-columns:1fr}.calc .ctrls{border-right:0;border-bottom:1px solid var(--line)}}
 @media(max-width:620px){.who,.trustrow{grid-template-columns:1fr}.trustitem{border-right:0;border-bottom:1px solid var(--hair)}.calc .big{font-size:42px}.calc .split{grid-template-columns:1fr}}
+
+/* ============================ v2 · level-up (elevated craft, cool palette) ============================ */
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(.35deg)}50%{transform:translateY(-9px) rotate(.35deg)}}
+@keyframes aurora{0%{transform:translate(0,0)}50%{transform:translate(-2.5%,1.8%)}100%{transform:translate(0,0)}}
+/* hero: grander, calmer, a slow living cool-tinted wash + a floating product card */
+.hero{padding:88px 0 48px}
+.hero:before{animation:aurora 20s ease-in-out infinite;background:
+  radial-gradient(1200px 560px at 80% -10%, rgba(178,58,42,.08), transparent 60%),
+  radial-gradient(920px 520px at 3% 2%, rgba(40,58,92,.06), transparent 55%)}
+.hero h1{font-size:clamp(38px,5.4vw,66px);line-height:1.0;letter-spacing:-.032em;margin-top:22px}
+.hero .sub{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;max-width:580px}
+.cardmock{animation:floaty 7.5s ease-in-out infinite;border-radius:20px;
+  box-shadow:0 4px 14px rgba(24,32,48,.07),0 44px 90px -34px rgba(24,32,48,.30)}
+/* buttons: softer geometry + a one-pass sheen on the primary */
+.btn{border-radius:12px;transition:transform .16s cubic-bezier(.22,.61,.24,1),box-shadow .16s,border-color .16s,background .16s}
+.btn.lg{border-radius:13px;padding:15px 28px}
+.btn.pri{background:linear-gradient(180deg,#282c33,#181b20);position:relative;overflow:hidden}
+.btn.pri:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 32%,rgba(255,255,255,.16) 50%,transparent 68%);transform:translateX(-130%);transition:transform .6s ease}
+.btn.pri:hover:after{transform:translateX(130%)}
+/* section headings a touch grander + a leading tick on the eyebrow */
+.sechd h2{font-size:clamp(28px,3.6vw,40px);letter-spacing:-.03em}
+.eyebrow{display:inline-flex;align-items:center;gap:9px}
+.eyebrow:before{content:"";width:18px;height:1.5px;background:var(--sig);border-radius:2px}
+/* cards: layered cool depth + a smoother lift */
+.fcard,.whocard,.tier,.cmp,.calc,.trust,.stats{box-shadow:0 1px 2px rgba(24,32,48,.05),0 16px 38px -20px rgba(24,32,48,.16)}
+.fcard{transition:transform .2s cubic-bezier(.22,.61,.24,1),box-shadow .2s}
+.fcard:hover,.whocard:hover{transform:translateY(-3px);box-shadow:0 2px 8px rgba(24,32,48,.07),0 30px 56px -24px rgba(24,32,48,.26)}
+.ficon{box-shadow:inset 0 0 0 1px rgba(178,58,42,.14)}
+/* stats: ink-gradient numerals */
+.stat .n{background:linear-gradient(158deg,var(--ink),#4c525c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .n em{-webkit-text-fill-color:var(--mut);color:var(--mut)}
+/* pricing: crown the recommended plan, greener check dots */
+.tier.reco{transform:translateY(-6px)}
+.tier.reco:before{content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:5px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--sig),#c9553f)}
+.tier li:before{background:var(--ok)}
+.tier{transition:transform .18s cubic-bezier(.22,.61,.24,1),box-shadow .18s}
+.tier:hover{transform:translateY(-3px)}
+/* nav + reveal refinement */
+header.nav.scr{background:rgba(240,242,244,.9)}
+.reveal{transform:translateY(18px);transition:opacity .7s cubic-bezier(.22,.61,.24,1),transform .7s cubic-bezier(.22,.61,.24,1)}
+/* accessible focus ring */
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--sig);outline-offset:2px;border-radius:8px}
+@media(prefers-reduced-motion:reduce){.cardmock,.hero:before{animation:none}}
 </style></head>
 <body>
 
