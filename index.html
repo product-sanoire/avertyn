@@ -349,7 +349,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
       <a href="#calculator">Calculator</a>
       <a href="#product">What it does</a>
       <a href="#how">How it works</a>
-      <a href="#pricing">Pricing</a>
+      <a href="/pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </nav>
     <span class="navspace"></span>
@@ -586,43 +586,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 <!-- PRICING -->
 <section class="blk pricewrap" id="pricing">
   <div class="wrap">
-    <div class="sechd reveal">
+    <div class="sechd reveal" style="max-width:780px">
       <span class="eyebrow">Pricing</span>
       <h2>Priced on outcomes. Never on making the gap look bigger.</h2>
-      <p>No upfront risk. Start free, and only pay when Avertyn catches or defends real dollars — anchored to the QPA, un-gameable by design.</p>
+      <p>A platform subscription plus ~20% of the dollars we defend above the QPA — anchored to the QPA, so it can't be inflated. You keep ~80%. Start free with an exposure view.</p>
     </div>
-    <div class="tiers">
-      <div class="tier reveal">
-        <div class="tn">Exposure</div>
-        <div class="tw">Employers &amp; brokers</div>
-        <div class="tp">Free</div>
-        <div class="tplus">See what you're losing</div>
-        <ul><li>IDR exposure analytics</li><li>Default-loss &amp; win visibility</li><li>Broker-distributable</li></ul>
-      </div>
-      <div class="tier reco reveal" style="transition-delay:.05s">
-        <span class="ribbon">Recommended</span>
-        <div class="tn">Fair-Value Defense</div>
-        <div class="tw">Independent &amp; mid-tier TPAs</div>
-        <div class="tp">$0<small> /mo base</small></div>
-        <div class="tplus">$25 / catch + 20% of QPA defense</div>
-        <ul><li>Priced on work, not % of the demand</li><li>Fee anchored to QPA — can't be inflated</li><li>Win in open negotiation → 12% (vs 20% at IDR)</li><li>Default-loss guarantee · capped at 25% of savings</li></ul>
-      </div>
-      <div class="tier reveal" style="transition-delay:.1s">
-        <div class="tn">Per-Outcome</div>
-        <div class="tw">Transparency-first buyers</div>
-        <div class="tp">Rate<small> card</small></div>
-        <div class="tplus">$40/case · $75/catch · $250/defense</div>
-        <ul><li>Price = work done, nothing fictional</li><li>No cut of "savings"</li><li>Fully transparent &amp; un-gameable</li><li>Pay only for cases we work</li></ul>
-      </div>
-      <div class="tier reveal" style="transition-delay:.15s">
-        <div class="tn">Performance Guarantee</div>
-        <div class="tw">Enterprise · certainty-led</div>
-        <div class="tp">Fair-Value<small> +20%</small></div>
-        <div class="tplus">Guaranteed max IDR-loss rate</div>
-        <ul><li>Same base as Fair-Value</li><li>+20% buys a contracted loss ceiling</li><li>Miss it → we refund the premium</li><li>SSO / SCIM / BAA / SLA</li></ul>
-      </div>
+    <div class="reveal" style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="/pricing" class="btn pri lg">See full pricing <span class="ar">&rarr;</span></a>
+      <a href="#start" class="btn lg">See your exposure — free</a>
     </div>
-    <p class="pricenote">No setup fees, no long-term contract, no per-seat charges — you pay only when Avertyn catches or defends real dollars. Priced to keep our incentives aligned with yours.</p>
+    <p class="pricenote">Founding-customer rate: 15% of defended dollars for the first 10 plans, through Dec 2026 — locked for your contract term.</p>
   </div>
 </section>
 
@@ -653,7 +626,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
     <div class="faq reveal" style="transition-delay:.05s">
       <details><summary>Isn't lowballing providers what got the No Surprises Act in trouble?</summary><div class="ans">Avertyn doesn't lowball — it anchors. Every offer is tied to the qualifying payment amount and a defensible ceiling, the same benchmark the statute points arbiters to. The goal is a number you can defend on the record, not the smallest number you can get away with. That's exactly why it holds up when the arbiter picks one side's figure.</div></details>
       <details><summary>We already use a repricer. Why add this?</summary><div class="ans">A repricer gives you a number. It doesn't track your IDR deadlines, screen eligibility inside the 5-business-day window, build the evidentiary rationale, or file the submission. Avertyn turns the repricer's number into a defended case — and catches the disputes that never belonged in IDR in the first place.</div></details>
-      <details><summary>How do you charge — and what's the catch?</summary><div class="ans">Start free with an exposure view. On the Fair-Value plan you pay $25 per ineligible dispute caught plus 20% of the QPA-defended amount, capped at 25% of savings, with a default-loss guarantee. The fee is anchored to the QPA, so it can't be inflated by making the gap look bigger. Prefer a flat rate card or a contracted loss ceiling? Those are the Per-Outcome and Performance Guarantee plans.</div></details>
+      <details><summary>How do you charge — and what's the catch?</summary><div class="ans">Start free with an exposure view. Then it's a platform subscription plus ~20% of the dollars we defend above the QPA — anchored to the QPA, so it can't be inflated by making the demand look bigger, and you keep ~80%. Founding customers pay 15%; enterprise adds a bounded, capped fee. Full tiers, segment pricing, and how we measure defended dollars are on the <a href="/pricing" style="color:var(--sig)">pricing page</a>.</div></details>
       <details><summary>Is our claims data safe?</summary><div class="ans">Data is encrypted in transit and at rest, access is scoped per-tenant with row-level security, and a Business Associate Agreement is available. SOC 2 readiness is underway. See the security summary below — we're specific about what's live today versus in progress.</div></details>
       <details><summary>How fast can we start, and does it fit our system?</summary><div class="ans">The free exposure analysis runs off a remittance/claims export — no rip-and-replace. Defense workflows layer on top of how you already work IDR, so there's no migration to stall on.</div></details>
       <details><summary>Do you guarantee we'll win?</summary><div class="ans">No one honest can. What we guarantee is that every case is defended to a QPA-anchored offer, filed on time, with the evidence the arbiter needs — the things that actually move win rates. The market figures on this page describe outcomes through mid-2024; they're context, not a promise about your book.</div></details>
@@ -732,18 +705,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
       <div class="ftlinks">
         <div class="ftcol">
           <div class="lab">Product</div>
+          <a href="/product">Product overview</a>
+          <a href="/how-idr-works">How IDR works</a>
           <a href="#calculator">Exposure calculator</a>
-          <a href="#product">What it does</a>
-          <a href="#how">How it works</a>
-          <a href="#pricing">Pricing</a>
+          <a href="/pricing">Pricing</a>
           <a href="https://platform.avertyn.com">Sign in</a>
         </div>
         <div class="ftcol">
           <div class="lab">Company</div>
+          <a href="/about">About</a>
+          <a href="/security">Security &amp; trust</a>
           <a href="#faq">FAQ</a>
-          <a href="#security">Security</a>
           <a href="#start">Free exposure report</a>
-          <a href="#start">Request early access</a>
+        </div>
+        <div class="ftcol">
+          <div class="lab">Legal</div>
+          <a href="/terms">Terms of Service</a>
+          <a href="/privacy">Privacy Policy</a>
         </div>
       </div>
     </div>
